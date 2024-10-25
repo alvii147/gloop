@@ -21,6 +21,8 @@ go get github.com/alvii147/gloop
 
 ### Interval
 
+`Interval` allows a for loop to range over values in a given interval with a given step size.
+
 ```go
 package main
 
@@ -42,6 +44,8 @@ func main() {
 5
 7
 ```
+
+`WithIntervalClosed` can be used to configure the interval as closed so the end point value is included.
 
 ```go
 package main
@@ -68,6 +72,8 @@ func main() {
 
 ### Linspace
 
+`Linspace` allows a for loop to range over evenly spaced values within a given interval.
+
 ```go
 package main
 
@@ -90,6 +96,8 @@ func main() {
 2.5
 2.75
 ```
+
+`WithLinspaceClosed` can be used to configure the interval as closed so the end point value is included.
 
 ```go
 package main
@@ -119,6 +127,8 @@ func main() {
 
 ### Chain
 
+`Chain` allows a for loop to range over multiple sequences.
+
 ```go
 package main
 
@@ -146,6 +156,8 @@ func main() {
 ```
 
 ### Channel
+
+`Channel` allows a for loop to receive and range over values from a given channel.
 
 ```go
 package main
@@ -179,6 +191,8 @@ func main() {
 
 ### Enumerate
 
+`Enumerate` allows a for loop to iterate over a sequence with an index.
+
 ```go
 package main
 
@@ -211,6 +225,8 @@ func main() {
 
 ### Filter
 
+`Filter` runs a given function on each value from a given sequence and allows a for loop to range over values for which the function returns true.
+
 ```go
 package main
 
@@ -238,6 +254,8 @@ func main() {
 ```
 
 ### List
+
+`List` allows a for loop to range over a given list from [container/list](https://pkg.go.dev/container/list).
 
 ```go
 package main
@@ -269,6 +287,8 @@ func main() {
 
 ### Reverse
 
+`Reverse` allows a for loop to range over a given sequence in order of descending index.
+
 ```go
 package main
 
@@ -293,6 +313,8 @@ func main() {
 ```
 
 ### Slice
+
+`Slice` allows a for loop to range over a given slice.
 
 ```go
 package main
@@ -319,6 +341,8 @@ func main() {
 
 ### String
 
+`String` allows a for loop to range over the runes in a given string.
+
 ```go
 package main
 
@@ -342,6 +366,8 @@ T
 ```
 
 ### Transform
+
+`Transform` runs a given function on each value from a given sequence and allows a for loop to range over the returned values.
 
 ```go
 package main
@@ -368,6 +394,8 @@ dog
 
 ### Zip
 
+`Zip` allows a for loop to iterate over two given sequences in pairs.
+
 ```go
 package main
 
@@ -392,6 +420,8 @@ func main() {
 4 9
 ```
 
+By default, iteration terminates when the shorter sequence is exhaused.
+
 ```go
 package main
 
@@ -415,6 +445,8 @@ func main() {
 1 5
 4 9
 ```
+
+`WithZipPadded` can be used to configured iteration to continue till the longer sequence is exhaused with the shorter sequence padded with zero-values.
 
 ```go
 package main
@@ -446,6 +478,8 @@ func main() {
 0 6
 0 5
 ```
+
+`WithZipPadValue1` can be used to set the padding value for the shorter sequence.
 
 ```go
 package main
@@ -483,6 +517,8 @@ func main() {
 
 ### Batch
 
+`Batch` allows a for loop to range over a given sequence in batches of a given size.
+
 ```go
 package main
 
@@ -507,7 +543,9 @@ func main() {
 [2 6 5]
 ```
 
-### Cartesianproduct
+### Cartesian Product
+
+`CartesianProduct` allows a for loop to range over the Cartesian product of a given size for a given sequence.
 
 ```go
 package main
@@ -541,6 +579,8 @@ TT
 
 ### Combinations
 
+`Combinations` allows a for loop to range over all combinations of a given size for a given sequence.
+
 ```go
 package main
 
@@ -566,6 +606,8 @@ AT
 ```
 
 ### Permutations
+
+`Permutations` allows a for loop to range over all permutations of a given size for a given sequence.
 
 ```go
 package main
@@ -596,6 +638,8 @@ TA
 
 ### Window
 
+`Window` allows a for loop to range over a given sequence in sliding windows of a given size.
+
 ```go
 package main
 
@@ -625,6 +669,8 @@ func main() {
 
 ### All
 
+`All` computes whether or not all values in a sequence are true.
+
 ```go
 package main
 
@@ -652,6 +698,8 @@ false
 ```
 
 ### Any
+
+`Any` computes whether or not any value in a sequence is true.
 
 ```go
 package main
@@ -681,6 +729,8 @@ false
 
 ### Max
 
+`Max` computes the maximum value over a given sequence.
+
 ```go
 package main
 
@@ -702,6 +752,8 @@ func main() {
 ```
 
 ### Mean
+
+`Mean` computes the mean value over a given sequence.
 
 ```go
 package main
@@ -725,6 +777,8 @@ func main() {
 
 ### Min
 
+`Min` computes the minumum value over a given sequence.
+
 ```go
 package main
 
@@ -747,6 +801,8 @@ func main() {
 
 ### Product
 
+`Product` executes the product of values a given sequence.
+
 ```go
 package main
 
@@ -768,6 +824,8 @@ func main() {
 ```
 
 ### Reduce
+
+`Reduce` runs a given function on each value from a given sequence and accumulates the result into a single value.
 
 ```go
 package main
@@ -792,6 +850,8 @@ func main() {
 ```
 8
 ```
+
+`WithReduceInitialValue` can be used to set the initial value of the accumulator.
 
 ```go
 package main
@@ -819,6 +879,8 @@ func main() {
 
 ### Sum
 
+`Sum` executes summation over a given sequence.
+
 ```go
 package main
 
@@ -840,6 +902,8 @@ func main() {
 ```
 
 ### ToList
+
+`ToList` converts a sequence to a list from [container/list](https://pkg.go.dev/container/list).
 
 ```go
 package main
@@ -872,6 +936,8 @@ func main() {
 
 ### ToSlice
 
+`ToSlice` converts a sequence to a slice.
+
 ```go
 package main
 
@@ -897,6 +963,8 @@ func main() {
 ```
 
 ### ToString
+
+`ToString` converts a sequence of runes to a string.
 
 ```go
 package main
@@ -925,6 +993,8 @@ CAT
 ## Parallelizers
 
 ### Parallelize
+
+`Parallelize` runs a function on each value from given a slice of values on separate goroutines.
 
 ```go
 package main
@@ -955,6 +1025,8 @@ DOG
 CAT
 Time Elapsed 1.001531166s
 ```
+
+`WithParallelizeContext` can be used to pass in a context. If the context is cancelled, no more goroutines are started.
 
 ```go
 package main
@@ -987,6 +1059,8 @@ func main() {
 ```
 Time Elapsed 50.5µs
 ```
+
+`WithParallelizeMaxThreads` can be used to configure the maximum number of concurrent goroutines.
 
 ```go
 package main
