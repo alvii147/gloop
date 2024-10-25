@@ -17,6 +17,43 @@ go get github.com/alvii147/gloop
 > [!NOTE]
 > Go version 1.23+ required as older versions don't offer the range-over-func feature.
 
+## Features
+
+* [Generators](#generators)
+    * [Interval](#interval)
+    * [Linspace](#linspace)
+* [Scalar Iterators](#scalar-iterators)
+    * [Chain](#chain)
+    * [Channel](#channel)
+    * [Enumerate](#enumerate)
+    * [Filter](#filter)
+    * [List](#list)
+    * [Reverse](#reverse)
+    * [Slice](#slice)
+    * [String](#string)
+    * [Transform](#transform)
+    * [Zip](#zip)
+* [Vector Iterators]()
+    * [Batch](#batch)
+    * [Cartesian Product](#cartesian-product)
+    * [Combinations](#combinations)
+    * [Permutations](#permutations)
+    * [Window](#window)
+* [Accumulators](#accumulators)
+    * [All](#all)
+    * [Any](#any)
+    * [Max](#max)
+    * [Mean](#mean)
+    * [Min](#min)
+    * [Product](#product)
+    * [Reduce](#reduce)
+    * [Sum](#sum)
+    * [To List](#to-list)
+    * [To Slice](#to-slice)
+    * [To String](#to-string)
+* [Parallelizers](#parallelizers)
+    * [Parallelize](#parallelize)
+
 ## Generators
 
 ### Interval
@@ -901,7 +938,7 @@ func main() {
 8
 ```
 
-### ToList
+### To List
 
 `ToList` converts a sequence to a list from [container/list](https://pkg.go.dev/container/list).
 
@@ -934,7 +971,7 @@ func main() {
 4
 ```
 
-### ToSlice
+### To Slice
 
 `ToSlice` converts a sequence to a slice.
 
@@ -962,7 +999,7 @@ func main() {
 [3 1 4]
 ```
 
-### ToString
+### To String
 
 `ToString` converts a sequence of runes to a string.
 
