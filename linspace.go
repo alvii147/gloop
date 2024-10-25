@@ -23,8 +23,8 @@ func WithLinspaceClosed(closed bool) LinspaceOptionFunc {
 	}
 }
 
-// Linspace allows a for loop to range over evenly spaced values within
-// a given interval. n must be greater than 1.
+// Linspace allows looping over evenly spaced values within a given
+// interval. n must be greater than 1.
 func Linspace[N Number](
 	start N,
 	stop N,

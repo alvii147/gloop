@@ -4,7 +4,7 @@ import (
 	"iter"
 )
 
-// Slice allows a for loop to range over a given slice.
+// Slice allows looping over a given slice.
 func Slice[V any](values []V) iter.Seq[V] {
 	return func(yield func(V) bool) {
 		for _, value := range values {
@@ -15,7 +15,7 @@ func Slice[V any](values []V) iter.Seq[V] {
 	}
 }
 
-// ToSlice converts a sequence to a slice.
+// ToSlice converts an iter.Seq sequence to a slice.
 func ToSlice[V any](seq iter.Seq[V]) []V {
 	l := ToList(seq)
 	values := make([]V, l.Len())

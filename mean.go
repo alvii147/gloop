@@ -4,8 +4,7 @@ import (
 	"iter"
 )
 
-// meanAccumulator helps accumulate both summation and length through
-// Reduce in Mean.
+// meanAccumulator helps accumulate both summation and length.
 type meanAccumulator[V Number] struct {
 	// sum represents the current summation.
 	sum V
@@ -13,7 +12,7 @@ type meanAccumulator[V Number] struct {
 	len int
 }
 
-// Mean computes the mean value over a given sequence.
+// Mean computes the mean value over an iter.Seq sequence.
 func Mean[V Number](seq iter.Seq[V]) float64 {
 	meanAcc := Reduce(seq, func(acc meanAccumulator[V], value V) meanAccumulator[V] {
 		return meanAccumulator[V]{

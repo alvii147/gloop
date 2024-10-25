@@ -4,7 +4,7 @@ import (
 	"iter"
 )
 
-// Reverse allows a for loop to range over a given sequence in order of
+// Reverse allows looping over an iter.Seq sequence in order of
 // descending index.
 func Reverse[V any](seq iter.Seq[V]) iter.Seq[V] {
 	l := ToList(seq)

@@ -23,8 +23,8 @@ func WithReduceInitialValue[A any](initialValue A) ReduceOptionFunc[A] {
 // ReduceFunc is the function signature of the reduction function.
 type ReduceFunc[A, V any] func(A, V) A
 
-// Reduce runs a given function on each value from a given sequence and
-// accumulates the result into a single value.
+// Reduce runs a given function on each value from an iter.Seq sequence
+// and accumulates the result into a single value.
 func Reduce[A, V any](
 	seq iter.Seq[V],
 	f ReduceFunc[A, V],

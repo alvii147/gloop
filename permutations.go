@@ -5,8 +5,8 @@ import (
 	"iter"
 )
 
-// permutations recursively computes and yields the permutations of a
-// given sequence.
+// permutations recursively computes and yields the permutations of an
+// iter.Seq sequence.
 func permutations[V any](
 	size int,
 	yield func(iter.Seq[V]) bool,
@@ -43,8 +43,8 @@ func permutations[V any](
 	return true
 }
 
-// Permutations allows a for loop to range over all permutations of a
-// given size for a given sequence. The size must be positive.
+// Permutations allows looping over all permutations of a given size
+// for an iter.Seq sequence. The size must be positive.
 func Permutations[V any](seq iter.Seq[V], size int) iter.Seq[iter.Seq[V]] {
 	if size <= 0 {
 		panic("size must be positive")

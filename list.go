@@ -5,8 +5,7 @@ import (
 	"iter"
 )
 
-// List allows a for loop to range over a given list from
-// container/list.
+// List allows looping over a given linked list from container/list.
 func List(l *list.List) iter.Seq[*list.Element] {
 	return func(yield func(*list.Element) bool) {
 		elem := l.Front()
@@ -20,7 +19,8 @@ func List(l *list.List) iter.Seq[*list.Element] {
 	}
 }
 
-// ToList converts a sequence to a list from container/list.
+// ToList converts an iter.Seq sequence to a linked list from
+// container/list.
 func ToList[V any](seq iter.Seq[V]) *list.List {
 	l := list.New()
 	for value := range seq {

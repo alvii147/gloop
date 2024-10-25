@@ -4,8 +4,8 @@ import (
 	"iter"
 )
 
-// Batch allows a for loop to range over a given sequence in batches of
-// a given size. The batch size must be positive.
+// Batch allows looping over an iter.Seq sequence in batches of a given
+// size. The batch size must be positive.
 func Batch[V any](seq iter.Seq[V], size int) iter.Seq[iter.Seq[V]] {
 	if size <= 0 {
 		panic("size must be positive")

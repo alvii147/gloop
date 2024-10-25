@@ -5,8 +5,8 @@ import (
 	"iter"
 )
 
-// combinations recursively computes and yields the combinations of a
-// given sequence.
+// combinations recursively computes and yields the combinations of an
+// iter.Seq sequence.
 func combinations[V any](
 	size int,
 	yield func(iter.Seq[V]) bool,

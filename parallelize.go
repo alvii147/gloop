@@ -39,8 +39,8 @@ func WithParallelizeMaxThreads(maxThreads int) ParallelizeOptionFunc {
 // parallelized.
 type ParallelizeFunc[V any] func(V)
 
-// Parallelize runs a function on each value from given a slice of
-// values on separate goroutines.
+// Parallelize runs a function on each value in an iter.Seq sequence on
+// separate goroutines.
 func Parallelize[V any](
 	seq iter.Seq[V],
 	f ParallelizeFunc[V],

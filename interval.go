@@ -21,8 +21,8 @@ func WithIntervalClosed(closed bool) IntervalOptionFunc {
 	}
 }
 
-// Interval allows a for loop to range over values in a given interval
-// with a given step size.
+// Interval allows looping over values in a given interval with a given
+// step size.
 func Interval[N Number](
 	start N,
 	stop N,
