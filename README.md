@@ -33,7 +33,7 @@ go get github.com/alvii147/gloop
     * [String](#string)
     * [Transform](#transform)
     * [Zip](#zip)
-* [Vector Iterators]()
+* [Vector Iterators](#vector-iterators)
     * [Batch](#batch)
     * [Cartesian Product](#cartesian-product)
     * [Combinations](#combinations)
