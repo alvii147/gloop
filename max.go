@@ -17,3 +17,8 @@ func Max[V cmp.Ordered](seq iter.Seq[V]) V {
 		return max(acc, value)
 	})
 }
+
+// Max2 computes the maximum value over an iter.Seq2 sequence.
+func Max2[K any, V cmp.Ordered](seq iter.Seq2[K, V]) V {
+	return Max(Values(seq))
+}

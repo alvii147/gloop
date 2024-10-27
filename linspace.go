@@ -54,3 +54,14 @@ func Linspace[N Number](
 		WithIntervalClosed(options.Closed),
 	)
 }
+
+// Linspace2 allows looping over evenly spaced values within a given
+// interval with in index. n must be greater than 1.
+func Linspace2[N Number](
+	start N,
+	stop N,
+	n int,
+	opts ...LinspaceOptionFunc,
+) iter.Seq2[int, float64] {
+	return Enumerate(Linspace(start, stop, n, opts...))
+}

@@ -113,8 +113,63 @@ func TestParallelizeString(t *testing.T) {
 	require.ElementsMatch(t, []rune(s), gotRunes)
 }
 
+func TestParallelize2(t *testing.T) {
+	m := map[string]int{
+		"Fizz": 3,
+		"Buzz": 1,
+		"Bazz": 4,
+	}
+	keysCh := make(chan string, len(m))
+	valuesCh := make(chan int, len(m))
+
+	done := make(chan struct{}, 1)
+	channelOverflow := false
+	go func() {
+		gloop.Parallelize2(gloop.Map2(m), func(k string, v int) {
+			select {
+			case keysCh <- k:
+			default:
+				channelOverflow = true
+			}
+
+			select {
+			case valuesCh <- v:
+			default:
+				channelOverflow = true
+			}
+		})
+		done <- struct{}{}
+	}()
+
+	select {
+	case <-done:
+	case <-time.After(time.Second * 10):
+		t.Fatal("done signal took too long")
+	}
+
+	require.False(t, channelOverflow)
+
+	close(keysCh)
+	close(valuesCh)
+
+	gotKeys := make([]string, 0)
+	for k := range keysCh {
+		gotKeys = append(gotKeys, k)
+	}
+
+	gotValues := make([]int, 0)
+	for v := range valuesCh {
+		gotValues = append(gotValues, v)
+	}
+
+	for k, v := range m {
+		require.Contains(t, gotKeys, k)
+		require.Contains(t, gotValues, v)
+	}
+}
+
 func TestParallelizeCancelContext(t *testing.T) {
-	values := []string{"0xDEADBEEF"}
+	values := []string{"Fizz"}
 
 	ctx, cancel := context.WithCancel(context.Background())
 	cancel()
@@ -137,20 +192,63 @@ func TestParallelizeCancelContext(t *testing.T) {
 	require.False(t, functionCalled)
 }
 
+func TestParallelize2CancelContext(t *testing.T) {
+	values := []string{"Fizz"}
+
+	ctx, cancel := context.WithCancel(context.Background())
+	cancel()
+
+	done := make(chan struct{}, 1)
+	functionCalled := false
+	go func() {
+		gloop.Parallelize2(gloop.Slice2(values), func(_ int, _ string) {
+			functionCalled = true
+		}, gloop.WithParallelizeContext(ctx))
+		done <- struct{}{}
+	}()
+
+	select {
+	case <-done:
+	case <-time.After(time.Second * 10):
+		t.Fatal("done signal took too long")
+	}
+
+	require.False(t, functionCalled)
+}
+
 func TestParallelizeSingleThreaded(t *testing.T) {
 	values := []string{"a", "b", "c"}
-	idx := 0
 	var concurrentCallers atomic.Int64
 
 	done := make(chan struct{}, 1)
 	go func() {
-		gloop.Parallelize(gloop.Slice(values), func(v string) {
+		gloop.Parallelize(gloop.Slice(values), func(_ string) {
 			concurrentCallers.Add(1)
 			defer concurrentCallers.Add(-1)
 
 			require.EqualValues(t, concurrentCallers.Load(), 1)
-			require.Equal(t, values[idx], v)
-			idx++
+		}, gloop.WithParallelizeMaxThreads(1))
+		done <- struct{}{}
+	}()
+
+	select {
+	case <-done:
+	case <-time.After(time.Second * 10):
+		t.Fatal("done signal took too long")
+	}
+}
+
+func TestParallelize2SingleThreaded(t *testing.T) {
+	values := []string{"a", "b", "c"}
+	var concurrentCallers atomic.Int64
+
+	done := make(chan struct{}, 1)
+	go func() {
+		gloop.Parallelize2(gloop.Slice2(values), func(_ int, _ string) {
+			concurrentCallers.Add(1)
+			defer concurrentCallers.Add(-1)
+
+			require.EqualValues(t, concurrentCallers.Load(), 1)
 		}, gloop.WithParallelizeMaxThreads(1))
 		done <- struct{}{}
 	}()

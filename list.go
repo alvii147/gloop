@@ -19,6 +19,23 @@ func List(l *list.List) iter.Seq[*list.Element] {
 	}
 }
 
+// List2 allows looping over a given linked list from container/list
+// with an index.
+func List2(l *list.List) iter.Seq2[int, *list.Element] {
+	return func(yield func(int, *list.Element) bool) {
+		elem := l.Front()
+		i := 0
+		for elem != nil {
+			if !yield(i, elem) {
+				return
+			}
+
+			elem = elem.Next()
+			i++
+		}
+	}
+}
+
 // ToList converts an iter.Seq sequence to a linked list from
 // container/list.
 func ToList[V any](seq iter.Seq[V]) *list.List {
@@ -28,4 +45,17 @@ func ToList[V any](seq iter.Seq[V]) *list.List {
 	}
 
 	return l
+}
+
+// ToList2 converts an iter.Seq2 sequence to linked lists
+// from container/list of keys and values.
+func ToList2[K, V any](seq iter.Seq2[K, V]) (*list.List, *list.List) {
+	listKeys := list.New()
+	listValues := list.New()
+	for key, value := range seq {
+		listKeys.PushBack(key)
+		listValues.PushBack(value)
+	}
+
+	return listKeys, listValues
 }

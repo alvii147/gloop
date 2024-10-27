@@ -68,3 +68,73 @@ func TestChainBreak(t *testing.T) {
 		i++
 	}
 }
+
+func TestChain2Slices(t *testing.T) {
+	values1 := []string{"a", "b", "c"}
+	values2 := []string{"x", "y", "z"}
+	values3 := []string{"1", "2", "3"}
+	chainedIdx := []int{0, 1, 2, 0, 1, 2, 0, 1, 2}
+	chainedValues := []string{"a", "b", "c", "x", "y", "z", "1", "2", "3"}
+	i := 0
+
+	for idx, value := range gloop.Chain2(
+		gloop.Slice2(values1),
+		gloop.Slice2(values2),
+		gloop.Slice2(values3),
+	) {
+		require.Equal(t, chainedIdx[i], idx)
+		require.Equal(t, chainedValues[i], value)
+		i++
+	}
+
+	require.Equal(t, len(chainedValues), i)
+}
+
+func TestChain2Strings(t *testing.T) {
+	s1 := "Fizz"
+	s2 := "Buzz"
+	chainedIdx := []int{0, 1, 2, 3, 0, 1, 2, 3}
+	chainedRunes := []rune{'F', 'i', 'z', 'z', 'B', 'u', 'z', 'z'}
+	i := 0
+
+	for idx, value := range gloop.Chain2(gloop.String2(s1), gloop.String2(s2)) {
+		require.Equal(t, chainedIdx[i], idx)
+		require.Equal(t, chainedRunes[i], value)
+		i++
+	}
+
+	require.Equal(t, len(chainedRunes), i)
+}
+
+func TestChain2SliceAndString(t *testing.T) {
+	values := []rune{'F', 'i', 'z', 'z'}
+	s := "Buzz"
+	chainedIdx := []int{0, 1, 2, 3, 0, 1, 2, 3}
+	chainedRunes := []rune{'F', 'i', 'z', 'z', 'B', 'u', 'z', 'z'}
+	i := 0
+
+	for idx, value := range gloop.Chain2(gloop.Slice2(values), gloop.String2(s)) {
+		require.Equal(t, chainedIdx[i], idx)
+		require.Equal(t, chainedRunes[i], value)
+		i++
+	}
+
+	require.Equal(t, len(chainedRunes), i)
+}
+
+func TestChain2Break(t *testing.T) {
+	values := []string{"a", "b", "c"}
+	chainedIdx := []int{0, 1, 2}
+	chainedValues := []string{"a", "b"}
+	i := 0
+
+	for idx, value := range gloop.Chain2(gloop.Slice2(values)) {
+		if i == 2 {
+			break
+		}
+
+		require.Equal(t, chainedIdx[i], idx)
+		require.Equal(t, chainedValues[i], value)
+		i++
+	}
+}

@@ -94,3 +94,96 @@ func TestLinspaceNegativeDivisionsPanics(t *testing.T) {
 		}
 	})
 }
+
+func TestLinspace2(t *testing.T) {
+	wantValues := []float64{2, 2.25, 2.5, 2.75}
+	i := 0
+
+	for idx, value := range gloop.Linspace2(2, 3, 5) {
+		require.Equal(t, i, idx)
+		require.Equal(t, wantValues[i], value)
+		i++
+	}
+
+	require.Equal(t, len(wantValues), i)
+}
+
+func TestLinspace2Closed(t *testing.T) {
+	wantValues := []float64{2, 2.25, 2.5, 2.75, 3}
+	i := 0
+
+	for idx, value := range gloop.Linspace2(2, 3, 5, gloop.WithLinspaceClosed(true)) {
+		require.Equal(t, i, idx)
+		require.Equal(t, wantValues[i], value)
+		i++
+	}
+
+	require.Equal(t, len(wantValues), i)
+}
+
+func TestLinspace2Backwards(t *testing.T) {
+	wantValues := []float64{10, 8.5, 7, 5.5}
+	i := 0
+
+	for idx, value := range gloop.Linspace2(10, 4, 5) {
+		require.Equal(t, i, idx)
+		require.Equal(t, wantValues[i], value)
+		i++
+	}
+
+	require.Equal(t, len(wantValues), i)
+}
+
+func TestLinspace2BackwardsClosed(t *testing.T) {
+	wantValues := []float64{10, 8.5, 7, 5.5, 4}
+	i := 0
+
+	for idx, value := range gloop.Linspace2(10, 4, 5, gloop.WithLinspaceClosed(true)) {
+		require.Equal(t, i, idx)
+		require.Equal(t, wantValues[i], value)
+		i++
+	}
+
+	require.Equal(t, len(wantValues), i)
+}
+
+func TestLinspace2Break(t *testing.T) {
+	wantValues := []float64{2, 2.25}
+	i := 0
+
+	for idx, value := range gloop.Linspace2(2, 3, 5) {
+		if i == 2 {
+			break
+		}
+
+		require.Equal(t, i, idx)
+		require.Equal(t, wantValues[i], value)
+		i++
+	}
+
+	require.Equal(t, len(wantValues), i)
+}
+
+func TestLinspace2ZeroDivisionsPanics(t *testing.T) {
+	require.Panics(t, func() {
+		for range gloop.Linspace2(2, 3, 0) {
+			t.Fatal("expected no iteration")
+		}
+	})
+}
+
+func TestLinspace2OneDivisionPanics(t *testing.T) {
+	require.Panics(t, func() {
+		for range gloop.Linspace2(2, 3, 1) {
+			t.Fatal("expected no iteration")
+		}
+	})
+}
+
+func TestLinspace2NegativeDivisionsPanics(t *testing.T) {
+	require.Panics(t, func() {
+		for range gloop.Linspace2(2, 3, -5) {
+			t.Fatal("expected no iteration")
+		}
+	})
+}

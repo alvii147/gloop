@@ -35,6 +35,36 @@ func TestSliceBreak(t *testing.T) {
 	require.Equal(t, len(wantValues), i)
 }
 
+func TestSlice2(t *testing.T) {
+	values := []int{3, 4, 5}
+	i := 0
+	for idx, value := range gloop.Slice2(values) {
+		require.Equal(t, i, idx)
+		require.Equal(t, values[i], value)
+		i++
+	}
+
+	require.Equal(t, len(values), i)
+}
+
+func TestSlice2Break(t *testing.T) {
+	values := []int{3, 4, 5}
+	wantValues := []int{3, 4}
+	i := 0
+
+	for idx, value := range gloop.Slice2(values) {
+		if i == 2 {
+			break
+		}
+
+		require.Equal(t, i, idx)
+		require.Equal(t, wantValues[i], value)
+		i++
+	}
+
+	require.Equal(t, len(wantValues), i)
+}
+
 func TestToSlice(t *testing.T) {
 	seq := func(yield func(int) bool) {
 		if !yield(3) {
@@ -51,5 +81,25 @@ func TestToSlice(t *testing.T) {
 	}
 
 	values := gloop.ToSlice(seq)
+	require.Equal(t, []int{3, 4, 5}, values)
+}
+
+func TestToSlice2(t *testing.T) {
+	seq := func(yield func(int, int) bool) {
+		if !yield(0, 3) {
+			return
+		}
+
+		if !yield(1, 4) {
+			return
+		}
+
+		if !yield(2, 5) {
+			return
+		}
+	}
+
+	keys, values := gloop.ToSlice2(seq)
+	require.Equal(t, []int{0, 1, 2}, keys)
 	require.Equal(t, []int{3, 4, 5}, values)
 }

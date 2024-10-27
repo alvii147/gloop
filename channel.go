@@ -13,3 +13,9 @@ func Channel[V any](ch <-chan V) iter.Seq[V] {
 		}
 	}
 }
+
+// Channel2 allows looping over values from a given channel with an
+// index. The values are consumed from the channel.
+func Channel2[V any](ch <-chan V) iter.Seq2[int, V] {
+	return Enumerate(Channel(ch))
+}

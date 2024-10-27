@@ -20,7 +20,8 @@ func WithReduceInitialValue[A any](initialValue A) ReduceOptionFunc[A] {
 	}
 }
 
-// ReduceFunc is the function signature of the reduction function.
+// ReduceFunc is the function signature of the reduction function used
+// in Reduce.
 type ReduceFunc[A, V any] func(A, V) A
 
 // Reduce runs a given function on each value from an iter.Seq sequence
@@ -28,6 +29,22 @@ type ReduceFunc[A, V any] func(A, V) A
 func Reduce[A, V any](
 	seq iter.Seq[V],
 	f ReduceFunc[A, V],
+	opts ...ReduceOptionFunc[A],
+) A {
+	return Reduce2(Enumerate(seq), func(acc A, _ int, value V) A {
+		return f(acc, value)
+	}, opts...)
+}
+
+// Reduce2Func is the function signature of the reduction function used
+// in Reduce2.
+type Reduce2Func[A, K, V any] func(A, K, V) A
+
+// Reduce2 runs a given function on each value from an iter.Seq2
+// sequence and accumulates the result into a single value.
+func Reduce2[A, K, V any](
+	seq iter.Seq2[K, V],
+	f Reduce2Func[A, K, V],
 	opts ...ReduceOptionFunc[A],
 ) A {
 	options := ReduceOptions[A]{
@@ -43,8 +60,8 @@ func Reduce[A, V any](
 		acc = *options.InitialValue
 	}
 
-	for value := range seq {
-		acc = f(acc, value)
+	for key, value := range seq {
+		acc = f(acc, key, value)
 	}
 
 	return acc

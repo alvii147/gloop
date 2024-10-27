@@ -100,3 +100,103 @@ func TestIntervalBreak(t *testing.T) {
 
 	require.Equal(t, len(wantValues), i)
 }
+
+func TestInterval2Int(t *testing.T) {
+	wantValues := []int{3, 5}
+	i := 0
+
+	for idx, value := range gloop.Interval2(3, 7, 2) {
+		require.Equal(t, i, idx)
+		require.Equal(t, wantValues[i], value)
+		i++
+	}
+
+	require.Equal(t, len(wantValues), i)
+}
+
+func TestInterval2Float(t *testing.T) {
+	wantValues := []float64{2, 2.5, 3, 3.5, 4, 4.5}
+	i := 0
+
+	for idx, value := range gloop.Interval2(2, 5, 0.5) {
+		require.Equal(t, i, idx)
+		require.Equal(t, wantValues[i], value)
+		i++
+	}
+
+	require.Equal(t, len(wantValues), i)
+}
+
+func TestInterval2NegativeStep(t *testing.T) {
+	wantValues := []int{10, 7, 4}
+	i := 0
+
+	for idx, value := range gloop.Interval2(10, 3, -3) {
+		require.Equal(t, i, idx)
+		require.Equal(t, wantValues[i], value)
+		i++
+	}
+
+	require.Equal(t, len(wantValues), i)
+}
+
+func TestInterval2ZeroStep(t *testing.T) {
+	for range gloop.Interval2(3, 7, 0) {
+		t.Fatal("expected no iteration")
+	}
+}
+
+func TestInterval2NoIteration(t *testing.T) {
+	for range gloop.Interval2(10, 3, 2) {
+		t.Fatal("expected no iteration")
+	}
+}
+
+func TestInterval2NoIterationNegativeStep(t *testing.T) {
+	for range gloop.Interval2(3, 7, -3) {
+		t.Fatal("expected no iteration")
+	}
+}
+
+func TestInterval2Closed(t *testing.T) {
+	wantValues := []int{3, 5, 7}
+	i := 0
+
+	for idx, value := range gloop.Interval2(3, 7, 2, gloop.WithIntervalClosed(true)) {
+		require.Equal(t, i, idx)
+		require.Equal(t, wantValues[i], value)
+		i++
+	}
+
+	require.Equal(t, len(wantValues), i)
+}
+
+func TestInterval2ClosedNegativeStep(t *testing.T) {
+	wantValues := []int{10, 7, 4, 1}
+	i := 0
+
+	for idx, value := range gloop.Interval2(10, 1, -3, gloop.WithIntervalClosed(true)) {
+		require.Equal(t, i, idx)
+		require.Equal(t, wantValues[i], value)
+		i++
+	}
+
+	require.Equal(t, len(wantValues), i)
+}
+
+func TestInterval2Break(t *testing.T) {
+	wantValues := []int{3, 6}
+	i := 0
+
+	for idx, value := range gloop.Interval2(3, 20, 3) {
+		if i == 2 {
+			break
+		}
+
+		require.Equal(t, i, idx)
+		require.Equal(t, wantValues[i], value)
+		i++
+	}
+
+	require.Equal(t, len(wantValues), i)
+}

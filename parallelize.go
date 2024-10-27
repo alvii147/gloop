@@ -36,7 +36,7 @@ func WithParallelizeMaxThreads(maxThreads int) ParallelizeOptionFunc {
 }
 
 // ParallelizeFunc is the function signature of the function to be
-// parallelized.
+// parallelized in Parallelize.
 type ParallelizeFunc[V any] func(V)
 
 // Parallelize runs a function on each value in an iter.Seq sequence on
@@ -44,6 +44,22 @@ type ParallelizeFunc[V any] func(V)
 func Parallelize[V any](
 	seq iter.Seq[V],
 	f ParallelizeFunc[V],
+	opts ...ParallelizeOptionFunc,
+) {
+	Parallelize2(Enumerate(seq), func(_ int, value V) {
+		f(value)
+	}, opts...)
+}
+
+// Parallelize2Func is the function signature of the function to be
+// parallelized in Parallelize2.
+type Parallelize2Func[K, V any] func(K, V)
+
+// Parallelize2 runs a function on each value in an iter.Seq2 sequence
+// on separate goroutines.
+func Parallelize2[K, V any](
+	seq iter.Seq2[K, V],
+	f Parallelize2Func[K, V],
 	opts ...ParallelizeOptionFunc,
 ) {
 	options := ParallelizeOptions{
@@ -68,13 +84,13 @@ func Parallelize[V any](
 
 	var wg sync.WaitGroup
 
-	for value := range seq {
+	for key, value := range seq {
 		if semaphore != nil {
 			semaphore <- struct{}{}
 		}
 
 		wg.Add(1)
-		go func(v V) {
+		go func(k K, v V) {
 			defer wg.Done()
 			if semaphore != nil {
 				defer func(s <-chan struct{}) {
@@ -86,10 +102,10 @@ func Parallelize[V any](
 			case <-ctx.Done():
 				return
 			default:
-				f(v)
+				f(k, v)
 				return
 			}
-		}(value)
+		}(key, value)
 	}
 
 	wg.Wait()
