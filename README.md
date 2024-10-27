@@ -8,6 +8,12 @@
     <strong><i>gloop</i></strong> is a Go utility library for convenient looping using the [range-over-func](https://go.dev/blog/range-functions) feature.
 </p>
 
+<div align="center">
+
+[![Go Report Card](https://goreportcard.com/badge/github.com/alvii147/gloop)](https://goreportcard.com/report/github.com/alvii147/gloop)
+
+</div>
+
 ## Installation
 
 Install `gloop` using the `go get` command:
