@@ -71,7 +71,7 @@ func TestReduce2MapSumOfProducts(t *testing.T) {
 		8:  -1,
 		-2: -5,
 	}
-	sum := gloop.Reduce2(gloop.Map2(m), func(acc int, key int, value int) int {
+	sum := gloop.Reduce2(gloop.Map(m), func(acc int, key int, value int) int {
 		return acc + (key * value)
 	})
 	require.Equal(t, 14, sum)
@@ -83,7 +83,7 @@ func TestReduce2MapProductOfValues(t *testing.T) {
 		"Buzz": -1,
 		"Bazz": -5,
 	}
-	product := gloop.Reduce2(gloop.Map2(m), func(acc int, key string, value int) int {
+	product := gloop.Reduce2(gloop.Map(m), func(acc int, key string, value int) int {
 		return acc * value
 	}, gloop.WithReduceInitialValue(1))
 	require.Equal(t, 20, product)

@@ -125,7 +125,7 @@ func TestParallelize2(t *testing.T) {
 	done := make(chan struct{}, 1)
 	channelOverflow := false
 	go func() {
-		gloop.Parallelize2(gloop.Map2(m), func(k string, v int) {
+		gloop.Parallelize2(gloop.Map(m), func(k string, v int) {
 			select {
 			case keysCh <- k:
 			default:

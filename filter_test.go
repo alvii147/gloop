@@ -70,7 +70,7 @@ func TestFilterBreak(t *testing.T) {
 	require.Equal(t, len(wantValues), i)
 }
 
-func TestFilter2PositiveProduct(t *testing.T) {
+func TestFilter2MapPositiveProduct(t *testing.T) {
 	m := map[int]int{
 		-1: -2,
 		8:  -3,
@@ -78,7 +78,7 @@ func TestFilter2PositiveProduct(t *testing.T) {
 	}
 	i := 0
 
-	for key, value := range gloop.Filter2(gloop.Map2(m), func(key int, value int) bool {
+	for key, value := range gloop.Filter2(gloop.Map(m), func(key int, value int) bool {
 		return (key * value) >= 0
 	}) {
 		require.Equal(t, -1, key)
@@ -89,7 +89,7 @@ func TestFilter2PositiveProduct(t *testing.T) {
 	require.Equal(t, 1, i)
 }
 
-func TestFilterCorrectLen(t *testing.T) {
+func TestFilter2MapCorrectLen(t *testing.T) {
 	m := map[string]int{
 		"Fizz":     8,
 		"Buzz":     4,
@@ -97,7 +97,7 @@ func TestFilterCorrectLen(t *testing.T) {
 	}
 	i := 0
 
-	for key, value := range gloop.Filter2(gloop.Map2(m), func(key string, value int) bool {
+	for key, value := range gloop.Filter2(gloop.Map(m), func(key string, value int) bool {
 		return len(key) == value
 	}) {
 		require.Equal(t, "Buzz", key)

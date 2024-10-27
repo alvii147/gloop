@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestMap2(t *testing.T) {
+func TestMap(t *testing.T) {
 	m := map[string]bool{
 		"Fizz": true,
 		"Buzz": true,
@@ -15,7 +15,7 @@ func TestMap2(t *testing.T) {
 	}
 
 	i := 0
-	for key, value := range gloop.Map2(m) {
+	for key, value := range gloop.Map(m) {
 		require.Contains(t, m, key)
 		require.Equal(t, m[key], value)
 		i++
@@ -24,7 +24,7 @@ func TestMap2(t *testing.T) {
 	require.Equal(t, len(m), i)
 }
 
-func TestMap2Break(t *testing.T) {
+func TestMapBreak(t *testing.T) {
 	m := map[string]bool{
 		"Fizz": true,
 		"Buzz": true,
@@ -32,7 +32,7 @@ func TestMap2Break(t *testing.T) {
 	}
 
 	i := 0
-	for key, value := range gloop.Map2(m) {
+	for key, value := range gloop.Map(m) {
 		if i == 2 {
 			break
 		}
