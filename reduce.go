@@ -2,18 +2,19 @@ package gloop
 
 import "iter"
 
-// ReduceOptions defines configurable options for Reduce.
+// ReduceOptions defines configurable options for [Reduce] and
+// [Reduce2].
 type ReduceOptions[A any] struct {
 	// InitialValue is the reduction's starting value.
 	InitialValue *A
 }
 
 // ReduceOptionFunc is the function signature of configuration helpers
-// for Reduce.
+// for [Reduce] and [Reduce2].
 type ReduceOptionFunc[A any] func(*ReduceOptions[A])
 
 // WithReduceInitialValue is a helper for configuring initial value for
-// Reduce.
+// [Reduce] and [Reduce2].
 func WithReduceInitialValue[A any](initialValue A) ReduceOptionFunc[A] {
 	return func(o *ReduceOptions[A]) {
 		o.InitialValue = &initialValue
@@ -21,7 +22,7 @@ func WithReduceInitialValue[A any](initialValue A) ReduceOptionFunc[A] {
 }
 
 // ReduceFunc is the function signature of the reduction function used
-// in Reduce.
+// in [Reduce].
 type ReduceFunc[A, V any] func(A, V) A
 
 // Reduce runs a given function on each value from an iter.Seq sequence
@@ -37,7 +38,7 @@ func Reduce[A, V any](
 }
 
 // Reduce2Func is the function signature of the reduction function used
-// in Reduce2.
+// in [Reduce2].
 type Reduce2Func[A, K, V any] func(A, K, V) A
 
 // Reduce2 runs a given function on each value from an iter.Seq2

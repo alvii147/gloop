@@ -2,7 +2,7 @@ package gloop
 
 import "iter"
 
-// IntervalOptions defines configurable options for Interval.
+// IntervalOptions defines configurable options for [Interval].
 type IntervalOptions struct {
 	// Closed represents whether or not the interval is closed at the
 	// stop point.
@@ -10,11 +10,11 @@ type IntervalOptions struct {
 }
 
 // IntervalOptionFunc is the function signature of configuration
-// helpers for Interval.
+// helpers for [Interval].
 type IntervalOptionFunc func(*IntervalOptions)
 
 // WithIntervalClosed is a helper for configuring the interval to be
-// closed for Interval.
+// closed for [Interval].
 func WithIntervalClosed(closed bool) IntervalOptionFunc {
 	return func(o *IntervalOptions) {
 		o.Closed = closed

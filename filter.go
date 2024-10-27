@@ -3,7 +3,7 @@ package gloop
 import "iter"
 
 // FilterFunc is the function signature of the filtering function used
-// in Filter.
+// in [Filter].
 type FilterFunc[V any] func(V) bool
 
 // Filter runs a given function on each value from an iter.Seq sequence
@@ -15,7 +15,7 @@ func Filter[V any](seq iter.Seq[V], f FilterFunc[V]) iter.Seq[V] {
 }
 
 // Filter2Func is the function signature of the filtering function used
-// in Filter2.
+// in [Filter2].
 type Filter2Func[K, V any] func(K, V) bool
 
 // Filter2 runs a given function on each value from an iter.Seq2

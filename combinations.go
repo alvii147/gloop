@@ -37,8 +37,8 @@ func combinations[V any](
 	return true
 }
 
-// Combinations allows a for loop to range over all combinations of a
-// given size for an iter.Seq sequence. The size must be positive.
+// Combinations allows looping over all combinations of a given size
+// for an iter.Seq sequence. The size must be positive.
 func Combinations[V any](seq iter.Seq[V], size int) iter.Seq[iter.Seq[V]] {
 	if size <= 0 {
 		panic("size must be positive")
@@ -91,8 +91,8 @@ func combinations2[K, V any](
 	return true
 }
 
-// Combinations2 allows a for loop to range over all combinations of a
-// given size for an iter.Seq2 sequence. The size must be positive.
+// Combinations2 allows looping over all combinations of a given size
+// for an iter.Seq2 sequence. The size must be positive.
 func Combinations2[K, V any](seq iter.Seq2[K, V], size int) iter.Seq[iter.Seq2[K, V]] {
 	if size <= 0 {
 		panic("size must be positive")

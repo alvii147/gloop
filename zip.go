@@ -2,7 +2,7 @@ package gloop
 
 import "iter"
 
-// ZipOptions defines configurable options for Zip.
+// ZipOptions defines configurable options for [Zip].
 type ZipOptions[V1, V2 any] struct {
 	// Padded indicates whether the shorter sequence will be padded. If
 	// true, the shorter sequence is padded to match the length of the
@@ -20,10 +20,10 @@ type ZipOptions[V1, V2 any] struct {
 }
 
 // ZipOptionFunc is the function signature of configuration helpers for
-// Zip.
+// [Zip].
 type ZipOptionFunc[V1, V2 any] func(*ZipOptions[V1, V2])
 
-// WithZipPadded is a helper for configuring Zip to pad the shorter
+// WithZipPadded is a helper for configuring [Zip] to pad the shorter
 // sequence.
 func WithZipPadded[V1, V2 any](padded bool) ZipOptionFunc[V1, V2] {
 	return func(o *ZipOptions[V1, V2]) {
@@ -32,7 +32,7 @@ func WithZipPadded[V1, V2 any](padded bool) ZipOptionFunc[V1, V2] {
 }
 
 // WithZipPadValue1 is a helper for configuring padded values for the
-// first sequence in Zip.
+// first sequence in [Zip].
 func WithZipPadValue1[V1, V2 any](value V1) ZipOptionFunc[V1, V2] {
 	return func(o *ZipOptions[V1, V2]) {
 		o.PadValue1 = &value
@@ -40,7 +40,7 @@ func WithZipPadValue1[V1, V2 any](value V1) ZipOptionFunc[V1, V2] {
 }
 
 // WithZipPadValue2 is a helper for configuring padded values for the
-// second slice in Zip.
+// second slice in [Zip].
 func WithZipPadValue2[V1, V2 any](value V2) ZipOptionFunc[V1, V2] {
 	return func(o *ZipOptions[V1, V2]) {
 		o.PadValue2 = &value

@@ -6,7 +6,8 @@ import (
 	"sync"
 )
 
-// ParallelizeOptions defines configurable options for Parallelize.
+// ParallelizeOptions defines configurable options for [Parallelize]
+// and [Parallelize2].
 type ParallelizeOptions struct {
 	// Context is used to send a cancel signal.
 	Context context.Context
@@ -16,11 +17,11 @@ type ParallelizeOptions struct {
 }
 
 // ParallelizeOptionFunc is the function signature of configuration
-// helpers for Parallelize.
+// helpers for [Parallelize] and [Parallelize2].
 type ParallelizeOptionFunc func(*ParallelizeOptions)
 
 // WithParallelizeContext is a helper for configuring context in
-// Parallelize.
+// [Parallelize] and [Parallelize2].
 func WithParallelizeContext(ctx context.Context) ParallelizeOptionFunc {
 	return func(o *ParallelizeOptions) {
 		o.Context = ctx
@@ -28,7 +29,7 @@ func WithParallelizeContext(ctx context.Context) ParallelizeOptionFunc {
 }
 
 // WithParallelizeMaxThreads is a helper for configuring maximum number
-// of concurrent threads in Parallelize.
+// of concurrent threads in [Parallelize] and [Parallelize2].
 func WithParallelizeMaxThreads(maxThreads int) ParallelizeOptionFunc {
 	return func(o *ParallelizeOptions) {
 		o.MaxThreads = &maxThreads
@@ -36,7 +37,7 @@ func WithParallelizeMaxThreads(maxThreads int) ParallelizeOptionFunc {
 }
 
 // ParallelizeFunc is the function signature of the function to be
-// parallelized in Parallelize.
+// parallelized in [Parallelize].
 type ParallelizeFunc[V any] func(V)
 
 // Parallelize runs a function on each value in an iter.Seq sequence on
@@ -52,7 +53,7 @@ func Parallelize[V any](
 }
 
 // Parallelize2Func is the function signature of the function to be
-// parallelized in Parallelize2.
+// parallelized in [Parallelize2].
 type Parallelize2Func[K, V any] func(K, V)
 
 // Parallelize2 runs a function on each value in an iter.Seq2 sequence

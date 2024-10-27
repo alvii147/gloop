@@ -33,7 +33,7 @@ func Window[V any](seq iter.Seq[V], size int) iter.Seq[iter.Seq[V]] {
 	}
 }
 
-// Windo2w allows looping over an iter.Seq2 sequence in sliding windows
+// Window2 allows looping over an iter.Seq2 sequence in sliding windows
 // of a given size.
 func Window2[K, V any](seq iter.Seq2[K, V], size int) iter.Seq[iter.Seq2[K, V]] {
 	if size <= 0 {

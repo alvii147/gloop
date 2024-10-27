@@ -4,7 +4,7 @@ import (
 	"iter"
 )
 
-// LinspaceOptions defines configurable options for Linspace.
+// LinspaceOptions defines configurable options for [Linspace].
 type LinspaceOptions struct {
 	// Closed represents whether or not the interval is closed at the
 	// stop point.
@@ -12,11 +12,11 @@ type LinspaceOptions struct {
 }
 
 // LinspaceOptionFunc is the function signature of configuration
-// helpers for Linspace.
+// helpers for [Linspace].
 type LinspaceOptionFunc func(*LinspaceOptions)
 
 // WithLinspaceClosed is a helper for configuring the interval to be
-// closed for Linspace.
+// closed for [Linspace].
 func WithLinspaceClosed(closed bool) LinspaceOptionFunc {
 	return func(o *LinspaceOptions) {
 		o.Closed = closed
