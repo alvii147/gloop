@@ -57,7 +57,7 @@ TCA
 TAC
 ```
 
-[See more usage examples.](examples_test.go)
+[See more usage examples.](example_test.go)
 
 ## Features
 
