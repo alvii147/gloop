@@ -10,7 +10,7 @@
 
 <div align="center">
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/alvii147/gloop)](https://goreportcard.com/report/github.com/alvii147/gloop)
+[![Go Reference](https://pkg.go.dev/badge/github.com/alvii147/gloop.svg)](https://pkg.go.dev/github.com/alvii147/gloop) [![Go Report Card](https://goreportcard.com/badge/github.com/alvii147/gloop)](https://goreportcard.com/report/github.com/alvii147/gloop)
 
 </div>
 
