@@ -99,7 +99,7 @@ TAC
 * `Any` - computes whether or not any value in an [iter.Seq](https://pkg.go.dev/iter#Seq) sequence is true
 * `Max` - computes the maximum value over an [iter.Seq](https://pkg.go.dev/iter#Seq) sequence
 * `Mean` - computes the mean value over an [iter.Seq](https://pkg.go.dev/iter#Seq) sequence
-* `Min` - computes the minumum value over an [iter.Seq](https://pkg.go.dev/iter#Seq) sequence
+* `Min` - computes the minimum value over an [iter.Seq](https://pkg.go.dev/iter#Seq) sequence
 * `Product` - computes the product of values over an [iter.Seq](https://pkg.go.dev/iter#Seq) sequence
 * `Reduce` - runs a given function on each value from an [iter.Seq](https://pkg.go.dev/iter#Seq) sequence and accumulates the result into a single value
 * `Reduce2` - runs a given function on each value from an [iter.Seq2](https://pkg.go.dev/iter#Seq2) sequence and accumulates the result into a single value
