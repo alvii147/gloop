@@ -16,7 +16,7 @@ Install `gloop` using the `go get` command:
 go get github.com/alvii147/gloop
 ```
 
-> **Note**
+> [!NOTE]
 > Go version 1.23+ required as older versions don't offer the range-over-func feature.
 
 ## Usage
