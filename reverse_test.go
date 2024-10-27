@@ -49,3 +49,61 @@ func TestReverseBreak(t *testing.T) {
 
 	require.Equal(t, len(reversedValues), i)
 }
+
+func TestReverse2(t *testing.T) {
+	seq := func(yield func(string, int) bool) {
+		if !yield("a", 3) {
+			return
+		}
+
+		if !yield("b", 4) {
+			return
+		}
+
+		if !yield("c", 5) {
+			return
+		}
+	}
+	reversedKeys := []string{"c", "b", "a"}
+	reversedValues := []int{5, 4, 3}
+	i := 0
+
+	for key, value := range gloop.Reverse2(seq) {
+		require.Equal(t, reversedKeys[i], key)
+		require.Equal(t, reversedValues[i], value)
+		i++
+	}
+
+	require.Equal(t, 3, i)
+}
+
+func TestReverse2Break(t *testing.T) {
+	seq := func(yield func(string, int) bool) {
+		if !yield("a", 3) {
+			return
+		}
+
+		if !yield("b", 4) {
+			return
+		}
+
+		if !yield("c", 5) {
+			return
+		}
+	}
+	reversedKeys := []string{"c", "b"}
+	reversedValues := []int{5, 4}
+	i := 0
+
+	for key, value := range gloop.Reverse2(seq) {
+		if i == 2 {
+			break
+		}
+
+		require.Equal(t, reversedKeys[i], key)
+		require.Equal(t, reversedValues[i], value)
+		i++
+	}
+
+	require.Equal(t, 2, i)
+}
