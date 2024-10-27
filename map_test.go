@@ -7,44 +7,6 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestMap(t *testing.T) {
-	m := map[int]string{
-		0: "Fizz",
-		1: "Buzz",
-		2: "Bazz",
-	}
-	wantValues := []string{"Fizz", "Buzz", "Bazz"}
-
-	i := 0
-	for value := range gloop.Map(m) {
-		require.Contains(t, wantValues, value)
-		i++
-	}
-
-	require.Equal(t, len(m), i)
-}
-
-func TestMapBreak(t *testing.T) {
-	m := map[int]string{
-		0: "Fizz",
-		1: "Buzz",
-		2: "Bazz",
-	}
-	wantValues := []string{"Fizz", "Buzz", "Bazz"}
-
-	i := 0
-	for value := range gloop.Map(m) {
-		if i == 2 {
-			break
-		}
-
-		require.Contains(t, wantValues, value)
-		i++
-	}
-
-	require.Equal(t, 2, i)
-}
-
 func TestMap2(t *testing.T) {
 	m := map[string]bool{
 		"Fizz": true,

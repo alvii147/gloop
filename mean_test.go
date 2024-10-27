@@ -25,21 +25,3 @@ func TestMeanDuration(t *testing.T) {
 	mean := gloop.Mean(gloop.Slice(values))
 	require.Equal(t, float64(31*time.Minute), mean)
 }
-
-func TestMean2Int(t *testing.T) {
-	values := []int{7, -2, 4}
-	mean := gloop.Mean2(gloop.Slice2(values))
-	require.Equal(t, 3.0, mean)
-}
-
-func TestMean2Float(t *testing.T) {
-	values := []float64{0.4, 8.9, -4.8}
-	mean := gloop.Mean2(gloop.Slice2(values))
-	require.InDelta(t, 1.5, mean, 0.01)
-}
-
-func TestMean2Duration(t *testing.T) {
-	values := []time.Duration{time.Hour, 2 * time.Minute}
-	mean := gloop.Mean2(gloop.Slice2(values))
-	require.Equal(t, float64(31*time.Minute), mean)
-}

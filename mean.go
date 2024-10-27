@@ -25,8 +25,3 @@ func Mean[V Number](seq iter.Seq[V]) float64 {
 
 	return mean
 }
-
-// Mean2 computes the mean value over an iter.Seq2 sequence.
-func Mean2[K any, V Number](seq iter.Seq2[K, V]) float64 {
-	return Mean(Values(seq))
-}

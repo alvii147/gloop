@@ -17,8 +17,3 @@ func Min[V cmp.Ordered](seq iter.Seq[V]) V {
 		return min(acc, value)
 	})
 }
-
-// Min2 computes the minumum value over an iter.Seq2 sequence.
-func Min2[K any, V cmp.Ordered](seq iter.Seq2[K, V]) V {
-	return Min(Values(seq))
-}
