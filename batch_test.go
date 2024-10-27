@@ -110,3 +110,85 @@ func TestBatchNegativeSizePanics(t *testing.T) {
 		}
 	})
 }
+
+func TestBatch2DivisibleLength(t *testing.T) {
+	values := []int{3, 1, 4, 1, 5, 9, 2, 6, 5}
+	wantKeys := [][]int{
+		{0, 1, 2},
+		{3, 4, 5},
+		{6, 7, 8},
+	}
+	wantBatches := [][]int{
+		{3, 1, 4},
+		{1, 5, 9},
+		{2, 6, 5},
+	}
+	i := 0
+
+	for seq := range gloop.Batch2(gloop.Slice2(values), 3) {
+		keys, batch := gloop.ToSlice2(seq)
+		require.Equal(t, wantKeys[i], keys)
+		require.Equal(t, wantBatches[i], batch)
+		i++
+	}
+
+	require.Equal(t, len(wantBatches), i)
+}
+
+func TestBatch2IndivisibleLength(t *testing.T) {
+	values := []int{3, 1, 4, 1, 5, 9, 2, 6, 5}
+	wantKeys := [][]int{
+		{0, 1, 2, 3},
+		{4, 5, 6, 7},
+		{8},
+	}
+	wantBatches := [][]int{
+		{3, 1, 4, 1},
+		{5, 9, 2, 6},
+		{5},
+	}
+	i := 0
+
+	for seq := range gloop.Batch2(gloop.Slice2(values), 4) {
+		keys, batch := gloop.ToSlice2(seq)
+		require.Equal(t, wantKeys[i], keys)
+		require.Equal(t, wantBatches[i], batch)
+		i++
+	}
+
+	require.Equal(t, len(wantBatches), i)
+}
+
+func TestBatch2Break(t *testing.T) {
+	values := []int{3, 1, 4, 1, 5, 9, 2, 6, 5}
+	i := 0
+
+	for seq := range gloop.Batch2(gloop.Slice2(values), 3) {
+		if i == 1 {
+			break
+		}
+
+		for key, value := range seq {
+			require.Equal(t, 0, key)
+			require.Equal(t, 3, value)
+			break
+		}
+		i++
+	}
+}
+
+func TestBatch2ZeroSizePanics(t *testing.T) {
+	require.Panics(t, func() {
+		for range gloop.Batch2(gloop.Slice2([]int{3, 1, 4}), 0) {
+			t.Fatal("expected no iteration")
+		}
+	})
+}
+
+func TestBatch2NegativeSizePanics(t *testing.T) {
+	require.Panics(t, func() {
+		for range gloop.Batch2(gloop.Slice2([]int{3, 1, 4}), -1) {
+			t.Fatal("expected no iteration")
+		}
+	})
+}
