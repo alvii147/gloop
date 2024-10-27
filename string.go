@@ -7,15 +7,9 @@ import (
 
 // String allows looping over the runes in a given string.
 func String(s string) iter.Seq[rune] {
-	return Values(String2(s))
-}
-
-// String allows looping over the runes in a given string with an
-// index.
-func String2(s string) iter.Seq2[int, rune] {
-	return func(yield func(int, rune) bool) {
-		for i, r := range s {
-			if !yield(i, r) {
+	return func(yield func(rune) bool) {
+		for _, r := range s {
+			if !yield(r) {
 				return
 			}
 		}

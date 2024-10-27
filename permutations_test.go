@@ -184,7 +184,7 @@ func TestPermutations2Slice(t *testing.T) {
 	}
 	i := 0
 
-	for seq := range gloop.Permutations2(gloop.Slice2(values), 3) {
+	for seq := range gloop.Permutations2(gloop.Enumerate(gloop.Slice(values)), 3) {
 		keys, perm := gloop.ToSlice2(seq)
 		require.Equal(t, wantKeys[i], keys)
 		require.Equal(t, wantPerms[i], perm)
@@ -214,7 +214,7 @@ func TestPermutations2SliceFullLength(t *testing.T) {
 	}
 	i := 0
 
-	for seq := range gloop.Permutations2(gloop.Slice2(values), 3) {
+	for seq := range gloop.Permutations2(gloop.Enumerate(gloop.Slice(values)), 3) {
 		keys, perm := gloop.ToSlice2(seq)
 		require.Equal(t, wantKeys[i], keys)
 		require.Equal(t, wantPerms[i], perm)
@@ -232,7 +232,7 @@ func TestPermutations2String(t *testing.T) {
 	wantPerms := []string{"AB", "AC", "AD", "BA", "BC", "BD", "CA", "CB", "CD", "DA", "DB", "DC"}
 	i := 0
 
-	for seq := range gloop.Permutations2(gloop.String2(s), 2) {
+	for seq := range gloop.Permutations2(gloop.Enumerate(gloop.String(s)), 2) {
 		keys, permRunes := gloop.ToSlice2(seq)
 		perm := string(permRunes)
 		require.Equal(t, wantKeys[i], keys)
@@ -251,7 +251,7 @@ func TestPermutationsString2FullLength(t *testing.T) {
 	wantPerms := []string{"ABC", "ACB", "BAC", "BCA", "CAB", "CBA"}
 	i := 0
 
-	for seq := range gloop.Permutations2(gloop.String2(s), 3) {
+	for seq := range gloop.Permutations2(gloop.Enumerate(gloop.String(s)), 3) {
 		keys, permRunes := gloop.ToSlice2(seq)
 		perm := string(permRunes)
 		require.Equal(t, wantKeys[i], keys)
@@ -266,7 +266,7 @@ func TestPermutations2Break(t *testing.T) {
 	values := []int{3, 1, 4, 2}
 	i := 0
 
-	for seq := range gloop.Permutations2(gloop.Slice2(values), 2) {
+	for seq := range gloop.Permutations2(gloop.Enumerate(gloop.Slice(values)), 2) {
 		if i == 1 {
 			break
 		}
@@ -282,7 +282,7 @@ func TestPermutations2Break(t *testing.T) {
 
 func TestPermutations2ZeroSizePanics(t *testing.T) {
 	require.Panics(t, func() {
-		for range gloop.Permutations2(gloop.Slice2([]int{3, 1, 4}), 0) {
+		for range gloop.Permutations2(gloop.Enumerate(gloop.Slice([]int{3, 1, 4})), 0) {
 			t.Fatal("expected no iteration")
 		}
 	})
@@ -290,7 +290,7 @@ func TestPermutations2ZeroSizePanics(t *testing.T) {
 
 func TestPermutations2NegativeSizePanics(t *testing.T) {
 	require.Panics(t, func() {
-		for range gloop.Permutations2(gloop.Slice2([]int{3, 1, 4}), -3) {
+		for range gloop.Permutations2(gloop.Enumerate(gloop.Slice([]int{3, 1, 4})), -3) {
 			t.Fatal("expected no iteration")
 		}
 	})

@@ -19,12 +19,6 @@ func List(l *list.List) iter.Seq[*list.Element] {
 	}
 }
 
-// List2 allows looping over a given linked list from container/list
-// with an index.
-func List2(l *list.List) iter.Seq2[int, *list.Element] {
-	return Enumerate(List(l))
-}
-
 // ToList converts an iter.Seq sequence to a linked list from
 // container/list.
 func ToList[V any](seq iter.Seq[V]) *list.List {

@@ -77,14 +77,3 @@ func Interval[N Number](
 		}
 	}
 }
-
-// Interval2 allows looping over values in a given interval of a given
-// step size with an index.
-func Interval2[N Number](
-	start N,
-	stop N,
-	step N,
-	opts ...IntervalOptionFunc,
-) iter.Seq2[int, N] {
-	return Enumerate(Interval(start, stop, step, opts...))
-}

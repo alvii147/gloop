@@ -11,7 +11,7 @@ func TestValues(t *testing.T) {
 	values := []string{"a", "b", "c"}
 	i := 0
 
-	for value := range gloop.Values(gloop.Slice2(values)) {
+	for value := range gloop.Values(gloop.Enumerate(gloop.Slice(values))) {
 		require.Equal(t, values[i], value)
 		i++
 	}
@@ -23,7 +23,7 @@ func TestValuesBreak(t *testing.T) {
 	values := []string{"a", "b", "c"}
 	i := 0
 
-	for value := range gloop.Values(gloop.Slice2(values)) {
+	for value := range gloop.Values(gloop.Enumerate(gloop.Slice(values))) {
 		if i == 2 {
 			break
 		}

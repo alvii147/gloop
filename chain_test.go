@@ -78,9 +78,9 @@ func TestChain2Slices(t *testing.T) {
 	i := 0
 
 	for idx, value := range gloop.Chain2(
-		gloop.Slice2(values1),
-		gloop.Slice2(values2),
-		gloop.Slice2(values3),
+		gloop.Enumerate(gloop.Slice(values1)),
+		gloop.Enumerate(gloop.Slice(values2)),
+		gloop.Enumerate(gloop.Slice(values3)),
 	) {
 		require.Equal(t, chainedIdx[i], idx)
 		require.Equal(t, chainedValues[i], value)
@@ -97,7 +97,10 @@ func TestChain2Strings(t *testing.T) {
 	chainedRunes := []rune{'F', 'i', 'z', 'z', 'B', 'u', 'z', 'z'}
 	i := 0
 
-	for idx, value := range gloop.Chain2(gloop.String2(s1), gloop.String2(s2)) {
+	for idx, value := range gloop.Chain2(
+		gloop.Enumerate(gloop.String(s1)),
+		gloop.Enumerate(gloop.String(s2)),
+	) {
 		require.Equal(t, chainedIdx[i], idx)
 		require.Equal(t, chainedRunes[i], value)
 		i++
@@ -113,7 +116,10 @@ func TestChain2SliceAndString(t *testing.T) {
 	chainedRunes := []rune{'F', 'i', 'z', 'z', 'B', 'u', 'z', 'z'}
 	i := 0
 
-	for idx, value := range gloop.Chain2(gloop.Slice2(values), gloop.String2(s)) {
+	for idx, value := range gloop.Chain2(
+		gloop.Enumerate(gloop.Slice(values)),
+		gloop.Enumerate(gloop.String(s)),
+	) {
 		require.Equal(t, chainedIdx[i], idx)
 		require.Equal(t, chainedRunes[i], value)
 		i++
@@ -128,7 +134,7 @@ func TestChain2Break(t *testing.T) {
 	chainedValues := []string{"a", "b"}
 	i := 0
 
-	for idx, value := range gloop.Chain2(gloop.Slice2(values)) {
+	for idx, value := range gloop.Chain2(gloop.Enumerate(gloop.Slice(values))) {
 		if i == 2 {
 			break
 		}

@@ -11,7 +11,7 @@ func TestKeys(t *testing.T) {
 	values := []string{"a", "b", "c"}
 	i := 0
 
-	for value := range gloop.Keys(gloop.Slice2(values)) {
+	for value := range gloop.Keys(gloop.Enumerate(gloop.Slice(values))) {
 		require.Equal(t, i, value)
 		i++
 	}
@@ -23,7 +23,7 @@ func TestKeysBreak(t *testing.T) {
 	values := []string{"a", "b", "c"}
 	i := 0
 
-	for value := range gloop.Keys(gloop.Slice2(values)) {
+	for value := range gloop.Keys(gloop.Enumerate(gloop.Slice(values))) {
 		if i == 2 {
 			break
 		}

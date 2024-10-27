@@ -113,7 +113,7 @@ func TestFilter2Break(t *testing.T) {
 	wantValues := []string{"Fizz", "Buzz"}
 	i := 0
 
-	for idx, value := range gloop.Filter2(gloop.Slice2(values), func(_ int, value string) bool {
+	for idx, value := range gloop.Filter2(gloop.Enumerate(gloop.Slice(values)), func(_ int, value string) bool {
 		return true
 	}) {
 		if i == 2 {

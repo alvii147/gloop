@@ -99,7 +99,7 @@ func TestWindow2Slice(t *testing.T) {
 	}
 	i := 0
 
-	for seq := range gloop.Window2(gloop.Slice2(values), 3) {
+	for seq := range gloop.Window2(gloop.Enumerate(gloop.Slice(values)), 3) {
 		keys, window := gloop.ToSlice2(seq)
 		require.Equal(t, wantKeys[i], keys)
 		require.Equal(t, wantWindows[i], window)
@@ -127,7 +127,7 @@ func TestWindow2String(t *testing.T) {
 	}
 	i := 0
 
-	for seq := range gloop.Window2(gloop.String2(s), 4) {
+	for seq := range gloop.Window2(gloop.Enumerate(gloop.String(s)), 4) {
 		keys, windowRunes := gloop.ToSlice2(seq)
 		window := string(windowRunes)
 		require.Equal(t, wantKeys[i], keys)
@@ -142,7 +142,7 @@ func TestWindow2Break(t *testing.T) {
 	values := []int{3, 1, 4, 1, 5, 9, 2, 6, 5}
 	i := 0
 
-	for seq := range gloop.Window2(gloop.Slice2(values), 3) {
+	for seq := range gloop.Window2(gloop.Enumerate(gloop.Slice(values)), 3) {
 		if i == 1 {
 			break
 		}
@@ -158,7 +158,7 @@ func TestWindow2Break(t *testing.T) {
 
 func TestWindow2ZeroSizePanics(t *testing.T) {
 	require.Panics(t, func() {
-		for range gloop.Window2(gloop.Slice2([]int{3, 1, 4}), 0) {
+		for range gloop.Window2(gloop.Enumerate(gloop.Slice([]int{3, 1, 4})), 0) {
 			t.Fatal("expected no iteration")
 		}
 	})
@@ -166,7 +166,7 @@ func TestWindow2ZeroSizePanics(t *testing.T) {
 
 func TestWindow2NegativeSizePanics(t *testing.T) {
 	require.Panics(t, func() {
-		for range gloop.Window2(gloop.Slice2([]int{3, 1, 4}), -1) {
+		for range gloop.Window2(gloop.Enumerate(gloop.Slice([]int{3, 1, 4})), -1) {
 			t.Fatal("expected no iteration")
 		}
 	})

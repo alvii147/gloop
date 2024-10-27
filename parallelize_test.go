@@ -201,7 +201,7 @@ func TestParallelize2CancelContext(t *testing.T) {
 	done := make(chan struct{}, 1)
 	functionCalled := false
 	go func() {
-		gloop.Parallelize2(gloop.Slice2(values), func(_ int, _ string) {
+		gloop.Parallelize2(gloop.Enumerate(gloop.Slice(values)), func(_ int, _ string) {
 			functionCalled = true
 		}, gloop.WithParallelizeContext(ctx))
 		done <- struct{}{}
@@ -244,7 +244,7 @@ func TestParallelize2SingleThreaded(t *testing.T) {
 
 	done := make(chan struct{}, 1)
 	go func() {
-		gloop.Parallelize2(gloop.Slice2(values), func(_ int, _ string) {
+		gloop.Parallelize2(gloop.Enumerate(gloop.Slice(values)), func(_ int, _ string) {
 			concurrentCallers.Add(1)
 			defer concurrentCallers.Add(-1)
 

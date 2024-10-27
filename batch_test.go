@@ -125,7 +125,7 @@ func TestBatch2DivisibleLength(t *testing.T) {
 	}
 	i := 0
 
-	for seq := range gloop.Batch2(gloop.Slice2(values), 3) {
+	for seq := range gloop.Batch2(gloop.Enumerate(gloop.Slice(values)), 3) {
 		keys, batch := gloop.ToSlice2(seq)
 		require.Equal(t, wantKeys[i], keys)
 		require.Equal(t, wantBatches[i], batch)
@@ -149,7 +149,7 @@ func TestBatch2IndivisibleLength(t *testing.T) {
 	}
 	i := 0
 
-	for seq := range gloop.Batch2(gloop.Slice2(values), 4) {
+	for seq := range gloop.Batch2(gloop.Enumerate(gloop.Slice(values)), 4) {
 		keys, batch := gloop.ToSlice2(seq)
 		require.Equal(t, wantKeys[i], keys)
 		require.Equal(t, wantBatches[i], batch)
@@ -163,7 +163,7 @@ func TestBatch2Break(t *testing.T) {
 	values := []int{3, 1, 4, 1, 5, 9, 2, 6, 5}
 	i := 0
 
-	for seq := range gloop.Batch2(gloop.Slice2(values), 3) {
+	for seq := range gloop.Batch2(gloop.Enumerate(gloop.Slice(values)), 3) {
 		if i == 1 {
 			break
 		}
@@ -179,7 +179,7 @@ func TestBatch2Break(t *testing.T) {
 
 func TestBatch2ZeroSizePanics(t *testing.T) {
 	require.Panics(t, func() {
-		for range gloop.Batch2(gloop.Slice2([]int{3, 1, 4}), 0) {
+		for range gloop.Batch2(gloop.Enumerate(gloop.Slice([]int{3, 1, 4})), 0) {
 			t.Fatal("expected no iteration")
 		}
 	})
@@ -187,7 +187,7 @@ func TestBatch2ZeroSizePanics(t *testing.T) {
 
 func TestBatch2NegativeSizePanics(t *testing.T) {
 	require.Panics(t, func() {
-		for range gloop.Batch2(gloop.Slice2([]int{3, 1, 4}), -1) {
+		for range gloop.Batch2(gloop.Enumerate(gloop.Slice([]int{3, 1, 4})), -1) {
 			t.Fatal("expected no iteration")
 		}
 	})

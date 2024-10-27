@@ -46,46 +46,6 @@ func TestListBreak(t *testing.T) {
 	require.Equal(t, len(wantValues), i)
 }
 
-func TestList2(t *testing.T) {
-	l := list.New()
-	l.PushBack(3)
-	l.PushBack(4)
-	l.PushBack(5)
-
-	wantValues := []int{3, 4, 5}
-	i := 0
-
-	for idx, elem := range gloop.List2(l) {
-		require.Equal(t, i, idx)
-		require.Equal(t, wantValues[i], elem.Value)
-		i++
-	}
-
-	require.Equal(t, len(wantValues), i)
-}
-
-func TestList2Break(t *testing.T) {
-	l := list.New()
-	l.PushBack(3)
-	l.PushBack(4)
-	l.PushBack(5)
-
-	wantValues := []int{3, 4}
-	i := 0
-
-	for idx, elem := range gloop.List2(l) {
-		if i == 2 {
-			break
-		}
-
-		require.Equal(t, i, idx)
-		require.Equal(t, wantValues[i], elem.Value)
-		i++
-	}
-
-	require.Equal(t, len(wantValues), i)
-}
-
 func TestToList(t *testing.T) {
 	seq := func(yield func(int) bool) {
 		if !yield(3) {

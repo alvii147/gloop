@@ -6,14 +6,9 @@ import (
 
 // Slice allows looping over a given slice.
 func Slice[V any](values []V) iter.Seq[V] {
-	return Values(Slice2(values))
-}
-
-// Slice allows looping over a given slice with an index.
-func Slice2[V any](values []V) iter.Seq2[int, V] {
-	return func(yield func(int, V) bool) {
-		for i, value := range values {
-			if !yield(i, value) {
+	return func(yield func(V) bool) {
+		for _, value := range values {
+			if !yield(value) {
 				return
 			}
 		}

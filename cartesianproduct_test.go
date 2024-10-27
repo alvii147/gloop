@@ -109,7 +109,7 @@ func TestCartesianProduct2Slice(t *testing.T) {
 	}
 	i := 0
 
-	for seq := range gloop.CartesianProduct2(gloop.Slice2(values), 2) {
+	for seq := range gloop.CartesianProduct2(gloop.Enumerate(gloop.Slice(values)), 2) {
 		keys, product := gloop.ToSlice2(seq)
 		require.Equal(t, wantKeys[i], keys)
 		require.Equal(t, wantCartesianProducts[i], product)
@@ -135,7 +135,7 @@ func TestCartesianProduct2String(t *testing.T) {
 	}
 	i := 0
 
-	for seq := range gloop.CartesianProduct2(gloop.String2(s), 2) {
+	for seq := range gloop.CartesianProduct2(gloop.Enumerate(gloop.String(s)), 2) {
 		keys, productRunes := gloop.ToSlice2(seq)
 		product := string(productRunes)
 		require.Equal(t, wantKeys[i], keys)
@@ -150,7 +150,7 @@ func TestCartesianProduct2Break(t *testing.T) {
 	values := []int{3, 1, 4}
 	i := 0
 
-	for seq := range gloop.CartesianProduct2(gloop.Slice2(values), 2) {
+	for seq := range gloop.CartesianProduct2(gloop.Enumerate(gloop.Slice(values)), 2) {
 		if i == 1 {
 			break
 		}
@@ -166,7 +166,7 @@ func TestCartesianProduct2Break(t *testing.T) {
 
 func TestCartesianProduct2ZeroSizePanics(t *testing.T) {
 	require.Panics(t, func() {
-		for range gloop.CartesianProduct2(gloop.Slice2([]int{3, 1, 4}), 0) {
+		for range gloop.CartesianProduct2(gloop.Enumerate(gloop.Slice([]int{3, 1, 4})), 0) {
 			t.Fatal("expected no iteration")
 		}
 	})
@@ -174,7 +174,7 @@ func TestCartesianProduct2ZeroSizePanics(t *testing.T) {
 
 func TestCartesianProduct2NegativeSizePanics(t *testing.T) {
 	require.Panics(t, func() {
-		for range gloop.CartesianProduct2(gloop.Slice2([]int{3, 1, 4}), -3) {
+		for range gloop.CartesianProduct2(gloop.Enumerate(gloop.Slice([]int{3, 1, 4})), -3) {
 			t.Fatal("expected no iteration")
 		}
 	})
