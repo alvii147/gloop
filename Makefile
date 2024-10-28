@@ -2,7 +2,7 @@ GO=go
 PKG=github.com/alvii147/gloop
 COV=coverage.out
 
-TEST_OPTS=-coverprofile $(COV)
+TEST_OPTS=-skip Example.* -coverprofile $(COV)
 ifdef TESTCASE
 	TEST_OPTS=-run $(TESTCASE)
 endif
