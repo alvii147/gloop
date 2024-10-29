@@ -65,6 +65,8 @@ TAC
 
 * `Interval` - allows looping over values in a given interval of a given step size
 * `Linspace` - allows looping over evenly spaced values within a given interval
+* `RandomUniform` - allows looping over a given number of random values drawn from a uniform distribution
+* `RandomNormal` - allows looping over a given number of random values drawn from a Gaussian distribution
 
 ### Scalar Iterators
 

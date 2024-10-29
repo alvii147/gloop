@@ -43,19 +43,19 @@ func TestIntervalNegativeStep(t *testing.T) {
 	require.Equal(t, len(wantValues), i)
 }
 
-func TestIntervalZeroStep(t *testing.T) {
+func TestIntervalZeroStepNoIteration(t *testing.T) {
 	for range gloop.Interval(3, 7, 0) {
 		t.Fatal("expected no iteration")
 	}
 }
 
-func TestIntervalNoIteration(t *testing.T) {
+func TestIntervalStopUnreachableNoIteration(t *testing.T) {
 	for range gloop.Interval(10, 3, 2) {
 		t.Fatal("expected no iteration")
 	}
 }
 
-func TestIntervalNoIterationNegativeStep(t *testing.T) {
+func TestIntervalNegativeStepNoIteration(t *testing.T) {
 	for range gloop.Interval(3, 7, -3) {
 		t.Fatal("expected no iteration")
 	}
