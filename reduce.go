@@ -9,20 +9,11 @@ type ReduceFunc[V any] func(V, V) V
 // Reduce runs a given function on each adjacent pair in an iter.Seq
 // sequence and accumulates the result into a single value.
 func Reduce[V any](seq iter.Seq[V], f ReduceFunc[V]) V {
-	var reducedValue V
-	first := true
+	_, v := Reduce2(Enumerate(seq), func(_ int, v1 V, _ int, v2 V) (int, V) {
+		return 0, f(v1, v2)
+	})
 
-	for value := range seq {
-		if first {
-			reducedValue = value
-			first = false
-			continue
-		}
-
-		reducedValue = f(reducedValue, value)
-	}
-
-	return reducedValue
+	return v
 }
 
 // Reduce2Func is the function signature of the reducing function used
