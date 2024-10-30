@@ -8,54 +8,54 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestWithReduceInitialValue(t *testing.T) {
+func TestWithFoldInitialValue(t *testing.T) {
 	initialValue := 42
-	options := gloop.ReduceOptions[int]{}
-	gloop.WithReduceInitialValue(initialValue)(&options)
+	options := gloop.FoldOptions[int]{}
+	gloop.WithFoldInitialValue(initialValue)(&options)
 
 	require.NotNil(t, options.InitialValue)
 	require.Equal(t, initialValue, *options.InitialValue)
 }
 
-func TestReduceSliceSum(t *testing.T) {
+func TestFoldSliceSum(t *testing.T) {
 	values := []int{1, 2, 3}
-	sum := gloop.Reduce(gloop.Slice(values), func(acc int, value int) int {
+	sum := gloop.Fold(gloop.Slice(values), func(acc int, value int) int {
 		return acc + value
 	})
 	require.Equal(t, 6, sum)
 }
 
-func TestReduceSliceProductWithInitialValue(t *testing.T) {
+func TestFoldSliceProductWithInitialValue(t *testing.T) {
 	values := []int{3, 4, 5}
 
-	product := gloop.Reduce(gloop.Slice(values), func(acc int, value int) int {
+	product := gloop.Fold(gloop.Slice(values), func(acc int, value int) int {
 		return acc * value
-	}, gloop.WithReduceInitialValue(1))
+	}, gloop.WithFoldInitialValue(1))
 	require.Equal(t, 60, product)
 }
 
-func TestReduceSliceConcatenate(t *testing.T) {
+func TestFoldSliceConcatenate(t *testing.T) {
 	values := []string{"Fizz", "Buzz"}
 
-	concatString := gloop.Reduce(gloop.Slice(values), func(acc string, value string) string {
+	concatString := gloop.Fold(gloop.Slice(values), func(acc string, value string) string {
 		return acc + value
 	})
 	require.Equal(t, "FizzBuzz", concatString)
 }
 
-func TestReduceSliceLen(t *testing.T) {
+func TestFoldSliceLen(t *testing.T) {
 	values := []string{"Fizz", "Buzz"}
 
-	lenStrings := gloop.Reduce(gloop.Slice(values), func(acc int, value string) int {
+	lenStrings := gloop.Fold(gloop.Slice(values), func(acc int, value string) int {
 		return acc + len(value)
 	})
 	require.Equal(t, 8, lenStrings)
 }
 
-func TestReduceStringNumericCount(t *testing.T) {
+func TestFoldStringNumericCount(t *testing.T) {
 	s := "F1Z2bU2z"
 
-	sum := gloop.Reduce(gloop.String(s), func(acc int, r rune) int {
+	sum := gloop.Fold(gloop.String(s), func(acc int, r rune) int {
 		if unicode.IsNumber(r) {
 			return acc + 1
 		}
@@ -65,26 +65,26 @@ func TestReduceStringNumericCount(t *testing.T) {
 	require.Equal(t, 3, sum)
 }
 
-func TestReduce2MapSumOfProducts(t *testing.T) {
+func TestFold2MapSumOfProducts(t *testing.T) {
 	m := map[int]int{
 		3:  4,
 		8:  -1,
 		-2: -5,
 	}
-	sum := gloop.Reduce2(gloop.Map(m), func(acc int, key int, value int) int {
+	sum := gloop.Fold2(gloop.Map(m), func(acc int, key int, value int) int {
 		return acc + (key * value)
 	})
 	require.Equal(t, 14, sum)
 }
 
-func TestReduce2MapProductOfValues(t *testing.T) {
+func TestFold2MapProductOfValues(t *testing.T) {
 	m := map[string]int{
 		"Fizz": 4,
 		"Buzz": -1,
 		"Bazz": -5,
 	}
-	product := gloop.Reduce2(gloop.Map(m), func(acc int, key string, value int) int {
+	product := gloop.Fold2(gloop.Map(m), func(acc int, key string, value int) int {
 		return acc * value
-	}, gloop.WithReduceInitialValue(1))
+	}, gloop.WithFoldInitialValue(1))
 	require.Equal(t, 20, product)
 }

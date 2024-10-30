@@ -224,6 +224,35 @@ func ExampleFilter2() {
 	// 4 4
 }
 
+func ExampleFold() {
+	add := func(a, b int) int {
+		return a + b
+	}
+
+	values := []int{3, 1, 4}
+	sum := gloop.Fold(gloop.Slice(values), add)
+	fmt.Println(sum)
+	// Output:
+	// 8
+}
+
+func ExampleFold2() {
+	addKeyValueProduct := func(acc, key, value int) int {
+		return acc + (key * value)
+	}
+
+	m := map[int]int{
+		3: 1,
+		1: 5,
+		4: 9,
+	}
+
+	sumOfProducts := gloop.Fold2(gloop.Map(m), addKeyValueProduct)
+	fmt.Println(sumOfProducts)
+	// Output:
+	// 44
+}
+
 func ExampleInterval() {
 	for i := range gloop.Interval(3, 9, 2) {
 		fmt.Println(i)
@@ -420,35 +449,6 @@ func ExampleRandomNormal() {
 	// 1.321369004660313
 	// 1.3549030774712296
 	// -0.6521572615302738
-}
-
-func ExampleReduce() {
-	add := func(a, b int) int {
-		return a + b
-	}
-
-	values := []int{3, 1, 4}
-	sum := gloop.Reduce(gloop.Slice(values), add)
-	fmt.Println(sum)
-	// Output:
-	// 8
-}
-
-func ExampleReduce2() {
-	addKeyValueProduct := func(acc, key, value int) int {
-		return acc + (key * value)
-	}
-
-	m := map[int]int{
-		3: 1,
-		1: 5,
-		4: 9,
-	}
-
-	sumOfProducts := gloop.Reduce2(gloop.Map(m), addKeyValueProduct)
-	fmt.Println(sumOfProducts)
-	// Output:
-	// 44
 }
 
 func ExampleReverse() {

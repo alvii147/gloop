@@ -14,7 +14,7 @@ type meanAccumulator[V Number] struct {
 
 // Mean computes the mean value over an iter.Seq sequence.
 func Mean[V Number](seq iter.Seq[V]) float64 {
-	meanAcc := Reduce(seq, func(acc meanAccumulator[V], value V) meanAccumulator[V] {
+	meanAcc := Fold(seq, func(acc meanAccumulator[V], value V) meanAccumulator[V] {
 		return meanAccumulator[V]{
 			sum: acc.sum + value,
 			len: acc.len + 1,
