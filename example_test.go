@@ -451,6 +451,37 @@ func ExampleRandomNormal() {
 	// -0.6521572615302738
 }
 
+func ExampleReduce() {
+	values := []int{3, 1, 4}
+	minValue := gloop.Reduce(gloop.Slice(values), func(value1 int, value2 int) int {
+		return min(value1, value2)
+	})
+	fmt.Println(minValue)
+	// Output:
+	// 1
+}
+
+func ExampleReduce2() {
+	minKeyValueFunc := func(k1 int, v1 int, k2 int, v2 int) (int, int) {
+		if v1 < v2 {
+			return k1, v1
+		}
+
+		return k2, v2
+	}
+
+	m := map[int]int{
+		0: 3,
+		1: 1,
+		2: 4,
+	}
+
+	minValueKey, minValue := gloop.Reduce2(gloop.Map(m), minKeyValueFunc)
+	fmt.Println(minValueKey, minValue)
+	// Output:
+	// 1 1
+}
+
 func ExampleReverse() {
 	values := []int{3, 1, 4}
 	for i := range gloop.Reverse(gloop.Slice(values)) {

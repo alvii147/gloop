@@ -111,6 +111,8 @@ TAC
 * `Mean` - computes the mean value over an [iter.Seq](https://pkg.go.dev/iter#Seq) sequence
 * `Min` - computes the minimum value over an [iter.Seq](https://pkg.go.dev/iter#Seq) sequence
 * `Product` - computes the product of values over an [iter.Seq](https://pkg.go.dev/iter#Seq) sequence
+* `Reduce` - runs a given function on each adjacent pair in an [iter.Seq](https://pkg.go.dev/iter#Seq) sequence and accumulates the result into a single value
+* `Reduce2` - runs a given function on each adjacent pair of keys and values in an [iter.Seq2](https://pkg.go.dev/iter#Seq2) sequence and accumulates the result into a single key and value pair
 * `Sum` - computes summation over an [iter.Seq](https://pkg.go.dev/iter#Seq) sequence
 * `ToList` - converts an [iter.Seq](https://pkg.go.dev/iter#Seq) sequence to a [linked list](https://pkg.go.dev/container/list#List)
 * `ToList2` - ToList2 converts an [iter.Seq2](https://pkg.go.dev/iter#Seq2) sequence to [linked lists](https://pkg.go.dev/container/list#List) of keys and values
