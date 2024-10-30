@@ -115,7 +115,7 @@ TAC
 * `Reduce2` - runs a given function on each adjacent pair of keys and values in an [iter.Seq2](https://pkg.go.dev/iter#Seq2) sequence and accumulates the result into a single key and value pair
 * `Sum` - computes summation over an [iter.Seq](https://pkg.go.dev/iter#Seq) sequence
 * `ToList` - converts an [iter.Seq](https://pkg.go.dev/iter#Seq) sequence to a [linked list](https://pkg.go.dev/container/list#List)
-* `ToList2` - ToList2 converts an [iter.Seq2](https://pkg.go.dev/iter#Seq2) sequence to [linked lists](https://pkg.go.dev/container/list#List) of keys and values
+* `ToList2` - converts an [iter.Seq2](https://pkg.go.dev/iter#Seq2) sequence to [linked lists](https://pkg.go.dev/container/list#List) of keys and values
 * `ToSlice` - converts an [iter.Seq](https://pkg.go.dev/iter#Seq) sequence to a slice
 * `ToSlice2` - converts an [iter.Seq2](https://pkg.go.dev/iter#Seq2) sequence to slices of keys and values
 * `ToString` - converts an [iter.Seq](https://pkg.go.dev/iter#Seq) sequence of runes to a string
