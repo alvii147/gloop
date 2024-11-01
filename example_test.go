@@ -229,6 +229,44 @@ func ExampleEqual2() {
 	// true
 }
 
+func ExampleEquivalent() {
+	values1 := []int{3, 1, 4}
+	values2 := []int{3, 1, -4}
+	values3 := []int{3, 4, 1}
+
+	fmt.Println(gloop.Equivalent(gloop.Slice(values1), gloop.Slice(values2)))
+	fmt.Println(gloop.Equivalent(gloop.Slice(values1), gloop.Slice(values3)))
+	// Output:
+	// false
+	// true
+}
+
+func ExampleEquivalent2() {
+	seq1 := func(yield func(string, int) bool) {
+		yield("CAT", 3)
+		yield("DOG", 1)
+		yield("MOUSE", 4)
+	}
+
+	seq2 := func(yield func(string, int) bool) {
+		yield("CAT", 3)
+		yield("DOG", 1)
+		yield("CHICKEN", 4)
+	}
+
+	seq3 := func(yield func(string, int) bool) {
+		yield("CAT", 3)
+		yield("MOUSE", 4)
+		yield("DOG", 1)
+	}
+
+	fmt.Println(gloop.Equivalent2(seq1, seq2))
+	fmt.Println(gloop.Equivalent2(seq1, seq3))
+	// Output:
+	// false
+	// true
+}
+
 func ExampleFilter() {
 	isOdd := func(i int) bool {
 		return i%2 == 1

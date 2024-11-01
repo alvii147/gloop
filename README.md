@@ -109,6 +109,8 @@ TAC
 * `Any` - computes whether or not any value in an [iter.Seq](https://pkg.go.dev/iter#Seq) sequence is true
 * `Equal` - checks if two given [iter.Seq](https://pkg.go.dev/iter#Seq) sequences are exactly equal in contents and order
 * `Equal2` - checks if two given [iter.Seq2](https://pkg.go.dev/iter#Seq2) sequences are exactly equal in contents and order
+* `Equivalent` - checks if two given [iter.Seq](https://pkg.go.dev/iter#Seq) sequences are equal in contents, ignoring order
+* `Equivalent2` - checks if two given [iter.Seq2](https://pkg.go.dev/iter#Seq2) sequences are equal in contents, ignoring order
 * `Fold` - runs a given function on each value from an [iter.Seq](https://pkg.go.dev/iter#Seq) sequence and accumulates the result into a single value
 * `Fold2` - runs a given function on each value from an [iter.Seq2](https://pkg.go.dev/iter#Seq2) sequence and accumulates the result into a single value
 * `Max` - computes the maximum value over an [iter.Seq](https://pkg.go.dev/iter#Seq) sequence
