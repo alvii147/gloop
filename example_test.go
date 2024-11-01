@@ -317,6 +317,47 @@ func ExampleKeys() {
 	// MOUSE
 }
 
+func ExampleKeyValue() {
+	pairs := []gloop.KeyValuePair[string, int]{
+		{
+			Key:   "CAT",
+			Value: 3,
+		},
+		{
+			Key:   "DOG",
+			Value: 1,
+		},
+		{
+			Key:   "MOUSE",
+			Value: 4,
+		},
+	}
+
+	for key, value := range gloop.KeyValue(gloop.Slice(pairs)) {
+		fmt.Println(key, value)
+	}
+	// Output:
+	// CAT 3
+	// DOG 1
+	// MOUSE 4
+}
+
+func ExampleKeyValue2() {
+	m := map[string]int{
+		"CAT":   3,
+		"DOG":   1,
+		"MOUSE": 4,
+	}
+
+	for pair := range gloop.KeyValue2(gloop.Map(m)) {
+		fmt.Printf("%+v\n", pair)
+	}
+	// Output:
+	// {Key:CAT Value:3}
+	// {Key:DOG Value:1}
+	// {Key:MOUSE Value:4}
+}
+
 func ExampleLinspace() {
 	for i := range gloop.Linspace(2, 3, 5) {
 		fmt.Println(i)

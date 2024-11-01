@@ -77,6 +77,8 @@ TAC
 * `Filter` - runs a given function on each value from an [iter.Seq](https://pkg.go.dev/iter#Seq) sequence and allows looping over values for which the function returns true
 * `Filter2` - runs a given function on each value from an [iter.Seq2](https://pkg.go.dev/iter#Seq2) sequence and allows looping over values for which the function returns true
 * `Keys` - allows looping over an [iter.Seq2](https://pkg.go.dev/iter#Seq2), converting it to an [iter.Seq](https://pkg.go.dev/iter#Seq) sequence by discarding the value
+* `KeyValue` - converts an [iter.Seq](https://pkg.go.dev/iter#Seq) `KeyValuePair` sequence to an [iter.Seq2](https://pkg.go.dev/iter#Seq2) sequence
+* `KeyValue2` - converts an [iter.Seq2](https://pkg.go.dev/iter#Seq2) sequence to an [iter.Seq](https://pkg.go.dev/iter#Seq) `KeyValuePair` sequence
 * `List` - allows looping over a given [linked list](https://pkg.go.dev/container/list#List)
 * `Map` - allows looping over keys and values in a map
 * `Reverse` - allows looping over an [iter.Seq](https://pkg.go.dev/iter#Seq) sequence in order of descending index
