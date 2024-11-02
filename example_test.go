@@ -388,12 +388,12 @@ func ExampleKeyValue2() {
 	}
 
 	for pair := range gloop.KeyValue2(gloop.Map(m)) {
-		fmt.Printf("%+v\n", pair)
+		fmt.Println(pair.Key, pair.Value)
 	}
 	// Output:
-	// {Key:CAT Value:3}
-	// {Key:DOG Value:1}
-	// {Key:MOUSE Value:4}
+	// CAT 3
+	// DOG 1
+	// MOUSE 4
 }
 
 func ExampleLinspace() {
@@ -771,4 +771,26 @@ func ExampleZip() {
 	// CAT 3
 	// DOG 1
 	// MOUSE 4
+}
+
+func ExampleZip2() {
+	seq1 := func(yield func(string, int) bool) {
+		yield("CAT", 3)
+		yield("DOG", 1)
+		yield("MOUSE", 4)
+	}
+
+	seq2 := func(yield func(int, float64) bool) {
+		yield(3, 1.2)
+		yield(1, 3.4)
+		yield(4, 5.6)
+	}
+
+	for pair1, pair2 := range gloop.Zip2(seq1, seq2) {
+		fmt.Println(pair1.Key, pair1.Value, pair2.Key, pair2.Value)
+	}
+	// Output:
+	// CAT 3 3 1.2
+	// DOG 1 1 3.4
+	// MOUSE 4 4 5.6
 }

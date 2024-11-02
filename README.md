@@ -89,6 +89,7 @@ TAC
 * `Transform2` - runs a given function on each key and value over an [iter.Seq2](https://pkg.go.dev/iter#Seq2) sequence and allows looping over the returned values
 * `Values` - allows looping over an [iter.Seq2](https://pkg.go.dev/iter#Seq2) and converting it to an [iter.Seq](https://pkg.go.dev/iter#Seq) sequence by discarding the key
 * `Zip` - allows looping over two [iter.Seq](https://pkg.go.dev/iter#Seq) sequences in pairs
+* `Zip2` - allows looping over two [iter.Seq2](https://pkg.go.dev/iter#Seq2) sequences in pairs
 
 ### Vector Iterators
 
