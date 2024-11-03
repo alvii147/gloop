@@ -1,4 +1,4 @@
-[![Genocide Watch](https://hinds-banner.vercel.app/genocide-watch?variant=crimson)](https://www.pcrf.net/)
+[![Genocide Watch](https://hinds-banner.vercel.app/genocide-watch?variant=plum)](https://www.pcrf.net/)
 
 <p align="center">
     <img alt="gloop logo" src="img/logo.svg" width=500 />
