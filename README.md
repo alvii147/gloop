@@ -10,7 +10,7 @@
 
 <div align="center">
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/alvii147/gloop.svg)](https://pkg.go.dev/github.com/alvii147/gloop) [![GitHub CI](https://img.shields.io/github/actions/workflow/status/alvii147/gloop/github-ci.yml?branch=main&label=GitHub%20CI&logo=github)](https://github.com/alvii147/gloop/actions) [![Go Report Card](https://goreportcard.com/badge/github.com/alvii147/gloop)](https://goreportcard.com/report/github.com/alvii147/gloop)
+[![Go Reference](https://pkg.go.dev/badge/github.com/alvii147/gloop.svg)](https://pkg.go.dev/github.com/alvii147/gloop) [![GitHub CI](https://img.shields.io/github/actions/workflow/status/alvii147/gloop/github-ci.yml?branch=main&label=GitHub%20CI&logo=github)](https://github.com/alvii147/gloop/actions) [![Go Report Card](https://goreportcard.com/badge/github.com/alvii147/gloop)](https://goreportcard.com/report/github.com/alvii147/gloop) ![License](https://img.shields.io/github/license/alvii147/gloop)
 
 </div>
 
