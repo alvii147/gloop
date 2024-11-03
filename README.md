@@ -109,7 +109,7 @@ TAC
 * `Window` - allows looping over an [iter.Seq](https://pkg.go.dev/iter#Seq) sequence in sliding windows of a given size
 * `Window2` - allows looping over an [iter.Seq2](https://pkg.go.dev/iter#Seq2) sequence in sliding windows of a given size
 
-### Accumulators
+### Aggregators
 
 * `All` - computes whether or not all values in an [iter.Seq](https://pkg.go.dev/iter#Seq) sequence are true
 * `Any` - computes whether or not any value in an [iter.Seq](https://pkg.go.dev/iter#Seq) sequence is true
