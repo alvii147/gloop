@@ -2,4 +2,6 @@
 // the [range-over-func] feature.
 //
 // [range-over-func]: https://go.dev/blog/range-functions
+//
+// [iter.Seq]: https://pkg.go.dev/iter#Seq
 package gloop
