@@ -632,6 +632,88 @@ func ExampleSlice() {
 	// 4
 }
 
+func ExampleSort() {
+	values := []int{3, 1, 4, 1, 5, 9}
+	for i := range gloop.Sort(gloop.Slice(values), true) {
+		fmt.Println(i)
+	}
+	// Output:
+	// 1
+	// 1
+	// 3
+	// 4
+	// 5
+	// 9
+}
+
+func ExampleSortByComparison() {
+	compareStringLens := func(s1, s2 string) bool {
+		return len(s1) < len(s2)
+	}
+
+	values := []string{"CAT", "MOUSE", "DOG"}
+	for s := range gloop.SortByComparison(gloop.Slice(values), compareStringLens, true) {
+		fmt.Println(s)
+	}
+	// Output:
+	// CAT
+	// DOG
+	// MOUSE
+}
+
+func ExampleSortByComparison2() {
+	compareKeyValueConcatLen := func(k1, v1, k2, v2 string) bool {
+		return len(k1+v1) < len(k2+v2)
+	}
+
+	values := map[string]string{
+		"CAT":   "DOG",
+		"MOUSE": "CHICKEN",
+		"BUNNY": "BEAR",
+	}
+	for key, value := range gloop.SortByComparison2(gloop.Map(values), compareKeyValueConcatLen, true) {
+		fmt.Println(key, value)
+	}
+	// Output:
+	// CAT DOG
+	// BUNNY BEAR
+	// MOUSE CHICKEN
+}
+
+func ExampleSortByRank() {
+	stringLen := func(s string) int {
+		return len(s)
+	}
+
+	values := []string{"CAT", "MOUSE", "DOG"}
+	for s := range gloop.SortByRank(gloop.Slice(values), stringLen, true) {
+		fmt.Println(s)
+	}
+	// Output:
+	// CAT
+	// DOG
+	// MOUSE
+}
+
+func ExampleSortByRank2() {
+	stringConcatLen := func(k1, v1 string) int {
+		return len(k1 + v1)
+	}
+
+	values := map[string]string{
+		"CAT":   "DOG",
+		"MOUSE": "CHICKEN",
+		"BUNNY": "BEAR",
+	}
+	for key, value := range gloop.SortByRank2(gloop.Map(values), stringConcatLen, true) {
+		fmt.Println(key, value)
+	}
+	// Output:
+	// CAT DOG
+	// BUNNY BEAR
+	// MOUSE CHICKEN
+}
+
 func ExampleString() {
 	for r := range gloop.String("CAT") {
 		fmt.Println(string(r))

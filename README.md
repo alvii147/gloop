@@ -84,6 +84,11 @@ TAC
 * `Reverse` - allows looping over an [iter.Seq](https://pkg.go.dev/iter#Seq) sequence in order of descending index
 * `Reverse2` - allows looping over an [iter.Seq2](https://pkg.go.dev/iter#Seq2) sequence in order of descending index
 * `Slice` - allows looping over a given slice
+* `Sort` - allows looping over an [iter.Seq](https://pkg.go.dev/iter#Seq) sequence in sorted order
+* `SortByComparison` - allows looping over an [iter.Seq](https://pkg.go.dev/iter#Seq) sequence in sorted order using a comparison function
+* `SortByComparison2` - allows looping over an [iter.Seq2](https://pkg.go.dev/iter#Seq2) sequence in sorted order using a comparison function
+* `SortByRank` - allows looping over an [iter.Seq](https://pkg.go.dev/iter#Seq) sequence in sorted order using a ranking function
+* `SortByRank2` - allows looping over an [iter.Seq2](https://pkg.go.dev/iter#Seq2) sequence in sorted order using a ranking function
 * `String` - allows looping over the runes in a given string
 * `Transform` - runs a given function on each value over an [iter.Seq](https://pkg.go.dev/iter#Seq) sequence and allows looping over the returned values
 * `Transform2` - runs a given function on each key and value over an [iter.Seq2](https://pkg.go.dev/iter#Seq2) sequence and allows looping over the returned values
