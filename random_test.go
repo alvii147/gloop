@@ -71,7 +71,8 @@ func TestRandomUniformNegativeSizePanics(t *testing.T) {
 func TestRandomNormalWithRandomGenerator(t *testing.T) {
 	i := 0
 	generator := rand.New(rand.NewSource(314))
-	for _ = range gloop.RandomNormal(5, 2, 10, gloop.WithRandomGenerator(generator)) {
+	for value := range gloop.RandomNormal(5, 2, 10, gloop.WithRandomGenerator(generator)) {
+		_ = value
 		i++
 	}
 
@@ -80,7 +81,8 @@ func TestRandomNormalWithRandomGenerator(t *testing.T) {
 
 func TestRandomNormal(t *testing.T) {
 	i := 0
-	for _ = range gloop.RandomNormal(5, 2, 10) {
+	for value := range gloop.RandomNormal(5, 2, 10) {
+		_ = value
 		i++
 	}
 
@@ -89,7 +91,8 @@ func TestRandomNormal(t *testing.T) {
 
 func TestRandomNormalBreak(t *testing.T) {
 	i := 0
-	for _ = range gloop.RandomNormal(5, 2, 10) {
+	for value := range gloop.RandomNormal(5, 2, 10) {
+		_ = value
 		if i == 2 {
 			break
 		}
