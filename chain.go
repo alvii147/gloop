@@ -2,7 +2,7 @@ package gloop
 
 import "iter"
 
-// Chain allows looping over multiple iter.Seq sequences.
+// Chain allows looping over multiple [iter.Seq] sequences.
 func Chain[V any](seqs ...iter.Seq[V]) iter.Seq[V] {
 	return func(yield func(V) bool) {
 		for _, seq := range seqs {
@@ -15,7 +15,7 @@ func Chain[V any](seqs ...iter.Seq[V]) iter.Seq[V] {
 	}
 }
 
-// Chain2 allows looping over multiple iter.Seq2 sequences.
+// Chain2 allows looping over multiple [iter.Seq2] sequences.
 func Chain2[K, V any](seqs ...iter.Seq2[K, V]) iter.Seq2[K, V] {
 	return func(yield func(K, V) bool) {
 		for _, seq := range seqs {

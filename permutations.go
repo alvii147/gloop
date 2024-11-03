@@ -6,7 +6,7 @@ import (
 )
 
 // permutations recursively computes and yields the permutations of an
-// iter.Seq sequence.
+// [iter.Seq] sequence.
 func permutations[V any](
 	size int,
 	yield func(iter.Seq[V]) bool,
@@ -44,7 +44,7 @@ func permutations[V any](
 }
 
 // Permutations allows looping over all permutations of a given size
-// for an iter.Seq sequence. The size must be positive.
+// for an [iter.Seq] sequence. The size must be positive.
 func Permutations[V any](seq iter.Seq[V], size int) iter.Seq[iter.Seq[V]] {
 	if size <= 0 {
 		panic("size must be positive")
@@ -57,7 +57,7 @@ func Permutations[V any](seq iter.Seq[V], size int) iter.Seq[iter.Seq[V]] {
 }
 
 // permutations2 recursively computes and yields the permutations of an
-// iter.Seq2 sequence.
+// [iter.Seq2] sequence.
 func permutations2[K, V any](
 	size int,
 	yield func(iter.Seq2[K, V]) bool,
@@ -113,7 +113,7 @@ func permutations2[K, V any](
 }
 
 // Permutations2 allows looping over all permutations of a given size
-// for an iter.Seq2 sequence. The size must be positive.
+// for an [iter.Seq2] sequence. The size must be positive.
 func Permutations2[K, V any](seq iter.Seq2[K, V], size int) iter.Seq[iter.Seq2[K, V]] {
 	if size <= 0 {
 		panic("size must be positive")

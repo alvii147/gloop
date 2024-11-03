@@ -2,7 +2,7 @@ package gloop
 
 import "iter"
 
-// Equal checks if two given iter.Seq sequences are exactly equal in
+// Equal checks if two given [iter.Seq] sequences are exactly equal in
 // contents and order.
 func Equal[V comparable](seq1 iter.Seq[V], seq2 iter.Seq[V]) bool {
 	next1, stop1 := iter.Pull(seq1)
@@ -31,8 +31,8 @@ func Equal[V comparable](seq1 iter.Seq[V], seq2 iter.Seq[V]) bool {
 	return true
 }
 
-// Equal2 checks if two given iter.Seq2 sequences are exactly equal in
-// contents and order.
+// Equal2 checks if two given [iter.Seq2] sequences are exactly equal
+// in contents and order.
 func Equal2[K, V comparable](seq1 iter.Seq2[K, V], seq2 iter.Seq2[K, V]) bool {
 	next1, stop1 := iter.Pull2(seq1)
 	defer stop1()

@@ -4,7 +4,7 @@ import (
 	"iter"
 )
 
-// Reverse allows looping over an iter.Seq sequence in order of
+// Reverse allows looping over an [iter.Seq] sequence in order of
 // descending index.
 func Reverse[V any](seq iter.Seq[V]) iter.Seq[V] {
 	l := ToList(seq)
@@ -18,7 +18,7 @@ func Reverse[V any](seq iter.Seq[V]) iter.Seq[V] {
 	}
 }
 
-// Reverse2 allows looping over an iter.Seq2 sequence in order of
+// Reverse2 allows looping over an [iter.Seq2] sequence in order of
 // descending index.
 func Reverse2[K, V any](seq iter.Seq2[K, V]) iter.Seq2[K, V] {
 	listKeys, listValues := ToList2(seq)

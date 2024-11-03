@@ -6,7 +6,7 @@ import (
 )
 
 // cartesianProduct recursively computes and yields the Cartesian
-// product for an iter.Seq sequence.
+// product for an [iter.Seq] sequence.
 func cartesianProduct[V any](
 	seq iter.Seq[V],
 	size int,
@@ -36,7 +36,7 @@ func cartesianProduct[V any](
 }
 
 // CartesianProduct allows looping over the Cartesian product of a
-// given size for an iter.Seq sequence. The size must be positive.
+// given size for an [iter.Seq] sequence. The size must be positive.
 func CartesianProduct[V any](seq iter.Seq[V], size int) iter.Seq[iter.Seq[V]] {
 	if size <= 0 {
 		panic("size must be positive")
@@ -48,7 +48,7 @@ func CartesianProduct[V any](seq iter.Seq[V], size int) iter.Seq[iter.Seq[V]] {
 }
 
 // cartesianProduct2 recursively computes and yields the Cartesian
-// product for an iter.Seq2 sequence.
+// product for an [iter.Seq2] sequence.
 func cartesianProduct2[K, V any](
 	seq iter.Seq2[K, V],
 	size int,
@@ -83,7 +83,7 @@ func cartesianProduct2[K, V any](
 }
 
 // CartesianProduct2 allows looping over the Cartesian product of a
-// given size for an iter.Seq2 sequence. The size must be positive.
+// given size for an [iter.Seq2] sequence. The size must be positive.
 func CartesianProduct2[K, V any](seq iter.Seq2[K, V], size int) iter.Seq[iter.Seq2[K, V]] {
 	if size <= 0 {
 		panic("size must be positive")

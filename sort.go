@@ -6,7 +6,7 @@ import (
 	"sort"
 )
 
-// Sort allows looping over an iter.Seq sequence in sorted order.
+// Sort allows looping over an [iter.Seq] sequence in sorted order.
 func Sort[V cmp.Ordered](seq iter.Seq[V], ascending bool) iter.Seq[V] {
 	return SortByComparison(seq, func(value1 V, value2 V) bool {
 		return value1 < value2
@@ -17,8 +17,8 @@ func Sort[V cmp.Ordered](seq iter.Seq[V], ascending bool) iter.Seq[V] {
 // function used in [SortByComparison].
 type SortByComparisonFunc[V any] func(V, V) bool
 
-// SortByComparison allows looping over an iter.Seq sequence in sorted
-// order using a comparison function.
+// SortByComparison allows looping over an [iter.Seq] sequence in
+// sorted order using a comparison function.
 func SortByComparison[V any](
 	seq iter.Seq[V],
 	less SortByComparisonFunc[V],
@@ -43,7 +43,7 @@ func SortByComparison[V any](
 // function used in [SortByComparison2].
 type SortByComparison2Func[K, V any] func(K, V, K, V) bool
 
-// SortByComparison2 allows looping over an iter.Seq2 sequence in
+// SortByComparison2 allows looping over an [iter.Seq2] sequence in
 // sorted order using a comparison function.
 func SortByComparison2[K, V any](
 	seq iter.Seq2[K, V],
@@ -63,8 +63,8 @@ func SortByComparison2[K, V any](
 // used in [SortByRank].
 type SortByRankFunc[V any, R cmp.Ordered] func(V) R
 
-// SortByRank allows looping over an iter.Seq sequence in sorted order
-// using a ranking function.
+// SortByRank allows looping over an [iter.Seq] sequence in sorted
+// order using a ranking function.
 func SortByRank[V any, R cmp.Ordered](
 	seq iter.Seq[V],
 	rank SortByRankFunc[V, R],
@@ -79,7 +79,7 @@ func SortByRank[V any, R cmp.Ordered](
 // used in [SortByRank2].
 type SortByRank2Func[K, V any, R cmp.Ordered] func(K, V) R
 
-// SortByRank2 allows looping over an iter.Seq2 sequence in sorted
+// SortByRank2 allows looping over an [iter.Seq2] sequence in sorted
 // order using a ranking function.
 func SortByRank2[K, V any, R cmp.Ordered](
 	seq iter.Seq2[K, V],

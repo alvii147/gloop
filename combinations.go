@@ -6,7 +6,7 @@ import (
 )
 
 // combinations recursively computes and yields the combinations of an
-// iter.Seq sequence.
+// [iter.Seq] sequence.
 func combinations[V any](
 	size int,
 	yield func(iter.Seq[V]) bool,
@@ -38,7 +38,7 @@ func combinations[V any](
 }
 
 // Combinations allows looping over all combinations of a given size
-// for an iter.Seq sequence. The size must be positive.
+// for an [iter.Seq] sequence. The size must be positive.
 func Combinations[V any](seq iter.Seq[V], size int) iter.Seq[iter.Seq[V]] {
 	if size <= 0 {
 		panic("size must be positive")
@@ -50,7 +50,7 @@ func Combinations[V any](seq iter.Seq[V], size int) iter.Seq[iter.Seq[V]] {
 }
 
 // combinations2 recursively computes and yields the combinations of an
-// iter.Seq2 sequence.
+// [iter.Seq2] sequence.
 func combinations2[K, V any](
 	size int,
 	yield func(iter.Seq2[K, V]) bool,
@@ -92,7 +92,7 @@ func combinations2[K, V any](
 }
 
 // Combinations2 allows looping over all combinations of a given size
-// for an iter.Seq2 sequence. The size must be positive.
+// for an [iter.Seq2] sequence. The size must be positive.
 func Combinations2[K, V any](seq iter.Seq2[K, V], size int) iter.Seq[iter.Seq2[K, V]] {
 	if size <= 0 {
 		panic("size must be positive")

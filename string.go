@@ -16,7 +16,7 @@ func String(s string) iter.Seq[rune] {
 	}
 }
 
-// ToString converts an iter.Seq sequence of runes to a string.
+// ToString converts an [iter.Seq] sequence of runes to a string.
 func ToString(seq iter.Seq[rune]) string {
 	var sb strings.Builder
 	for value := range seq {

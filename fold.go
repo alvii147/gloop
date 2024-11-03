@@ -24,7 +24,7 @@ func WithFoldInitialValue[A any](initialValue A) FoldOptionFunc[A] {
 // [Fold].
 type FoldFunc[A, V any] func(A, V) A
 
-// Fold runs a given function on each value from an iter.Seq sequence
+// Fold runs a given function on each value from an [iter.Seq] sequence
 // and accumulates the result into a single value.
 func Fold[A, V any](
 	seq iter.Seq[V],
@@ -40,8 +40,8 @@ func Fold[A, V any](
 // in [Fold2].
 type Fold2Func[A, K, V any] func(A, K, V) A
 
-// Fold2 runs a given function on each value from an iter.Seq2 sequence
-// and accumulates the result into a single value.
+// Fold2 runs a given function on each value from an [iter.Seq2]
+// sequence and accumulates the result into a single value.
 func Fold2[A, K, V any](
 	seq iter.Seq2[K, V],
 	f Fold2Func[A, K, V],

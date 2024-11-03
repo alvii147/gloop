@@ -4,7 +4,7 @@ import (
 	"iter"
 )
 
-// Window allows looping over an iter.Seq sequence in sliding windows
+// Window allows looping over an [iter.Seq] sequence in sliding windows
 // of a given size.
 func Window[V any](seq iter.Seq[V], size int) iter.Seq[iter.Seq[V]] {
 	if size <= 0 {
@@ -33,8 +33,8 @@ func Window[V any](seq iter.Seq[V], size int) iter.Seq[iter.Seq[V]] {
 	}
 }
 
-// Window2 allows looping over an iter.Seq2 sequence in sliding windows
-// of a given size.
+// Window2 allows looping over an [iter.Seq2] sequence in sliding
+// windows of a given size.
 func Window2[K, V any](seq iter.Seq2[K, V], size int) iter.Seq[iter.Seq2[K, V]] {
 	if size <= 0 {
 		panic("size must be positive")

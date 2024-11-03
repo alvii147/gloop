@@ -15,7 +15,7 @@ func Slice[V any](values []V) iter.Seq[V] {
 	}
 }
 
-// ToSlice converts an iter.Seq sequence to a slice.
+// ToSlice converts an [iter.Seq] sequence to a slice.
 func ToSlice[V any](seq iter.Seq[V]) []V {
 	l := ToList(seq)
 	values := make([]V, l.Len())
@@ -26,7 +26,7 @@ func ToSlice[V any](seq iter.Seq[V]) []V {
 	return values
 }
 
-// ToSlice2 converts an iter.Seq2 sequence to slices of keys and
+// ToSlice2 converts an [iter.Seq2] sequence to slices of keys and
 // values.
 func ToSlice2[K, V any](seq iter.Seq2[K, V]) ([]K, []V) {
 	listKeys, listValues := ToList2(seq)

@@ -8,8 +8,8 @@ type KeyValuePair[K, V any] struct {
 	Value V
 }
 
-// KeyValue converts an iter.Seq [KeyValuePair] sequence to an
-// iter.Seq2 sequence.
+// KeyValue converts an [iter.Seq] sequence of [KeyValuePair] values to
+// an [iter.Seq2] sequence.
 func KeyValue[K, V any](seq iter.Seq[KeyValuePair[K, V]]) iter.Seq2[K, V] {
 	return func(yield func(K, V) bool) {
 		for pair := range seq {
@@ -20,8 +20,8 @@ func KeyValue[K, V any](seq iter.Seq[KeyValuePair[K, V]]) iter.Seq2[K, V] {
 	}
 }
 
-// KeyValue2 converts an iter.Seq2 sequence to an iter.Seq
-// [KeyValuePair] sequence.
+// KeyValue2 converts an [iter.Seq2] sequence to an [iter.Seq] sequence
+// of [KeyValuePair] values.
 func KeyValue2[K, V any](seq iter.Seq2[K, V]) iter.Seq[KeyValuePair[K, V]] {
 	return Transform2(seq, func(k K, v V) KeyValuePair[K, V] {
 		return KeyValuePair[K, V]{

@@ -47,7 +47,7 @@ func WithZipPadValue2[V1, V2 any](value V2) ZipOptionFunc[V1, V2] {
 	}
 }
 
-// Zip allows looping over two iter.Seq sequences in pairs.
+// Zip allows looping over two [iter.Seq] sequences in pairs.
 func Zip[V1, V2 any](
 	seq1 iter.Seq[V1],
 	seq2 iter.Seq[V2],
@@ -171,7 +171,7 @@ func WithZip2PadValue2[K1, V1, K2, V2 any](value V2) Zip2OptionFunc[K1, V1, K2, 
 	}
 }
 
-// Zip2 allows looping over two iter.Seq2 sequences in pairs.
+// Zip2 allows looping over two [iter.Seq2] sequences in pairs.
 func Zip2[K1, V1, K2, V2 any](
 	seq1 iter.Seq2[K1, V1],
 	seq2 iter.Seq2[K2, V2],
