@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-    <strong><i>gloop</i></strong> is a Go utility library for convenient looping using the <a href="https://go.dev/blog/range-functions">range-over-func</a> feature.
+    <strong><i>gloop</i></strong> is a Go utility library for convenient looping using Go's <a href="https://go.dev/blog/range-functions">range-over-func</a> feature.
 </p>
 
 <div align="center">
