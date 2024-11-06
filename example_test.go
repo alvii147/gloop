@@ -173,6 +173,24 @@ func ExampleCombinations2() {
 	// [DOG MOUSE] [1 4]
 }
 
+func ExampleDeferLoop() {
+	values := []int{3, 1, 4}
+	for i, deferLoop := range gloop.DeferLoop(gloop.Slice(values)) {
+		deferLoop(func() {
+			fmt.Println("defer loop", i)
+		})
+
+		fmt.Println("regular loop", i)
+	}
+	// Output:
+	// regular loop 3
+	// defer loop 3
+	// regular loop 1
+	// defer loop 1
+	// regular loop 4
+	// defer loop 4
+}
+
 func ExampleEnumerate() {
 	ch := make(chan int)
 	go func() {

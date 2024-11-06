@@ -136,6 +136,7 @@ TAC
 
 * `Parallelize` - runs a function on each value in an [iter.Seq] sequence on separate goroutines
 * `Parallelize2` - runs a function on each value in an [iter.Seq2] sequence on separate goroutines
+* `DeferLoop` - allows looping over an [iter.Seq] sequence, yielding a defer function that can register another function to be executed at the end of the currently running loop
 
 [iter.Seq]: https://pkg.go.dev/iter#Seq
 [iter.Seq2]: https://pkg.go.dev/iter#Seq2
