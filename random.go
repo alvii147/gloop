@@ -13,13 +13,13 @@ type RandomOptions struct {
 	Generator *rand.Rand
 }
 
-// RandomOptionsFunc is the function signature of configuration helpers
+// RandomOptionFunc is the function signature of configuration helpers
 // for [RandomUniform] and [RandomNormal].
-type RandomOptionsFunc func(*RandomOptions)
+type RandomOptionFunc func(*RandomOptions)
 
 // WithRandomGenerator is a helper for configuring the random number
 // generator for [RandomUniform] and [RandomNormal].
-func WithRandomGenerator(generator *rand.Rand) RandomOptionsFunc {
+func WithRandomGenerator(generator *rand.Rand) RandomOptionFunc {
 	return func(o *RandomOptions) {
 		o.Generator = generator
 	}
@@ -31,7 +31,7 @@ func RandomUniform[N Number](
 	low N,
 	high N,
 	size int,
-	opts ...RandomOptionsFunc,
+	opts ...RandomOptionFunc,
 ) iter.Seq[float64] {
 	if size < 0 {
 		panic("size must not be negative")
@@ -65,7 +65,7 @@ func RandomNormal[N Number](
 	mean N,
 	stddev N,
 	size int,
-	opts ...RandomOptionsFunc,
+	opts ...RandomOptionFunc,
 ) iter.Seq[float64] {
 	if size < 0 {
 		panic("size must not be negative")

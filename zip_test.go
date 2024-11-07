@@ -1,6 +1,7 @@
 package gloop_test
 
 import (
+	"iter"
 	"testing"
 
 	"github.com/alvii147/gloop"
@@ -683,4 +684,551 @@ func TestZip2PadValue2(t *testing.T) {
 	}
 
 	require.Equal(t, 2, i)
+}
+
+func TestWithZipNPaddedTrue(t *testing.T) {
+	options := gloop.ZipNOptions[int]{
+		Padded: false,
+	}
+	gloop.WithZipNPadded[int](true)(&options)
+	require.True(t, options.Padded)
+}
+
+func TestWithZipNPaddedFalse(t *testing.T) {
+	options := gloop.ZipNOptions[int]{
+		Padded: true,
+	}
+	gloop.WithZipNPadded[int](false)(&options)
+	require.False(t, options.Padded)
+}
+
+func TestWithZipNPadValue(t *testing.T) {
+	value := 42
+	options := gloop.ZipNOptions[int]{}
+	gloop.WithZipNPadValue(value)(&options)
+
+	require.NotNil(t, options.PadValue)
+	require.Equal(t, value, *options.PadValue)
+}
+
+func TestWithZipN2PaddedTrue(t *testing.T) {
+	options := gloop.ZipN2Options[string, int]{
+		Padded: false,
+	}
+	gloop.WithZipN2Padded[string, int](true)(&options)
+	require.True(t, options.Padded)
+}
+
+func TestWithZipN2PaddedFalse(t *testing.T) {
+	options := gloop.ZipN2Options[string, int]{
+		Padded: true,
+	}
+	gloop.WithZipN2Padded[string, int](false)(&options)
+	require.False(t, options.Padded)
+}
+
+func TestWithZipN2PadKey(t *testing.T) {
+	value := "Fizz"
+	options := gloop.ZipN2Options[string, int]{}
+	gloop.WithZipN2PadKey[string, int](value)(&options)
+
+	require.NotNil(t, options.PadKey)
+	require.Equal(t, value, *options.PadKey)
+}
+
+func TestWithZipN2PadValue(t *testing.T) {
+	value := 42
+	options := gloop.ZipN2Options[string, int]{}
+	gloop.WithZipN2PadValue[string](value)(&options)
+
+	require.NotNil(t, options.PadValue)
+	require.Equal(t, value, *options.PadValue)
+}
+
+func TestZipNEqualLen(t *testing.T) {
+	seq1 := gloop.Slice([]int{3, 1, 4})
+	seq2 := gloop.Slice([]int{1, 5, 9})
+	seq3 := gloop.Slice([]int{2, 6, 5})
+	wantValues := [][]int{
+		{3, 1, 2},
+		{1, 5, 6},
+		{4, 9, 5},
+	}
+
+	i := 0
+	for seq := range gloop.ZipN(gloop.Collect(seq1, seq2, seq3)) {
+		require.Equal(t, wantValues[i], gloop.ToSlice(seq))
+		i++
+	}
+
+	require.Equal(t, len(wantValues), i)
+}
+
+func TestZipNUnequalLen(t *testing.T) {
+	seq1 := gloop.Slice([]int{3, 1, 4})
+	seq2 := gloop.Slice([]int{1, 5})
+	seq3 := gloop.Slice([]int{2, 6, 5})
+	wantValues := [][]int{
+		{3, 1, 2},
+		{1, 5, 6},
+	}
+
+	i := 0
+	for seq := range gloop.ZipN(gloop.Collect(seq1, seq2, seq3)) {
+		require.Equal(t, wantValues[i], gloop.ToSlice(seq))
+		i++
+	}
+
+	require.Equal(t, len(wantValues), i)
+}
+
+func TestZipNPaddedZeroValue(t *testing.T) {
+	seq1 := gloop.Slice([]int{3, 1, 4})
+	seq2 := gloop.Slice([]int{1, 5})
+	seq3 := gloop.Slice([]int{2, 6, 5})
+	wantValues := [][]int{
+		{3, 1, 2},
+		{1, 5, 6},
+		{4, 0, 5},
+	}
+
+	i := 0
+	for seq := range gloop.ZipN(
+		gloop.Collect(seq1, seq2, seq3),
+		gloop.WithZipNPadded[int](true),
+	) {
+		require.Equal(t, wantValues[i], gloop.ToSlice(seq))
+		i++
+	}
+
+	require.Equal(t, len(wantValues), i)
+}
+
+func TestZipNPadValue(t *testing.T) {
+	seq1 := gloop.Slice([]int{3, 1, 4})
+	seq2 := gloop.Slice([]int{1, 5})
+	seq3 := gloop.Slice([]int{2, 6, 5})
+	wantValues := [][]int{
+		{3, 1, 2},
+		{1, 5, 6},
+		{4, -1, 5},
+	}
+
+	i := 0
+	for seq := range gloop.ZipN(
+		gloop.Collect(seq1, seq2, seq3),
+		gloop.WithZipNPadded[int](true),
+		gloop.WithZipNPadValue(-1),
+	) {
+		require.Equal(t, wantValues[i], gloop.ToSlice(seq))
+		i++
+	}
+
+	require.Equal(t, len(wantValues), i)
+}
+
+func TestZipNBreak(t *testing.T) {
+	seq1 := gloop.Slice([]int{3, 1, 4})
+	seq2 := gloop.Slice([]int{1, 5, 9})
+	seq3 := gloop.Slice([]int{2, 6, 5})
+	wantValues := [][]int{
+		{3, 1, 2},
+		{1, 5, 6},
+	}
+
+	i := 0
+	for seq := range gloop.ZipN(gloop.Collect(seq1, seq2, seq3)) {
+		if i == 2 {
+			break
+		}
+
+		require.Equal(t, wantValues[i], gloop.ToSlice(seq))
+		i++
+	}
+
+	require.Equal(t, len(wantValues), i)
+}
+
+func TestZipN2EqualLen(t *testing.T) {
+	var seq1 iter.Seq2[string, int] = func(yield func(string, int) bool) {
+		if !yield("Fizz", 3) {
+			return
+		}
+
+		if !yield("Fuzz", 1) {
+			return
+		}
+
+		if !yield("Fazz", 4) {
+			return
+		}
+	}
+
+	var seq2 iter.Seq2[string, int] = func(yield func(string, int) bool) {
+		if !yield("Bizz", 1) {
+			return
+		}
+
+		if !yield("Buzz", 5) {
+			return
+		}
+
+		if !yield("Bazz", 9) {
+			return
+		}
+	}
+
+	var seq3 iter.Seq2[string, int] = func(yield func(string, int) bool) {
+		if !yield("Dizz", 2) {
+			return
+		}
+
+		if !yield("Duzz", 6) {
+			return
+		}
+
+		if !yield("Dazz", 5) {
+			return
+		}
+	}
+
+	wantKeys := [][]string{
+		{"Fizz", "Bizz", "Dizz"},
+		{"Fuzz", "Buzz", "Duzz"},
+		{"Fazz", "Bazz", "Dazz"},
+	}
+	wantValues := [][]int{
+		{3, 1, 2},
+		{1, 5, 6},
+		{4, 9, 5},
+	}
+
+	i := 0
+	for seq := range gloop.ZipN2(gloop.Collect(seq1, seq2, seq3)) {
+		keys, values := gloop.ToSlice2(seq)
+		require.Equal(t, wantKeys[i], keys)
+		require.Equal(t, wantValues[i], values)
+		i++
+	}
+
+	require.Equal(t, len(wantValues), i)
+}
+
+func TestZipN2UnequalLen(t *testing.T) {
+	var seq1 iter.Seq2[string, int] = func(yield func(string, int) bool) {
+		if !yield("Fizz", 3) {
+			return
+		}
+
+		if !yield("Fuzz", 1) {
+			return
+		}
+
+		if !yield("Fazz", 4) {
+			return
+		}
+	}
+
+	var seq2 iter.Seq2[string, int] = func(yield func(string, int) bool) {
+		if !yield("Bizz", 1) {
+			return
+		}
+
+		if !yield("Buzz", 5) {
+			return
+		}
+	}
+
+	var seq3 iter.Seq2[string, int] = func(yield func(string, int) bool) {
+		if !yield("Dizz", 2) {
+			return
+		}
+
+		if !yield("Duzz", 6) {
+			return
+		}
+
+		if !yield("Dazz", 5) {
+			return
+		}
+	}
+
+	wantKeys := [][]string{
+		{"Fizz", "Bizz", "Dizz"},
+		{"Fuzz", "Buzz", "Duzz"},
+	}
+	wantValues := [][]int{
+		{3, 1, 2},
+		{1, 5, 6},
+	}
+
+	i := 0
+	for seq := range gloop.ZipN2(gloop.Collect(seq1, seq2, seq3)) {
+		keys, values := gloop.ToSlice2(seq)
+		require.Equal(t, wantKeys[i], keys)
+		require.Equal(t, wantValues[i], values)
+		i++
+	}
+
+	require.Equal(t, len(wantValues), i)
+}
+
+func TestZipN2Padded(t *testing.T) {
+	var seq1 iter.Seq2[string, int] = func(yield func(string, int) bool) {
+		if !yield("Fizz", 3) {
+			return
+		}
+
+		if !yield("Fuzz", 1) {
+			return
+		}
+
+		if !yield("Fazz", 4) {
+			return
+		}
+	}
+
+	var seq2 iter.Seq2[string, int] = func(yield func(string, int) bool) {
+		if !yield("Bizz", 1) {
+			return
+		}
+
+		if !yield("Buzz", 5) {
+			return
+		}
+	}
+
+	var seq3 iter.Seq2[string, int] = func(yield func(string, int) bool) {
+		if !yield("Dizz", 2) {
+			return
+		}
+
+		if !yield("Duzz", 6) {
+			return
+		}
+
+		if !yield("Dazz", 5) {
+			return
+		}
+	}
+
+	wantKeys := [][]string{
+		{"Fizz", "Bizz", "Dizz"},
+		{"Fuzz", "Buzz", "Duzz"},
+		{"Fazz", "", "Dazz"},
+	}
+	wantValues := [][]int{
+		{3, 1, 2},
+		{1, 5, 6},
+		{4, 0, 5},
+	}
+
+	i := 0
+	for seq := range gloop.ZipN2(
+		gloop.Collect(seq1, seq2, seq3),
+		gloop.WithZipN2Padded[string, int](true),
+	) {
+		keys, values := gloop.ToSlice2(seq)
+		require.Equal(t, wantKeys[i], keys)
+		require.Equal(t, wantValues[i], values)
+		i++
+	}
+
+	require.Equal(t, len(wantValues), i)
+}
+
+func TestZipN2PadKey(t *testing.T) {
+	var seq1 iter.Seq2[string, int] = func(yield func(string, int) bool) {
+		if !yield("Fizz", 3) {
+			return
+		}
+
+		if !yield("Fuzz", 1) {
+			return
+		}
+
+		if !yield("Fazz", 4) {
+			return
+		}
+	}
+
+	var seq2 iter.Seq2[string, int] = func(yield func(string, int) bool) {
+		if !yield("Bizz", 1) {
+			return
+		}
+
+		if !yield("Buzz", 5) {
+			return
+		}
+	}
+
+	var seq3 iter.Seq2[string, int] = func(yield func(string, int) bool) {
+		if !yield("Dizz", 2) {
+			return
+		}
+
+		if !yield("Duzz", 6) {
+			return
+		}
+
+		if !yield("Dazz", 5) {
+			return
+		}
+	}
+
+	wantKeys := [][]string{
+		{"Fizz", "Bizz", "Dizz"},
+		{"Fuzz", "Buzz", "Duzz"},
+		{"Fazz", "Zapp", "Dazz"},
+	}
+	wantValues := [][]int{
+		{3, 1, 2},
+		{1, 5, 6},
+		{4, 0, 5},
+	}
+
+	i := 0
+	for seq := range gloop.ZipN2(
+		gloop.Collect(seq1, seq2, seq3),
+		gloop.WithZipN2Padded[string, int](true),
+		gloop.WithZipN2PadKey[string, int]("Zapp"),
+	) {
+		keys, values := gloop.ToSlice2(seq)
+		require.Equal(t, wantKeys[i], keys)
+		require.Equal(t, wantValues[i], values)
+		i++
+	}
+
+	require.Equal(t, len(wantValues), i)
+}
+
+func TestZipN2PadValue(t *testing.T) {
+	var seq1 iter.Seq2[string, int] = func(yield func(string, int) bool) {
+		if !yield("Fizz", 3) {
+			return
+		}
+
+		if !yield("Fuzz", 1) {
+			return
+		}
+
+		if !yield("Fazz", 4) {
+			return
+		}
+	}
+
+	var seq2 iter.Seq2[string, int] = func(yield func(string, int) bool) {
+		if !yield("Bizz", 1) {
+			return
+		}
+
+		if !yield("Buzz", 5) {
+			return
+		}
+	}
+
+	var seq3 iter.Seq2[string, int] = func(yield func(string, int) bool) {
+		if !yield("Dizz", 2) {
+			return
+		}
+
+		if !yield("Duzz", 6) {
+			return
+		}
+
+		if !yield("Dazz", 5) {
+			return
+		}
+	}
+
+	wantKeys := [][]string{
+		{"Fizz", "Bizz", "Dizz"},
+		{"Fuzz", "Buzz", "Duzz"},
+		{"Fazz", "", "Dazz"},
+	}
+	wantValues := [][]int{
+		{3, 1, 2},
+		{1, 5, 6},
+		{4, -1, 5},
+	}
+
+	i := 0
+	for seq := range gloop.ZipN2(
+		gloop.Collect(seq1, seq2, seq3),
+		gloop.WithZipN2Padded[string, int](true),
+		gloop.WithZipN2PadValue[string](-1),
+	) {
+		keys, values := gloop.ToSlice2(seq)
+		require.Equal(t, wantKeys[i], keys)
+		require.Equal(t, wantValues[i], values)
+		i++
+	}
+
+	require.Equal(t, len(wantValues), i)
+}
+
+func TestZipN2PadKeyPadValue(t *testing.T) {
+	var seq1 iter.Seq2[string, int] = func(yield func(string, int) bool) {
+		if !yield("Fizz", 3) {
+			return
+		}
+
+		if !yield("Fuzz", 1) {
+			return
+		}
+
+		if !yield("Fazz", 4) {
+			return
+		}
+	}
+
+	var seq2 iter.Seq2[string, int] = func(yield func(string, int) bool) {
+		if !yield("Bizz", 1) {
+			return
+		}
+
+		if !yield("Buzz", 5) {
+			return
+		}
+	}
+
+	var seq3 iter.Seq2[string, int] = func(yield func(string, int) bool) {
+		if !yield("Dizz", 2) {
+			return
+		}
+
+		if !yield("Duzz", 6) {
+			return
+		}
+
+		if !yield("Dazz", 5) {
+			return
+		}
+	}
+
+	wantKeys := [][]string{
+		{"Fizz", "Bizz", "Dizz"},
+		{"Fuzz", "Buzz", "Duzz"},
+		{"Fazz", "Zapp", "Dazz"},
+	}
+	wantValues := [][]int{
+		{3, 1, 2},
+		{1, 5, 6},
+		{4, -1, 5},
+	}
+
+	i := 0
+	for seq := range gloop.ZipN2(
+		gloop.Collect(seq1, seq2, seq3),
+		gloop.WithZipN2Padded[string, int](true),
+		gloop.WithZipN2PadKey[string, int]("Zapp"),
+		gloop.WithZipN2PadValue[string](-1),
+	) {
+		keys, values := gloop.ToSlice2(seq)
+		require.Equal(t, wantKeys[i], keys)
+		require.Equal(t, wantValues[i], values)
+		i++
+	}
+
+	require.Equal(t, len(wantValues), i)
 }

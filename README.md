@@ -73,6 +73,7 @@ TAC
 * `Chain` - allows looping over multiple [iter.Seq] sequences
 * `Chain2` - allows looping over multiple [iter.Seq2] sequences
 * `Channel` - allows looping over values from a given channel
+* `Collect` - allows looping over a given set of values
 * `Enumerate` - allows looping over an [iter.Seq] sequence with an index, converting it to an [iter.Seq2] sequence
 * `Filter` - runs a given function on each value from an [iter.Seq] sequence and allows looping over values for which the function returns true
 * `Filter2` - runs a given function on each value from an [iter.Seq2] sequence and allows looping over values for which the function returns true
@@ -108,6 +109,8 @@ TAC
 * `Permutations2` - allows looping over all permutations of a given size for an [iter.Seq2] sequence
 * `Window` - allows looping over an [iter.Seq] sequence in sliding windows of a given size
 * `Window2` - allows looping over an [iter.Seq2] sequence in sliding windows of a given size
+* `ZipN` - allows looping over multiple [iter.Seq] sequences simultaneously
+* `ZipN2` - allows looping over multiple [iter.Seq2] sequences simultaneously
 
 ### Aggregators
 

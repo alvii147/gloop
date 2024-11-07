@@ -3,6 +3,7 @@ package gloop_test
 import (
 	"container/list"
 	"fmt"
+	"iter"
 	"strings"
 	"time"
 
@@ -143,6 +144,16 @@ func ExampleChannel() {
 	// CAT
 	// DOG
 	// MOUSE
+}
+
+func ExampleCollect() {
+	for i := range gloop.Collect(3, 1, 4) {
+		fmt.Println(i)
+	}
+	// Output:
+	// 3
+	// 1
+	// 4
 }
 
 func ExampleCombinations() {
@@ -893,4 +904,40 @@ func ExampleZip2() {
 	// CAT 3 3 1.2
 	// DOG 1 1 3.4
 	// MOUSE 4 4 5.6
+}
+
+func ExampleZipN() {
+	seq1 := gloop.Slice([]string{"CAT", "DOG"})
+	seq2 := gloop.Slice([]string{"MOUSE", "CHICKEN"})
+	seq3 := gloop.Slice([]string{"BUNNY", "BEAR"})
+
+	for seq := range gloop.ZipN(gloop.Collect(seq1, seq2, seq3)) {
+		fmt.Println(gloop.ToSlice(seq))
+	}
+	// Output:
+	// [CAT MOUSE BUNNY]
+	// [DOG CHICKEN BEAR]
+}
+
+func ExampleZipN2() {
+	var seq1 iter.Seq2[string, int] = func(yield func(string, int) bool) {
+		yield("CAT", 3)
+		yield("DOG", 1)
+		yield("MOUSE", 4)
+	}
+
+	var seq2 iter.Seq2[string, int] = func(yield func(string, int) bool) {
+		yield("MOUSE", 1)
+		yield("BUNNY", 5)
+		yield("BEAR", 9)
+	}
+
+	for seq := range gloop.ZipN2(gloop.Collect(seq1, seq2)) {
+		keys, values := gloop.ToSlice2(seq)
+		fmt.Println(keys, values)
+	}
+	// Output:
+	// [CAT MOUSE] [3 1]
+	// [DOG BUNNY] [1 5]
+	// [MOUSE BEAR] [4 9]
 }
