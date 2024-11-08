@@ -573,18 +573,6 @@ func ExampleProduct() {
 	// 12
 }
 
-func ExampleRandomUniform() {
-	for i := range gloop.RandomUniform(0, 2, 5) {
-		fmt.Println(i)
-	}
-	// Output:
-	// 1.7336396942444041
-	// 0.9684446802268123
-	// 1.5762348358917075
-	// 0.5000463191262544
-	// 1.1113562403363295
-}
-
 func ExampleRandomNormal() {
 	for i := range gloop.RandomNormal(2, 2, 5) {
 		fmt.Println(i)
@@ -595,6 +583,18 @@ func ExampleRandomNormal() {
 	// 1.321369004660313
 	// 1.3549030774712296
 	// -0.6521572615302738
+}
+
+func ExampleRandomUniform() {
+	for i := range gloop.RandomUniform(0, 2, 5) {
+		fmt.Println(i)
+	}
+	// Output:
+	// 1.7336396942444041
+	// 0.9684446802268123
+	// 1.5762348358917075
+	// 0.5000463191262544
+	// 1.1113562403363295
 }
 
 func ExampleReduce() {
