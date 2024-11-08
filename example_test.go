@@ -10,6 +10,51 @@ import (
 	"github.com/alvii147/gloop"
 )
 
+func ExampleInterval() {
+	for i := range gloop.Interval(3, 9, 2) {
+		fmt.Println(i)
+	}
+	// Output:
+	// 3
+	// 5
+	// 7
+}
+
+func ExampleLinspace() {
+	for i := range gloop.Linspace(2, 3, 5) {
+		fmt.Println(i)
+	}
+	// Output:
+	// 2
+	// 2.25
+	// 2.5
+	// 2.75
+}
+
+func ExampleRandomNormal() {
+	for i := range gloop.RandomNormal(2, 2, 5) {
+		fmt.Println(i)
+	}
+	// Output:
+	// 3.6053409359773543
+	// 4.8493077906535165
+	// 1.321369004660313
+	// 1.3549030774712296
+	// -0.6521572615302738
+}
+
+func ExampleRandomUniform() {
+	for i := range gloop.RandomUniform(0, 2, 5) {
+		fmt.Println(i)
+	}
+	// Output:
+	// 1.7336396942444041
+	// 0.9684446802268123
+	// 1.5762348358917075
+	// 0.5000463191262544
+	// 1.1113562403363295
+}
+
 func ExampleAll() {
 	allTrue := []bool{true, true, true}
 	someTrue := []bool{true, false, true}
@@ -358,16 +403,6 @@ func ExampleFold2() {
 	// 44
 }
 
-func ExampleInterval() {
-	for i := range gloop.Interval(3, 9, 2) {
-		fmt.Println(i)
-	}
-	// Output:
-	// 3
-	// 5
-	// 7
-}
-
 func ExampleKeys() {
 	m := map[string]int{
 		"CAT":   3,
@@ -423,17 +458,6 @@ func ExampleKeyValue2() {
 	// CAT 3
 	// DOG 1
 	// MOUSE 4
-}
-
-func ExampleLinspace() {
-	for i := range gloop.Linspace(2, 3, 5) {
-		fmt.Println(i)
-	}
-	// Output:
-	// 2
-	// 2.25
-	// 2.5
-	// 2.75
 }
 
 func ExampleList() {
@@ -571,30 +595,6 @@ func ExampleProduct() {
 	fmt.Println(prod)
 	// Output:
 	// 12
-}
-
-func ExampleRandomNormal() {
-	for i := range gloop.RandomNormal(2, 2, 5) {
-		fmt.Println(i)
-	}
-	// Output:
-	// 3.6053409359773543
-	// 4.8493077906535165
-	// 1.321369004660313
-	// 1.3549030774712296
-	// -0.6521572615302738
-}
-
-func ExampleRandomUniform() {
-	for i := range gloop.RandomUniform(0, 2, 5) {
-		fmt.Println(i)
-	}
-	// Output:
-	// 1.7336396942444041
-	// 0.9684446802268123
-	// 1.5762348358917075
-	// 0.5000463191262544
-	// 1.1113562403363295
 }
 
 func ExampleReduce() {
