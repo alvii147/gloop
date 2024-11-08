@@ -2,6 +2,7 @@ package gloop_test
 
 import (
 	"container/list"
+	"context"
 	"fmt"
 	"iter"
 	"math/rand"
@@ -1340,6 +1341,56 @@ func ExampleParallelize() {
 	// MOUSE
 	// CAT
 	// Time Elapsed 1.00134375s
+}
+
+func ExampleWithParallelizeContext() {
+	ctx, cancel := context.WithCancel(context.Background())
+	cancel()
+
+	printlnWithDelay := func(s string) {
+		time.Sleep(time.Second)
+		fmt.Println(s)
+	}
+
+	values := []string{"CAT", "DOG", "MOUSE"}
+	timeElaped := time.Now()
+
+	gloop.Parallelize(
+		gloop.Slice(values),
+		printlnWithDelay,
+		gloop.WithParallelizeContext(ctx),
+	)
+	fmt.Println("Time Elapsed", time.Since(timeElaped))
+	// Output:
+	// Time Elapsed 72.25µs
+}
+
+func ExampleWithParallelizeMaxThreads() {
+	printlnWithDelay := func(s string) {
+		time.Sleep(time.Second)
+		fmt.Println(s)
+	}
+
+	values := []string{"CAT", "DOG", "MOUSE"}
+	timeElaped := time.Now()
+
+	gloop.Parallelize(
+		gloop.Slice(values),
+		func(s string) {
+			printlnWithDelay(s)
+			fmt.Println(time.Since(timeElaped))
+		},
+		gloop.WithParallelizeMaxThreads(2),
+	)
+	fmt.Println("Time Elapsed", time.Since(timeElaped))
+	// Output:
+	// CAT
+	// DOG
+	// 1.001328958s
+	// 1.001326916s
+	// MOUSE
+	// 2.002552375s
+	// Time Elapsed 2.002678125s
 }
 
 func ExampleParallelize2() {
