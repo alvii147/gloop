@@ -229,24 +229,6 @@ func ExampleCombinations2() {
 	// [DOG MOUSE] [1 4]
 }
 
-func ExampleDeferLoop() {
-	values := []int{3, 1, 4}
-	for i, deferLoop := range gloop.DeferLoop(gloop.Slice(values)) {
-		deferLoop(func() {
-			fmt.Println("defer loop", i)
-		})
-
-		fmt.Println("regular loop", i)
-	}
-	// Output:
-	// regular loop 3
-	// defer loop 3
-	// regular loop 1
-	// defer loop 1
-	// regular loop 4
-	// defer loop 4
-}
-
 func ExampleEnumerate() {
 	ch := make(chan int)
 	go func() {
@@ -513,46 +495,6 @@ func ExampleMin() {
 	fmt.Println(minValue)
 	// Output:
 	// 1
-}
-
-func ExampleParallelize() {
-	printlnWithDelay := func(s string) {
-		time.Sleep(time.Second)
-		fmt.Println(s)
-	}
-
-	values := []string{"CAT", "DOG", "MOUSE"}
-	timeElaped := time.Now()
-
-	gloop.Parallelize(gloop.Slice(values), printlnWithDelay)
-	fmt.Println("Time Elapsed", time.Since(timeElaped))
-	// Output:
-	// DOG
-	// MOUSE
-	// CAT
-	// Time Elapsed 1.00134375s
-}
-
-func ExampleParallelize2() {
-	printlnWithDelay := func(k string, v int) {
-		time.Sleep(time.Second)
-		fmt.Println(k, v)
-	}
-
-	m := map[string]int{
-		"CAT":   3,
-		"DOG":   1,
-		"MOUSE": 4,
-	}
-	timeElaped := time.Now()
-
-	gloop.Parallelize2(gloop.Map(m), printlnWithDelay)
-	fmt.Println("Time Elapsed", time.Since(timeElaped))
-	// Output:
-	// MOUSE 4
-	// CAT 3
-	// DOG 1
-	// Time Elapsed 1.00058975s
 }
 
 func ExamplePermutations() {
@@ -977,4 +919,62 @@ func ExampleZipN2() {
 	// [CAT MOUSE] [3 1]
 	// [DOG BUNNY] [1 5]
 	// [MOUSE BEAR] [4 9]
+}
+
+func ExampleDeferLoop() {
+	values := []int{3, 1, 4}
+	for i, deferLoop := range gloop.DeferLoop(gloop.Slice(values)) {
+		deferLoop(func() {
+			fmt.Println("defer loop", i)
+		})
+
+		fmt.Println("regular loop", i)
+	}
+	// Output:
+	// regular loop 3
+	// defer loop 3
+	// regular loop 1
+	// defer loop 1
+	// regular loop 4
+	// defer loop 4
+}
+
+func ExampleParallelize() {
+	printlnWithDelay := func(s string) {
+		time.Sleep(time.Second)
+		fmt.Println(s)
+	}
+
+	values := []string{"CAT", "DOG", "MOUSE"}
+	timeElaped := time.Now()
+
+	gloop.Parallelize(gloop.Slice(values), printlnWithDelay)
+	fmt.Println("Time Elapsed", time.Since(timeElaped))
+	// Output:
+	// DOG
+	// MOUSE
+	// CAT
+	// Time Elapsed 1.00134375s
+}
+
+func ExampleParallelize2() {
+	printlnWithDelay := func(k string, v int) {
+		time.Sleep(time.Second)
+		fmt.Println(k, v)
+	}
+
+	m := map[string]int{
+		"CAT":   3,
+		"DOG":   1,
+		"MOUSE": 4,
+	}
+	timeElaped := time.Now()
+
+	gloop.Parallelize2(gloop.Map(m), printlnWithDelay)
+	fmt.Println("Time Elapsed", time.Since(timeElaped))
+	// Output:
+	// MOUSE 4
+	// CAT 3
+	// DOG 1
+	// Time Elapsed 1.00058975s
 }
