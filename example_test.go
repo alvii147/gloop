@@ -778,6 +778,30 @@ func ExampleToList() {
 	// 4
 }
 
+func ExampleToList2() {
+	seq := func(yield func(string, int) bool) {
+		yield("CAT", 3)
+		yield("DOG", 1)
+		yield("MOUSE", 4)
+	}
+
+	keys, values := gloop.ToList2(seq)
+
+	fmt.Println(keys.Remove(keys.Front()))
+	fmt.Println(keys.Remove(keys.Front()))
+	fmt.Println(keys.Remove(keys.Front()))
+	fmt.Println(values.Remove(values.Front()))
+	fmt.Println(values.Remove(values.Front()))
+	fmt.Println(values.Remove(values.Front()))
+	// Output:
+	// CAT
+	// DOG
+	// MOUSE
+	// 3
+	// 1
+	// 4
+}
+
 func ExampleToSlice() {
 	seq := func(yield func(int) bool) {
 		yield(3)
@@ -788,6 +812,19 @@ func ExampleToSlice() {
 	fmt.Println(gloop.ToSlice(seq))
 	// Output:
 	// [3 1 4]
+}
+
+func ExampleToSlice2() {
+	seq := func(yield func(string, int) bool) {
+		yield("CAT", 3)
+		yield("DOG", 1)
+		yield("MOUSE", 4)
+	}
+
+	keys, values := gloop.ToSlice2(seq)
+	fmt.Println(keys, values)
+	// Output:
+	// [CAT DOG MOUSE] [3 1 4]
 }
 
 func ExampleToString() {
