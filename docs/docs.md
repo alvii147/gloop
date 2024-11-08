@@ -63,8 +63,6 @@ Output:
 }
 ```
 
-</details>
-
 Output:
 
 ```
@@ -74,6 +72,8 @@ Output:
 1.3549030774712296
 -0.6521572615302738
 ```
+
+</details>
 
 <details>
 <summary><h4>RandomUniform</h2></summary>
