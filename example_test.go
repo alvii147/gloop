@@ -55,91 +55,6 @@ func ExampleRandomUniform() {
 	// 1.1113562403363295
 }
 
-func ExampleAll() {
-	allTrue := []bool{true, true, true}
-	someTrue := []bool{true, false, true}
-	allFalse := []bool{false, false, false}
-
-	fmt.Println(gloop.All(gloop.Slice(allTrue)))
-	fmt.Println(gloop.All(gloop.Slice(someTrue)))
-	fmt.Println(gloop.All(gloop.Slice(allFalse)))
-	// Output:
-	// true
-	// false
-	// false
-}
-
-func ExampleAny() {
-	allTrue := []bool{true, true, true}
-	someTrue := []bool{true, false, true}
-	allFalse := []bool{false, false, false}
-
-	fmt.Println(gloop.Any(gloop.Slice(allTrue)))
-	fmt.Println(gloop.Any(gloop.Slice(someTrue)))
-	fmt.Println(gloop.Any(gloop.Slice(allFalse)))
-	// Output:
-	// true
-	// true
-	// false
-}
-
-func ExampleBatch() {
-	values := []int{3, 1, 4, 1, 5, 9, 2, 6, 5}
-	for seq := range gloop.Batch(gloop.Slice(values), 3) {
-		batch := gloop.ToSlice(seq)
-		fmt.Println(batch)
-	}
-	// Output:
-	// [3 1 4]
-	// [1 5 9]
-	// [2 6 5]
-}
-
-func ExampleBatch2() {
-	values := []string{"CAT", "DOG", "MOUSE", "CHICKEN", "BUNNY", "BEAR"}
-	for seq := range gloop.Batch2(gloop.Enumerate(gloop.Slice(values)), 3) {
-		batchKeys, batchValues := gloop.ToSlice2(seq)
-		fmt.Println(batchKeys, batchValues)
-	}
-	// Output:
-	// [0 1 2] [CAT DOG MOUSE]
-	// [3 4 5] [CHICKEN BUNNY BEAR]
-}
-
-func ExampleCartesianProduct() {
-	s := "CAT"
-	for seq := range gloop.CartesianProduct(gloop.String(s), 2) {
-		product := gloop.ToString(seq)
-		fmt.Println(product)
-	}
-	// Output:
-	// CC
-	// CA
-	// CT
-	// AC
-	// AA
-	// AT
-	// TC
-	// TA
-	// TT
-}
-
-func ExampleCartesianProduct2() {
-	m := map[string]int{
-		"CAT": 3,
-		"DOG": 1,
-	}
-	for seq := range gloop.CartesianProduct2(gloop.Map(m), 2) {
-		productKeys, productValues := gloop.ToSlice2(seq)
-		fmt.Println(productKeys, productValues)
-	}
-	// Output:
-	// [CAT CAT] [3 3]
-	// [CAT DOG] [3 1]
-	// [DOG CAT] [1 3]
-	// [DOG DOG] [1 1]
-}
-
 func ExampleChain() {
 	values1 := []int{3, 1, 4}
 	values2 := []int{1, 6}
@@ -201,34 +116,6 @@ func ExampleCollect() {
 	// 4
 }
 
-func ExampleCombinations() {
-	s := "CAT"
-	for seq := range gloop.Combinations(gloop.String(s), 2) {
-		comb := gloop.ToString(seq)
-		fmt.Println(comb)
-	}
-	// Output:
-	// CA
-	// CT
-	// AT
-}
-
-func ExampleCombinations2() {
-	m := map[string]int{
-		"CAT":   3,
-		"DOG":   1,
-		"MOUSE": 4,
-	}
-	for seq := range gloop.Combinations2(gloop.Map(m), 2) {
-		combKeys, combValues := gloop.ToSlice2(seq)
-		fmt.Println(combKeys, combValues)
-	}
-	// Output:
-	// [CAT DOG] [3 1]
-	// [CAT MOUSE] [3 4]
-	// [DOG MOUSE] [1 4]
-}
-
 func ExampleEnumerate() {
 	ch := make(chan int)
 	go func() {
@@ -245,82 +132,6 @@ func ExampleEnumerate() {
 	// 0 3
 	// 1 1
 	// 2 4
-}
-
-func ExampleEqual() {
-	values1 := []int{3, 1, 4}
-	values2 := []int{3, 1, -4}
-	values3 := []int{3, 1, 4}
-
-	fmt.Println(gloop.Equal(gloop.Slice(values1), gloop.Slice(values2)))
-	fmt.Println(gloop.Equal(gloop.Slice(values1), gloop.Slice(values3)))
-	// Output:
-	// false
-	// true
-}
-
-func ExampleEqual2() {
-	seq1 := func(yield func(string, int) bool) {
-		yield("CAT", 3)
-		yield("DOG", 1)
-		yield("MOUSE", 4)
-	}
-
-	seq2 := func(yield func(string, int) bool) {
-		yield("CAT", 3)
-		yield("DOG", 1)
-		yield("CHICKEN", 4)
-	}
-
-	seq3 := func(yield func(string, int) bool) {
-		yield("CAT", 3)
-		yield("DOG", 1)
-		yield("MOUSE", 4)
-	}
-
-	fmt.Println(gloop.Equal2(seq1, seq2))
-	fmt.Println(gloop.Equal2(seq1, seq3))
-	// Output:
-	// false
-	// true
-}
-
-func ExampleEquivalent() {
-	values1 := []int{3, 1, 4}
-	values2 := []int{3, 1, -4}
-	values3 := []int{3, 4, 1}
-
-	fmt.Println(gloop.Equivalent(gloop.Slice(values1), gloop.Slice(values2)))
-	fmt.Println(gloop.Equivalent(gloop.Slice(values1), gloop.Slice(values3)))
-	// Output:
-	// false
-	// true
-}
-
-func ExampleEquivalent2() {
-	seq1 := func(yield func(string, int) bool) {
-		yield("CAT", 3)
-		yield("DOG", 1)
-		yield("MOUSE", 4)
-	}
-
-	seq2 := func(yield func(string, int) bool) {
-		yield("CAT", 3)
-		yield("DOG", 1)
-		yield("CHICKEN", 4)
-	}
-
-	seq3 := func(yield func(string, int) bool) {
-		yield("CAT", 3)
-		yield("MOUSE", 4)
-		yield("DOG", 1)
-	}
-
-	fmt.Println(gloop.Equivalent2(seq1, seq2))
-	fmt.Println(gloop.Equivalent2(seq1, seq3))
-	// Output:
-	// false
-	// true
 }
 
 func ExampleFilter() {
@@ -354,35 +165,6 @@ func ExampleFilter2() {
 	// Output:
 	// -1 -1
 	// 4 4
-}
-
-func ExampleFold() {
-	add := func(a, b int) int {
-		return a + b
-	}
-
-	values := []int{3, 1, 4}
-	sum := gloop.Fold(gloop.Slice(values), add)
-	fmt.Println(sum)
-	// Output:
-	// 8
-}
-
-func ExampleFold2() {
-	addKeyValueProduct := func(acc, key, value int) int {
-		return acc + (key * value)
-	}
-
-	m := map[int]int{
-		3: 1,
-		1: 5,
-		4: 9,
-	}
-
-	sumOfProducts := gloop.Fold2(gloop.Map(m), addKeyValueProduct)
-	fmt.Println(sumOfProducts)
-	// Output:
-	// 44
 }
 
 func ExampleKeys() {
@@ -471,103 +253,6 @@ func ExampleMap() {
 	// CAT 3
 	// DOG 1
 	// MOUSE 4
-}
-
-func ExampleMax() {
-	values := []int{3, 1, 4, 2}
-	maxValue := gloop.Max(gloop.Slice(values))
-	fmt.Println(maxValue)
-	// Output:
-	// 4
-}
-
-func ExampleMean() {
-	values := []int{3, 1, 4, 2}
-	mean := gloop.Mean(gloop.Slice(values))
-	fmt.Println(mean)
-	// Output:
-	// 2.5
-}
-
-func ExampleMin() {
-	values := []int{3, 1, 4, 2}
-	minValue := gloop.Min(gloop.Slice(values))
-	fmt.Println(minValue)
-	// Output:
-	// 1
-}
-
-func ExamplePermutations() {
-	s := "CAT"
-	for seq := range gloop.Permutations(gloop.String(s), 2) {
-		perm := gloop.ToString(seq)
-		fmt.Println(perm)
-	}
-	// Output:
-	// CA
-	// CT
-	// AC
-	// AT
-	// TC
-	// TA
-}
-
-func ExamplePermutations2() {
-	m := map[string]int{
-		"CAT":   3,
-		"DOG":   1,
-		"MOUSE": 4,
-	}
-	for seq := range gloop.Permutations2(gloop.Map(m), 2) {
-		permKeys, permValues := gloop.ToSlice2(seq)
-		fmt.Println(permKeys, permValues)
-	}
-	// Output:
-	// [CAT DOG] [3 1]
-	// [CAT MOUSE] [3 4]
-	// [DOG CAT] [1 3]
-	// [DOG MOUSE] [1 4]
-	// [MOUSE CAT] [4 3]
-	// [MOUSE DOG] [4 1]
-}
-
-func ExampleProduct() {
-	values := []int{3, 1, 4}
-	prod := gloop.Product(gloop.Slice(values))
-	fmt.Println(prod)
-	// Output:
-	// 12
-}
-
-func ExampleReduce() {
-	values := []int{3, 1, 4}
-	minValue := gloop.Reduce(gloop.Slice(values), func(value1 int, value2 int) int {
-		return min(value1, value2)
-	})
-	fmt.Println(minValue)
-	// Output:
-	// 1
-}
-
-func ExampleReduce2() {
-	minKeyValueFunc := func(k1 int, v1 int, k2 int, v2 int) (int, int) {
-		if v1 < v2 {
-			return k1, v1
-		}
-
-		return k2, v2
-	}
-
-	m := map[int]int{
-		0: 3,
-		1: 1,
-		2: 4,
-	}
-
-	minValueKey, minValue := gloop.Reduce2(gloop.Map(m), minKeyValueFunc)
-	fmt.Println(minValueKey, minValue)
-	// Output:
-	// 1 1
 }
 
 func ExampleReverse() {
@@ -695,6 +380,461 @@ func ExampleString() {
 	// T
 }
 
+func ExampleZip() {
+	values1 := []string{"CAT", "DOG", "MOUSE"}
+	values2 := []int{3, 1, 4}
+	for value1, value2 := range gloop.Zip(gloop.Slice(values1), gloop.Slice(values2)) {
+		fmt.Println(value1, value2)
+	}
+	// Output:
+	// CAT 3
+	// DOG 1
+	// MOUSE 4
+}
+
+func ExampleZip2() {
+	seq1 := func(yield func(string, int) bool) {
+		yield("CAT", 3)
+		yield("DOG", 1)
+		yield("MOUSE", 4)
+	}
+
+	seq2 := func(yield func(int, float64) bool) {
+		yield(3, 1.2)
+		yield(1, 3.4)
+		yield(4, 5.6)
+	}
+
+	for pair1, pair2 := range gloop.Zip2(seq1, seq2) {
+		fmt.Println(pair1.Key, pair1.Value, pair2.Key, pair2.Value)
+	}
+	// Output:
+	// CAT 3 3 1.2
+	// DOG 1 1 3.4
+	// MOUSE 4 4 5.6
+}
+
+func ExampleBatch() {
+	values := []int{3, 1, 4, 1, 5, 9, 2, 6, 5}
+	for seq := range gloop.Batch(gloop.Slice(values), 3) {
+		batch := gloop.ToSlice(seq)
+		fmt.Println(batch)
+	}
+	// Output:
+	// [3 1 4]
+	// [1 5 9]
+	// [2 6 5]
+}
+
+func ExampleBatch2() {
+	values := []string{"CAT", "DOG", "MOUSE", "CHICKEN", "BUNNY", "BEAR"}
+	for seq := range gloop.Batch2(gloop.Enumerate(gloop.Slice(values)), 3) {
+		batchKeys, batchValues := gloop.ToSlice2(seq)
+		fmt.Println(batchKeys, batchValues)
+	}
+	// Output:
+	// [0 1 2] [CAT DOG MOUSE]
+	// [3 4 5] [CHICKEN BUNNY BEAR]
+}
+
+func ExampleCartesianProduct() {
+	s := "CAT"
+	for seq := range gloop.CartesianProduct(gloop.String(s), 2) {
+		product := gloop.ToString(seq)
+		fmt.Println(product)
+	}
+	// Output:
+	// CC
+	// CA
+	// CT
+	// AC
+	// AA
+	// AT
+	// TC
+	// TA
+	// TT
+}
+
+func ExampleCartesianProduct2() {
+	m := map[string]int{
+		"CAT": 3,
+		"DOG": 1,
+	}
+	for seq := range gloop.CartesianProduct2(gloop.Map(m), 2) {
+		productKeys, productValues := gloop.ToSlice2(seq)
+		fmt.Println(productKeys, productValues)
+	}
+	// Output:
+	// [CAT CAT] [3 3]
+	// [CAT DOG] [3 1]
+	// [DOG CAT] [1 3]
+	// [DOG DOG] [1 1]
+}
+
+func ExampleCombinations() {
+	s := "CAT"
+	for seq := range gloop.Combinations(gloop.String(s), 2) {
+		comb := gloop.ToString(seq)
+		fmt.Println(comb)
+	}
+	// Output:
+	// CA
+	// CT
+	// AT
+}
+
+func ExampleCombinations2() {
+	m := map[string]int{
+		"CAT":   3,
+		"DOG":   1,
+		"MOUSE": 4,
+	}
+	for seq := range gloop.Combinations2(gloop.Map(m), 2) {
+		combKeys, combValues := gloop.ToSlice2(seq)
+		fmt.Println(combKeys, combValues)
+	}
+	// Output:
+	// [CAT DOG] [3 1]
+	// [CAT MOUSE] [3 4]
+	// [DOG MOUSE] [1 4]
+}
+
+func ExamplePermutations() {
+	s := "CAT"
+	for seq := range gloop.Permutations(gloop.String(s), 2) {
+		perm := gloop.ToString(seq)
+		fmt.Println(perm)
+	}
+	// Output:
+	// CA
+	// CT
+	// AC
+	// AT
+	// TC
+	// TA
+}
+
+func ExamplePermutations2() {
+	m := map[string]int{
+		"CAT":   3,
+		"DOG":   1,
+		"MOUSE": 4,
+	}
+	for seq := range gloop.Permutations2(gloop.Map(m), 2) {
+		permKeys, permValues := gloop.ToSlice2(seq)
+		fmt.Println(permKeys, permValues)
+	}
+	// Output:
+	// [CAT DOG] [3 1]
+	// [CAT MOUSE] [3 4]
+	// [DOG CAT] [1 3]
+	// [DOG MOUSE] [1 4]
+	// [MOUSE CAT] [4 3]
+	// [MOUSE DOG] [4 1]
+}
+
+func ExampleWindow() {
+	values := []int{3, 1, 4, 1, 5, 9}
+	for seq := range gloop.Window(gloop.Slice(values), 3) {
+		window := gloop.ToSlice(seq)
+		fmt.Println(window)
+	}
+	// Output:
+	// [3 1 4]
+	// [1 4 1]
+	// [4 1 5]
+	// [1 5 9]
+}
+
+func ExampleWindow2() {
+	values := []string{"CAT", "DOG", "MOUSE", "CHICKEN", "BUNNY", "BEAR"}
+	for seq := range gloop.Window2(gloop.Enumerate(gloop.Slice(values)), 3) {
+		windowKeys, windowValues := gloop.ToSlice2(seq)
+		fmt.Println(windowKeys, windowValues)
+	}
+	// Output:
+	// [0 1 2] [CAT DOG MOUSE]
+	// [1 2 3] [DOG MOUSE CHICKEN]
+	// [2 3 4] [MOUSE CHICKEN BUNNY]
+	// [3 4 5] [CHICKEN BUNNY BEAR]
+}
+
+func ExampleZipN() {
+	seq1 := gloop.Slice([]string{"CAT", "DOG"})
+	seq2 := gloop.Slice([]string{"MOUSE", "CHICKEN"})
+	seq3 := gloop.Slice([]string{"BUNNY", "BEAR"})
+
+	for seq := range gloop.ZipN(gloop.Collect(seq1, seq2, seq3)) {
+		fmt.Println(gloop.ToSlice(seq))
+	}
+	// Output:
+	// [CAT MOUSE BUNNY]
+	// [DOG CHICKEN BEAR]
+}
+
+func ExampleZipN2() {
+	var seq1 iter.Seq2[string, int] = func(yield func(string, int) bool) {
+		yield("CAT", 3)
+		yield("DOG", 1)
+		yield("MOUSE", 4)
+	}
+
+	var seq2 iter.Seq2[string, int] = func(yield func(string, int) bool) {
+		yield("MOUSE", 1)
+		yield("BUNNY", 5)
+		yield("BEAR", 9)
+	}
+
+	for seq := range gloop.ZipN2(gloop.Collect(seq1, seq2)) {
+		keys, values := gloop.ToSlice2(seq)
+		fmt.Println(keys, values)
+	}
+	// Output:
+	// [CAT MOUSE] [3 1]
+	// [DOG BUNNY] [1 5]
+	// [MOUSE BEAR] [4 9]
+}
+
+func ExampleAll() {
+	allTrue := []bool{true, true, true}
+	someTrue := []bool{true, false, true}
+	allFalse := []bool{false, false, false}
+
+	fmt.Println(gloop.All(gloop.Slice(allTrue)))
+	fmt.Println(gloop.All(gloop.Slice(someTrue)))
+	fmt.Println(gloop.All(gloop.Slice(allFalse)))
+	// Output:
+	// true
+	// false
+	// false
+}
+
+func ExampleAny() {
+	allTrue := []bool{true, true, true}
+	someTrue := []bool{true, false, true}
+	allFalse := []bool{false, false, false}
+
+	fmt.Println(gloop.Any(gloop.Slice(allTrue)))
+	fmt.Println(gloop.Any(gloop.Slice(someTrue)))
+	fmt.Println(gloop.Any(gloop.Slice(allFalse)))
+	// Output:
+	// true
+	// true
+	// false
+}
+
+func ExampleEqual() {
+	values1 := []int{3, 1, 4}
+	values2 := []int{3, 1, -4}
+	values3 := []int{3, 1, 4}
+
+	fmt.Println(gloop.Equal(gloop.Slice(values1), gloop.Slice(values2)))
+	fmt.Println(gloop.Equal(gloop.Slice(values1), gloop.Slice(values3)))
+	// Output:
+	// false
+	// true
+}
+
+func ExampleEqual2() {
+	seq1 := func(yield func(string, int) bool) {
+		yield("CAT", 3)
+		yield("DOG", 1)
+		yield("MOUSE", 4)
+	}
+
+	seq2 := func(yield func(string, int) bool) {
+		yield("CAT", 3)
+		yield("DOG", 1)
+		yield("CHICKEN", 4)
+	}
+
+	seq3 := func(yield func(string, int) bool) {
+		yield("CAT", 3)
+		yield("DOG", 1)
+		yield("MOUSE", 4)
+	}
+
+	fmt.Println(gloop.Equal2(seq1, seq2))
+	fmt.Println(gloop.Equal2(seq1, seq3))
+	// Output:
+	// false
+	// true
+}
+
+func ExampleEquivalent() {
+	values1 := []int{3, 1, 4}
+	values2 := []int{3, 1, -4}
+	values3 := []int{3, 4, 1}
+
+	fmt.Println(gloop.Equivalent(gloop.Slice(values1), gloop.Slice(values2)))
+	fmt.Println(gloop.Equivalent(gloop.Slice(values1), gloop.Slice(values3)))
+	// Output:
+	// false
+	// true
+}
+
+func ExampleEquivalent2() {
+	seq1 := func(yield func(string, int) bool) {
+		yield("CAT", 3)
+		yield("DOG", 1)
+		yield("MOUSE", 4)
+	}
+
+	seq2 := func(yield func(string, int) bool) {
+		yield("CAT", 3)
+		yield("DOG", 1)
+		yield("CHICKEN", 4)
+	}
+
+	seq3 := func(yield func(string, int) bool) {
+		yield("CAT", 3)
+		yield("MOUSE", 4)
+		yield("DOG", 1)
+	}
+
+	fmt.Println(gloop.Equivalent2(seq1, seq2))
+	fmt.Println(gloop.Equivalent2(seq1, seq3))
+	// Output:
+	// false
+	// true
+}
+
+func ExampleFold() {
+	add := func(a, b int) int {
+		return a + b
+	}
+
+	values := []int{3, 1, 4}
+	sum := gloop.Fold(gloop.Slice(values), add)
+	fmt.Println(sum)
+	// Output:
+	// 8
+}
+
+func ExampleFold2() {
+	addKeyValueProduct := func(acc, key, value int) int {
+		return acc + (key * value)
+	}
+
+	m := map[int]int{
+		3: 1,
+		1: 5,
+		4: 9,
+	}
+
+	sumOfProducts := gloop.Fold2(gloop.Map(m), addKeyValueProduct)
+	fmt.Println(sumOfProducts)
+	// Output:
+	// 44
+}
+
+func ExampleMax() {
+	values := []int{3, 1, 4, 2}
+	maxValue := gloop.Max(gloop.Slice(values))
+	fmt.Println(maxValue)
+	// Output:
+	// 4
+}
+
+func ExampleMean() {
+	values := []int{3, 1, 4, 2}
+	mean := gloop.Mean(gloop.Slice(values))
+	fmt.Println(mean)
+	// Output:
+	// 2.5
+}
+
+func ExampleMin() {
+	values := []int{3, 1, 4, 2}
+	minValue := gloop.Min(gloop.Slice(values))
+	fmt.Println(minValue)
+	// Output:
+	// 1
+}
+
+func ExampleProduct() {
+	values := []int{3, 1, 4}
+	prod := gloop.Product(gloop.Slice(values))
+	fmt.Println(prod)
+	// Output:
+	// 12
+}
+
+func ExampleReduce() {
+	values := []int{3, 1, 4}
+	minValue := gloop.Reduce(gloop.Slice(values), func(value1 int, value2 int) int {
+		return min(value1, value2)
+	})
+	fmt.Println(minValue)
+	// Output:
+	// 1
+}
+
+func ExampleReduce2() {
+	minKeyValueFunc := func(k1 int, v1 int, k2 int, v2 int) (int, int) {
+		if v1 < v2 {
+			return k1, v1
+		}
+
+		return k2, v2
+	}
+
+	m := map[int]int{
+		0: 3,
+		1: 1,
+		2: 4,
+	}
+
+	minValueKey, minValue := gloop.Reduce2(gloop.Map(m), minKeyValueFunc)
+	fmt.Println(minValueKey, minValue)
+	// Output:
+	// 1 1
+}
+
+func ExampleTransform() {
+	values := []string{"CaT", "dOg"}
+	for s := range gloop.Transform(gloop.Slice(values), strings.ToUpper) {
+		fmt.Println(s)
+	}
+	// Output:
+	// CAT
+	// DOG
+}
+
+func ExampleTransform2() {
+	concat := func(s1, s2 string) string {
+		return s1 + s2
+	}
+
+	m := map[string]string{
+		"CAT":   "DOG",
+		"MOUSE": "CHICKEN",
+	}
+
+	for s := range gloop.Transform2(gloop.Map(m), concat) {
+		fmt.Println(s)
+	}
+	// Output:
+	// CATDOG
+	// MOUSECHICKEN
+}
+
+func ExampleValues() {
+	m := map[string]int{
+		"CAT":   3,
+		"DOG":   1,
+		"MOUSE": 4,
+	}
+
+	for value := range gloop.Values(gloop.Map(m)) {
+		fmt.Println(value)
+	}
+	// Output:
+	// 3
+	// 1
+	// 4
+}
+
 func ExampleSum() {
 	values := []int{3, 1, 4}
 	sum := gloop.Sum(gloop.Slice(values))
@@ -779,146 +919,6 @@ func ExampleToString() {
 	fmt.Println(gloop.ToString(seq))
 	// Output:
 	// CAT
-}
-
-func ExampleTransform() {
-	values := []string{"CaT", "dOg"}
-	for s := range gloop.Transform(gloop.Slice(values), strings.ToUpper) {
-		fmt.Println(s)
-	}
-	// Output:
-	// CAT
-	// DOG
-}
-
-func ExampleTransform2() {
-	concat := func(s1, s2 string) string {
-		return s1 + s2
-	}
-
-	m := map[string]string{
-		"CAT":   "DOG",
-		"MOUSE": "CHICKEN",
-	}
-
-	for s := range gloop.Transform2(gloop.Map(m), concat) {
-		fmt.Println(s)
-	}
-	// Output:
-	// CATDOG
-	// MOUSECHICKEN
-}
-
-func ExampleValues() {
-	m := map[string]int{
-		"CAT":   3,
-		"DOG":   1,
-		"MOUSE": 4,
-	}
-
-	for value := range gloop.Values(gloop.Map(m)) {
-		fmt.Println(value)
-	}
-	// Output:
-	// 3
-	// 1
-	// 4
-}
-
-func ExampleWindow() {
-	values := []int{3, 1, 4, 1, 5, 9}
-	for seq := range gloop.Window(gloop.Slice(values), 3) {
-		window := gloop.ToSlice(seq)
-		fmt.Println(window)
-	}
-	// Output:
-	// [3 1 4]
-	// [1 4 1]
-	// [4 1 5]
-	// [1 5 9]
-}
-
-func ExampleWindow2() {
-	values := []string{"CAT", "DOG", "MOUSE", "CHICKEN", "BUNNY", "BEAR"}
-	for seq := range gloop.Window2(gloop.Enumerate(gloop.Slice(values)), 3) {
-		windowKeys, windowValues := gloop.ToSlice2(seq)
-		fmt.Println(windowKeys, windowValues)
-	}
-	// Output:
-	// [0 1 2] [CAT DOG MOUSE]
-	// [1 2 3] [DOG MOUSE CHICKEN]
-	// [2 3 4] [MOUSE CHICKEN BUNNY]
-	// [3 4 5] [CHICKEN BUNNY BEAR]
-}
-
-func ExampleZip() {
-	values1 := []string{"CAT", "DOG", "MOUSE"}
-	values2 := []int{3, 1, 4}
-	for value1, value2 := range gloop.Zip(gloop.Slice(values1), gloop.Slice(values2)) {
-		fmt.Println(value1, value2)
-	}
-	// Output:
-	// CAT 3
-	// DOG 1
-	// MOUSE 4
-}
-
-func ExampleZip2() {
-	seq1 := func(yield func(string, int) bool) {
-		yield("CAT", 3)
-		yield("DOG", 1)
-		yield("MOUSE", 4)
-	}
-
-	seq2 := func(yield func(int, float64) bool) {
-		yield(3, 1.2)
-		yield(1, 3.4)
-		yield(4, 5.6)
-	}
-
-	for pair1, pair2 := range gloop.Zip2(seq1, seq2) {
-		fmt.Println(pair1.Key, pair1.Value, pair2.Key, pair2.Value)
-	}
-	// Output:
-	// CAT 3 3 1.2
-	// DOG 1 1 3.4
-	// MOUSE 4 4 5.6
-}
-
-func ExampleZipN() {
-	seq1 := gloop.Slice([]string{"CAT", "DOG"})
-	seq2 := gloop.Slice([]string{"MOUSE", "CHICKEN"})
-	seq3 := gloop.Slice([]string{"BUNNY", "BEAR"})
-
-	for seq := range gloop.ZipN(gloop.Collect(seq1, seq2, seq3)) {
-		fmt.Println(gloop.ToSlice(seq))
-	}
-	// Output:
-	// [CAT MOUSE BUNNY]
-	// [DOG CHICKEN BEAR]
-}
-
-func ExampleZipN2() {
-	var seq1 iter.Seq2[string, int] = func(yield func(string, int) bool) {
-		yield("CAT", 3)
-		yield("DOG", 1)
-		yield("MOUSE", 4)
-	}
-
-	var seq2 iter.Seq2[string, int] = func(yield func(string, int) bool) {
-		yield("MOUSE", 1)
-		yield("BUNNY", 5)
-		yield("BEAR", 9)
-	}
-
-	for seq := range gloop.ZipN2(gloop.Collect(seq1, seq2)) {
-		keys, values := gloop.ToSlice2(seq)
-		fmt.Println(keys, values)
-	}
-	// Output:
-	// [CAT MOUSE] [3 1]
-	// [DOG BUNNY] [1 5]
-	// [MOUSE BEAR] [4 9]
 }
 
 func ExampleDeferLoop() {
