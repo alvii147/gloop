@@ -50,6 +50,32 @@ Output:
 </details>
 
 <details>
+<summary><h4>RandomNormal</h2></summary>
+
+`RandomNormal` allows looping over a given number of random values drawn from a Gaussian distribution. The size must not be negative and the standard deviation must be positive. 
+
+```go
+{
+	for i := range gloop.RandomNormal(2, 2, 5) {
+		fmt.Println(i)
+	}
+
+}
+```
+
+</details>
+
+Output:
+
+```
+3.6053409359773543
+4.8493077906535165
+1.321369004660313
+1.3549030774712296
+-0.6521572615302738
+```
+
+<details>
 <summary><h4>RandomUniform</h2></summary>
 
 `RandomUniform` allows looping over a given number of random values drawn from a uniform distribution. The size must not be negative. 
@@ -63,20 +89,14 @@ Output:
 }
 ```
 
-</details>
+Output:
 
-<details>
-<summary><h4>RandomNormal</h2></summary>
-
-`RandomNormal` allows looping over a given number of random values drawn from a Gaussian distribution. The size must not be negative and the standard deviation must be positive. 
-
-```go
-{
-	for i := range gloop.RandomNormal(2, 2, 5) {
-		fmt.Println(i)
-	}
-
-}
+```
+1.7336396942444041
+0.9684446802268123
+1.5762348358917075
+0.5000463191262544
+1.1113562403363295
 ```
 
 </details>
@@ -97,6 +117,16 @@ Output:
 	}
 
 }
+```
+
+Output:
+
+```
+3
+1
+4
+1
+6
 ```
 
 </details>
@@ -124,6 +154,14 @@ Output:
 }
 ```
 
+Output:
+
+```
+CAT 3
+DOG 1
+MOUSE 4
+```
+
 </details>
 
 <details>
@@ -148,6 +186,14 @@ Output:
 }
 ```
 
+Output:
+
+```
+CAT
+DOG
+MOUSE
+```
+
 </details>
 
 <details>
@@ -162,6 +208,14 @@ Output:
 	}
 
 }
+```
+
+Output:
+
+```
+3
+1
+4
 ```
 
 </details>
@@ -188,6 +242,14 @@ Output:
 }
 ```
 
+Output:
+
+```
+0 3
+1 1
+2 4
+```
+
 </details>
 
 <details>
@@ -207,6 +269,13 @@ Output:
 	}
 
 }
+```
+
+Output:
+
+```
+3
+1
 ```
 
 </details>
@@ -235,6 +304,13 @@ Output:
 }
 ```
 
+Output:
+
+```
+-1 -1
+4 4
+```
+
 </details>
 
 <details>
@@ -255,6 +331,14 @@ Output:
 	}
 
 }
+```
+
+Output:
+
+```
+CAT
+DOG
+MOUSE
 ```
 
 </details>
@@ -288,6 +372,14 @@ Output:
 }
 ```
 
+Output:
+
+```
+CAT 3
+DOG 1
+MOUSE 4
+```
+
 </details>
 
 <details>
@@ -310,6 +402,14 @@ Output:
 }
 ```
 
+Output:
+
+```
+CAT 3
+DOG 1
+MOUSE 4
+```
+
 </details>
 
 <details>
@@ -329,6 +429,14 @@ Output:
 	}
 
 }
+```
+
+Output:
+
+```
+3
+1
+4
 ```
 
 </details>
@@ -353,6 +461,14 @@ Output:
 }
 ```
 
+Output:
+
+```
+CAT 3
+DOG 1
+MOUSE 4
+```
+
 </details>
 
 <details>
@@ -368,6 +484,14 @@ Output:
 	}
 
 }
+```
+
+Output:
+
+```
+4
+1
+3
 ```
 
 </details>
@@ -387,6 +511,14 @@ Output:
 }
 ```
 
+Output:
+
+```
+2 4
+1 1
+0 3
+```
+
 </details>
 
 <details>
@@ -404,6 +536,14 @@ Output:
 }
 ```
 
+Output:
+
+```
+3
+1
+4
+```
+
 </details>
 
 <details>
@@ -419,6 +559,17 @@ Output:
 	}
 
 }
+```
+
+Output:
+
+```
+1
+1
+3
+4
+5
+9
 ```
 
 </details>
@@ -440,6 +591,14 @@ Output:
 	}
 
 }
+```
+
+Output:
+
+```
+CAT
+DOG
+MOUSE
 ```
 
 </details>
@@ -467,6 +626,14 @@ Output:
 }
 ```
 
+Output:
+
+```
+CAT DOG
+BUNNY BEAR
+MOUSE CHICKEN
+```
+
 </details>
 
 <details>
@@ -486,6 +653,14 @@ Output:
 	}
 
 }
+```
+
+Output:
+
+```
+CAT
+DOG
+MOUSE
 ```
 
 </details>
@@ -513,6 +688,14 @@ Output:
 }
 ```
 
+Output:
+
+```
+CAT DOG
+BUNNY BEAR
+MOUSE CHICKEN
+```
+
 </details>
 
 <details>
@@ -527,6 +710,14 @@ Output:
 	}
 
 }
+```
+
+Output:
+
+```
+C
+A
+T
 ```
 
 </details>
@@ -544,6 +735,13 @@ Output:
 	}
 
 }
+```
+
+Output:
+
+```
+CAT
+DOG
 ```
 
 </details>
@@ -571,6 +769,13 @@ Output:
 }
 ```
 
+Output:
+
+```
+CATDOG
+MOUSECHICKEN
+```
+
 </details>
 
 <details>
@@ -593,6 +798,14 @@ Output:
 }
 ```
 
+Output:
+
+```
+3
+1
+4
+```
+
 </details>
 
 <details>
@@ -609,6 +822,14 @@ Output:
 	}
 
 }
+```
+
+Output:
+
+```
+CAT 3
+DOG 1
+MOUSE 4
 ```
 
 </details>
@@ -639,6 +860,14 @@ Output:
 }
 ```
 
+Output:
+
+```
+CAT 3 3 1.2
+DOG 1 1 3.4
+MOUSE 4 4 5.6
+```
+
 </details>
 
 ### Vector Iterators
@@ -659,6 +888,14 @@ Output:
 }
 ```
 
+Output:
+
+```
+[3 1 4]
+[1 5 9]
+[2 6 5]
+```
+
 </details>
 
 <details>
@@ -677,6 +914,13 @@ Output:
 }
 ```
 
+Output:
+
+```
+[0 1 2] [CAT DOG MOUSE]
+[3 4 5] [CHICKEN BUNNY BEAR]
+```
+
 </details>
 
 <details>
@@ -693,6 +937,20 @@ Output:
 	}
 
 }
+```
+
+Output:
+
+```
+CC
+CA
+CT
+AC
+AA
+AT
+TC
+TA
+TT
 ```
 
 </details>
@@ -716,6 +974,15 @@ Output:
 }
 ```
 
+Output:
+
+```
+[CAT CAT] [3 3]
+[CAT DOG] [3 1]
+[DOG CAT] [1 3]
+[DOG DOG] [1 1]
+```
+
 </details>
 
 <details>
@@ -732,6 +999,14 @@ Output:
 	}
 
 }
+```
+
+Output:
+
+```
+CA
+CT
+AT
 ```
 
 </details>
@@ -756,6 +1031,14 @@ Output:
 }
 ```
 
+Output:
+
+```
+[CAT DOG] [3 1]
+[CAT MOUSE] [3 4]
+[DOG MOUSE] [1 4]
+```
+
 </details>
 
 <details>
@@ -772,6 +1055,17 @@ Output:
 	}
 
 }
+```
+
+Output:
+
+```
+CA
+CT
+AC
+AT
+TC
+TA
 ```
 
 </details>
@@ -796,6 +1090,17 @@ Output:
 }
 ```
 
+Output:
+
+```
+[CAT DOG] [3 1]
+[CAT MOUSE] [3 4]
+[DOG CAT] [1 3]
+[DOG MOUSE] [1 4]
+[MOUSE CAT] [4 3]
+[MOUSE DOG] [4 1]
+```
+
 </details>
 
 <details>
@@ -812,6 +1117,15 @@ Output:
 	}
 
 }
+```
+
+Output:
+
+```
+[3 1 4]
+[1 4 1]
+[4 1 5]
+[1 5 9]
 ```
 
 </details>
@@ -832,6 +1146,15 @@ Output:
 }
 ```
 
+Output:
+
+```
+[0 1 2] [CAT DOG MOUSE]
+[1 2 3] [DOG MOUSE CHICKEN]
+[2 3 4] [MOUSE CHICKEN BUNNY]
+[3 4 5] [CHICKEN BUNNY BEAR]
+```
+
 </details>
 
 <details>
@@ -850,6 +1173,13 @@ Output:
 	}
 
 }
+```
+
+Output:
+
+```
+[CAT MOUSE BUNNY]
+[DOG CHICKEN BEAR]
 ```
 
 </details>
@@ -881,6 +1211,14 @@ Output:
 }
 ```
 
+Output:
+
+```
+[CAT MOUSE] [3 1]
+[DOG BUNNY] [1 5]
+[MOUSE BEAR] [4 9]
+```
+
 </details>
 
 ### Aggregators
@@ -903,6 +1241,14 @@ Output:
 }
 ```
 
+Output:
+
+```
+true
+false
+false
+```
+
 </details>
 
 <details>
@@ -923,6 +1269,14 @@ Output:
 }
 ```
 
+Output:
+
+```
+true
+true
+false
+```
+
 </details>
 
 <details>
@@ -940,6 +1294,13 @@ Output:
 	fmt.Println(gloop.Equal(gloop.Slice(values1), gloop.Slice(values3)))
 
 }
+```
+
+Output:
+
+```
+false
+true
 ```
 
 </details>
@@ -975,6 +1336,13 @@ Output:
 }
 ```
 
+Output:
+
+```
+false
+true
+```
+
 </details>
 
 <details>
@@ -992,6 +1360,13 @@ Output:
 	fmt.Println(gloop.Equivalent(gloop.Slice(values1), gloop.Slice(values3)))
 
 }
+```
+
+Output:
+
+```
+false
+true
 ```
 
 </details>
@@ -1027,6 +1402,13 @@ Output:
 }
 ```
 
+Output:
+
+```
+false
+true
+```
+
 </details>
 
 <details>
@@ -1045,6 +1427,12 @@ Output:
 	fmt.Println(sum)
 
 }
+```
+
+Output:
+
+```
+8
 ```
 
 </details>
@@ -1072,6 +1460,12 @@ Output:
 }
 ```
 
+Output:
+
+```
+44
+```
+
 </details>
 
 <details>
@@ -1086,6 +1480,12 @@ Output:
 	fmt.Println(maxValue)
 
 }
+```
+
+Output:
+
+```
+4
 ```
 
 </details>
@@ -1104,6 +1504,12 @@ Output:
 }
 ```
 
+Output:
+
+```
+2.5
+```
+
 </details>
 
 <details>
@@ -1118,6 +1524,12 @@ Output:
 	fmt.Println(minValue)
 
 }
+```
+
+Output:
+
+```
+1
 ```
 
 </details>
@@ -1136,6 +1548,12 @@ Output:
 }
 ```
 
+Output:
+
+```
+12
+```
+
 </details>
 
 <details>
@@ -1152,6 +1570,12 @@ Output:
 	fmt.Println(minValue)
 
 }
+```
+
+Output:
+
+```
+1
 ```
 
 </details>
@@ -1183,6 +1607,12 @@ Output:
 }
 ```
 
+Output:
+
+```
+1 1
+```
+
 </details>
 
 <details>
@@ -1197,6 +1627,12 @@ Output:
 	fmt.Println(sum)
 
 }
+```
+
+Output:
+
+```
+8
 ```
 
 </details>
@@ -1220,6 +1656,14 @@ Output:
 	fmt.Println(l.Remove(l.Front()))
 
 }
+```
+
+Output:
+
+```
+3
+1
+4
 ```
 
 </details>
@@ -1249,6 +1693,17 @@ Output:
 }
 ```
 
+Output:
+
+```
+CAT
+DOG
+MOUSE
+3
+1
+4
+```
+
 </details>
 
 <details>
@@ -1267,6 +1722,12 @@ Output:
 	fmt.Println(gloop.ToSlice(seq))
 
 }
+```
+
+Output:
+
+```
+[3 1 4]
 ```
 
 </details>
@@ -1290,6 +1751,12 @@ Output:
 }
 ```
 
+Output:
+
+```
+[CAT DOG MOUSE] [3 1 4]
+```
+
 </details>
 
 <details>
@@ -1308,6 +1775,12 @@ Output:
 	fmt.Println(gloop.ToString(seq))
 
 }
+```
+
+Output:
+
+```
+CAT
 ```
 
 </details>
@@ -1333,6 +1806,17 @@ Output:
 }
 ```
 
+Output:
+
+```
+regular loop 3
+defer loop 3
+regular loop 1
+defer loop 1
+regular loop 4
+defer loop 4
+```
+
 </details>
 
 <details>
@@ -1354,6 +1838,15 @@ Output:
 	fmt.Println("Time Elapsed", time.Since(timeElaped))
 
 }
+```
+
+Output:
+
+```
+DOG
+MOUSE
+CAT
+Time Elapsed 1.00134375s
 ```
 
 </details>
@@ -1381,6 +1874,15 @@ Output:
 	fmt.Println("Time Elapsed", time.Since(timeElaped))
 
 }
+```
+
+Output:
+
+```
+MOUSE 4
+CAT 3
+DOG 1
+Time Elapsed 1.00058975s
 ```
 
 </details>
