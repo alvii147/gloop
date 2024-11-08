@@ -392,6 +392,63 @@ func ExampleZip() {
 	// MOUSE 4
 }
 
+func ExampleWithZipPadded() {
+	values1 := []string{"CAT", "DOG", "MOUSE", "CHICKEN"}
+	values2 := []int{3, 1, 4}
+	for value1, value2 := range gloop.Zip(
+		gloop.Slice(values1),
+		gloop.Slice(values2),
+		gloop.WithZipPadded[string, int](true),
+	) {
+		fmt.Println(value1, value2)
+	}
+	// Output:
+	// CAT 3
+	// DOG 1
+	// MOUSE 4
+	// CHICKEN 0
+}
+
+func ExampleWithZipPadValue1() {
+	values1 := []string{"CAT", "DOG", "MOUSE"}
+	values2 := []int{3, 1, 4, 1, 5, 9}
+	for value1, value2 := range gloop.Zip(
+		gloop.Slice(values1),
+		gloop.Slice(values2),
+		gloop.WithZipPadded[string, int](true),
+		gloop.WithZipPadValue1[string, int]("BEAR"),
+	) {
+		fmt.Println(value1, value2)
+	}
+	// Output:
+	// CAT 3
+	// DOG 1
+	// MOUSE 4
+	// BEAR 1
+	// BEAR 5
+	// BEAR 9
+}
+
+func ExampleWithZipPadValue2() {
+	values1 := []string{"CAT", "DOG", "MOUSE", "CHICKEN", "BUNNY", "BEAR"}
+	values2 := []int{3, 1, 4}
+	for value1, value2 := range gloop.Zip(
+		gloop.Slice(values1),
+		gloop.Slice(values2),
+		gloop.WithZipPadded[string, int](true),
+		gloop.WithZipPadValue2[string](42),
+	) {
+		fmt.Println(value1, value2)
+	}
+	// Output:
+	// CAT 3
+	// DOG 1
+	// MOUSE 4
+	// CHICKEN 42
+	// BUNNY 42
+	// BEAR 42
+}
+
 func ExampleZip2() {
 	seq1 := func(yield func(string, int) bool) {
 		yield("CAT", 3)
@@ -412,6 +469,170 @@ func ExampleZip2() {
 	// CAT 3 3 1.2
 	// DOG 1 1 3.4
 	// MOUSE 4 4 5.6
+}
+
+func ExampleWithZip2Padded() {
+	seq1 := func(yield func(string, int) bool) {
+		yield("CAT", 3)
+		yield("DOG", 1)
+		yield("MOUSE", 4)
+		yield("CHICKEN", 1)
+		yield("BUNNY", 5)
+		yield("BEAR", 9)
+	}
+
+	seq2 := func(yield func(int, float64) bool) {
+		yield(3, 1.2)
+		yield(1, 3.4)
+		yield(4, 5.6)
+	}
+
+	for pair1, pair2 := range gloop.Zip2(
+		seq1,
+		seq2,
+		gloop.WithZip2Padded[string, int, int, float64](true),
+	) {
+		fmt.Println(pair1.Key, pair1.Value, pair2.Key, pair2.Value)
+	}
+	// Output:
+	// CAT 3 3 1.2
+	// DOG 1 1 3.4
+	// MOUSE 4 4 5.6
+	// CHICKEN 1 0 0
+	// BUNNY 5 0 0
+	// BEAR 9 0 0
+}
+
+func ExampleWithZip2PadKey1() {
+	seq1 := func(yield func(string, int) bool) {
+		yield("CAT", 3)
+		yield("DOG", 1)
+		yield("MOUSE", 4)
+	}
+
+	seq2 := func(yield func(int, float64) bool) {
+		yield(3, 1.2)
+		yield(1, 3.4)
+		yield(4, 5.6)
+		yield(1, 7.8)
+		yield(5, 9.1)
+		yield(9, 2.3)
+	}
+
+	for pair1, pair2 := range gloop.Zip2(
+		seq1,
+		seq2,
+		gloop.WithZip2Padded[string, int, int, float64](true),
+		gloop.WithZip2PadKey1[string, int, int, float64]("CHICKEN"),
+	) {
+		fmt.Println(pair1.Key, pair1.Value, pair2.Key, pair2.Value)
+	}
+	// Output:
+	// CAT 3 3 1.2
+	// DOG 1 1 3.4
+	// MOUSE 4 4 5.6
+	// CHICKEN 0 1 7.8
+	// CHICKEN 0 5 9.1
+	// CHICKEN 0 9 2.3
+}
+
+func ExampleWithZip2PadValue1() {
+	seq1 := func(yield func(string, int) bool) {
+		yield("CAT", 3)
+		yield("DOG", 1)
+		yield("MOUSE", 4)
+	}
+
+	seq2 := func(yield func(int, float64) bool) {
+		yield(3, 1.2)
+		yield(1, 3.4)
+		yield(4, 5.6)
+		yield(1, 7.8)
+		yield(5, 9.1)
+		yield(9, 2.3)
+	}
+
+	for pair1, pair2 := range gloop.Zip2(
+		seq1,
+		seq2,
+		gloop.WithZip2Padded[string, int, int, float64](true),
+		gloop.WithZip2PadValue1[string, int, int, float64](42),
+	) {
+		fmt.Println(pair1.Key, pair1.Value, pair2.Key, pair2.Value)
+	}
+	// Output:
+	// CAT 3 3 1.2
+	// DOG 1 1 3.4
+	// MOUSE 4 4 5.6
+	//  42 1 7.8
+	//  42 5 9.1
+	//  42 9 2.3
+}
+
+func ExampleWithZip2PadKey2() {
+	seq1 := func(yield func(string, int) bool) {
+		yield("CAT", 3)
+		yield("DOG", 1)
+		yield("MOUSE", 4)
+		yield("CHICKEN", 1)
+		yield("BUNNY", 5)
+		yield("BEAR", 9)
+	}
+
+	seq2 := func(yield func(int, float64) bool) {
+		yield(3, 1.2)
+		yield(1, 3.4)
+		yield(4, 5.6)
+	}
+
+	for pair1, pair2 := range gloop.Zip2(
+		seq1,
+		seq2,
+		gloop.WithZip2Padded[string, int, int, float64](true),
+		gloop.WithZip2PadKey2[string, int, int, float64](42),
+	) {
+		fmt.Println(pair1.Key, pair1.Value, pair2.Key, pair2.Value)
+	}
+	// Output:
+	// CAT 3 3 1.2
+	// DOG 1 1 3.4
+	// MOUSE 4 4 5.6
+	// CHICKEN 1 42 0
+	// BUNNY 5 42 0
+	// BEAR 9 42 0
+}
+
+func ExampleWithZip2PadValue2() {
+	seq1 := func(yield func(string, int) bool) {
+		yield("CAT", 3)
+		yield("DOG", 1)
+		yield("MOUSE", 4)
+		yield("CHICKEN", 1)
+		yield("BUNNY", 5)
+		yield("BEAR", 9)
+	}
+
+	seq2 := func(yield func(int, float64) bool) {
+		yield(3, 1.2)
+		yield(1, 3.4)
+		yield(4, 5.6)
+	}
+
+	for pair1, pair2 := range gloop.Zip2(
+		seq1,
+		seq2,
+		gloop.WithZip2Padded[string, int, int, float64](true),
+		gloop.WithZip2PadValue2[string, int, int](4.2),
+	) {
+		fmt.Println(pair1.Key, pair1.Value, pair2.Key, pair2.Value)
+	}
+	// Output:
+	// CAT 3 3 1.2
+	// DOG 1 1 3.4
+	// MOUSE 4 4 5.6
+	// CHICKEN 1 0 4.2
+	// BUNNY 5 0 4.2
+	// BEAR 9 0 4.2
 }
 
 func ExampleBatch() {
@@ -572,6 +793,41 @@ func ExampleZipN() {
 	// [DOG CHICKEN BEAR]
 }
 
+func ExampleWithZipNPadded() {
+	seq1 := gloop.Slice([]int{3, 1, 4})
+	seq2 := gloop.Slice([]int{1, 5, 9})
+	seq3 := gloop.Slice([]int{2, 7})
+
+	for seq := range gloop.ZipN(
+		gloop.Collect(seq1, seq2, seq3),
+		gloop.WithZipNPadded[int](true),
+	) {
+		fmt.Println(gloop.ToSlice(seq))
+	}
+	// Output:
+	// [3 1 2]
+	// [1 5 7]
+	// [4 9 0]
+}
+
+func ExampleWithZipNPadValue() {
+	seq1 := gloop.Slice([]int{3, 1, 4})
+	seq2 := gloop.Slice([]int{1, 5, 9})
+	seq3 := gloop.Slice([]int{2, 7})
+
+	for seq := range gloop.ZipN(
+		gloop.Collect(seq1, seq2, seq3),
+		gloop.WithZipNPadded[int](true),
+		gloop.WithZipNPadValue(42),
+	) {
+		fmt.Println(gloop.ToSlice(seq))
+	}
+	// Output:
+	// [3 1 2]
+	// [1 5 7]
+	// [4 9 42]
+}
+
 func ExampleZipN2() {
 	var seq1 iter.Seq2[string, int] = func(yield func(string, int) bool) {
 		yield("CAT", 3)
@@ -593,6 +849,83 @@ func ExampleZipN2() {
 	// [CAT MOUSE] [3 1]
 	// [DOG BUNNY] [1 5]
 	// [MOUSE BEAR] [4 9]
+}
+
+func ExampleWithZipN2Padded() {
+	var seq1 iter.Seq2[int, float64] = func(yield func(int, float64) bool) {
+		yield(3, 1.4)
+		yield(1, 5.9)
+		yield(2, 6.5)
+	}
+
+	var seq2 iter.Seq2[int, float64] = func(yield func(int, float64) bool) {
+		yield(3, 5.8)
+		yield(9, 7.9)
+	}
+
+	for seq := range gloop.ZipN2(
+		gloop.Collect(seq1, seq2),
+		gloop.WithZipN2Padded[int, float64](true),
+	) {
+		keys, values := gloop.ToSlice2(seq)
+		fmt.Println(keys, values)
+	}
+	// Output:
+	// [3 3] [1.4 5.8]
+	// [1 9] [5.9 7.9]
+	// [2 0] [6.5 0]
+}
+
+func ExampleWithZipN2PadKey() {
+	var seq1 iter.Seq2[int, float64] = func(yield func(int, float64) bool) {
+		yield(3, 1.4)
+		yield(1, 5.9)
+		yield(2, 6.5)
+	}
+
+	var seq2 iter.Seq2[int, float64] = func(yield func(int, float64) bool) {
+		yield(3, 5.8)
+		yield(9, 7.9)
+	}
+
+	for seq := range gloop.ZipN2(
+		gloop.Collect(seq1, seq2),
+		gloop.WithZipN2Padded[int, float64](true),
+		gloop.WithZipN2PadKey[int, float64](42),
+	) {
+		keys, values := gloop.ToSlice2(seq)
+		fmt.Println(keys, values)
+	}
+	// Output:
+	// [3 3] [1.4 5.8]
+	// [1 9] [5.9 7.9]
+	// [2 42] [6.5 0]
+}
+
+func ExampleWithZipN2PadValue() {
+	var seq1 iter.Seq2[int, float64] = func(yield func(int, float64) bool) {
+		yield(3, 1.4)
+		yield(1, 5.9)
+		yield(2, 6.5)
+	}
+
+	var seq2 iter.Seq2[int, float64] = func(yield func(int, float64) bool) {
+		yield(3, 5.8)
+		yield(9, 7.9)
+	}
+
+	for seq := range gloop.ZipN2(
+		gloop.Collect(seq1, seq2),
+		gloop.WithZipN2Padded[int, float64](true),
+		gloop.WithZipN2PadValue[int](4.2),
+	) {
+		keys, values := gloop.ToSlice2(seq)
+		fmt.Println(keys, values)
+	}
+	// Output:
+	// [3 3] [1.4 5.8]
+	// [1 9] [5.9 7.9]
+	// [2 0] [6.5 4.2]
 }
 
 func ExampleAll() {
