@@ -4,6 +4,7 @@ import (
 	"container/list"
 	"fmt"
 	"iter"
+	"math/rand"
 	"strings"
 	"time"
 
@@ -20,8 +21,30 @@ func ExampleInterval() {
 	// 7
 }
 
+func ExampleWithIntervalClosed() {
+	for i := range gloop.Interval(3, 9, 2, gloop.WithIntervalClosed(true)) {
+		fmt.Println(i)
+	}
+	// Output:
+	// 3
+	// 5
+	// 7
+	// 9
+}
+
 func ExampleLinspace() {
 	for i := range gloop.Linspace(2, 3, 5) {
+		fmt.Println(i)
+	}
+	// Output:
+	// 2
+	// 2.25
+	// 2.5
+	// 2.75
+}
+
+func ExampleWithLinspaceClosed() {
+	for i := range gloop.Linspace(2, 3, 5, gloop.WithLinspaceClosed(true)) {
 		fmt.Println(i)
 	}
 	// Output:
@@ -41,6 +64,19 @@ func ExampleRandomNormal() {
 	// 1.321369004660313
 	// 1.3549030774712296
 	// -0.6521572615302738
+}
+
+func ExampleWithRandomGenerator() {
+	rng := rand.New(rand.NewSource(42))
+	for i := range gloop.RandomNormal(2, 2, 5, gloop.WithRandomGenerator(rng)) {
+		fmt.Println(i)
+	}
+	// Output:
+	// 5.1072611169129525
+	// 2.250512173654094
+	// 1.0112503744590344
+	// 4.4880300301524105
+	// 2.263956968542141
 }
 
 func ExampleRandomUniform() {
@@ -1042,6 +1078,22 @@ func ExampleFold() {
 	fmt.Println(sum)
 	// Output:
 	// 8
+}
+
+func ExampleWithFoldInitialValue() {
+	multiply := func(a, b int) int {
+		return a * b
+	}
+
+	values := []int{3, 1, 4}
+	prod := gloop.Fold(
+		gloop.Slice(values),
+		multiply,
+		gloop.WithFoldInitialValue(1),
+	)
+	fmt.Println(prod)
+	// Output:
+	// 12
 }
 
 func ExampleFold2() {
