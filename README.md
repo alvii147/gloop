@@ -73,7 +73,6 @@ See more examples below.
 	for i := range gloop.Interval(3, 9, 2) {
 		fmt.Println(i)
 	}
-
 }
 ```
 
@@ -97,7 +96,6 @@ Output:
 	for i := range gloop.Linspace(2, 3, 5) {
 		fmt.Println(i)
 	}
-
 }
 ```
 
@@ -122,7 +120,6 @@ Output:
 	for i := range gloop.RandomNormal(2, 2, 5) {
 		fmt.Println(i)
 	}
-
 }
 ```
 
@@ -148,7 +145,6 @@ Output:
 	for i := range gloop.RandomUniform(0, 2, 5) {
 		fmt.Println(i)
 	}
-
 }
 ```
 
@@ -178,7 +174,6 @@ Output:
 	for i := range gloop.Chain(gloop.Slice(values1), gloop.Slice(values2)) {
 		fmt.Println(i)
 	}
-
 }
 ```
 
@@ -213,7 +208,6 @@ Output:
 	for key, value := range gloop.Chain2(gloop.Map(m1), gloop.Map(m2)) {
 		fmt.Println(key, value)
 	}
-
 }
 ```
 
@@ -245,7 +239,6 @@ MOUSE 4
 	for i := range gloop.Channel(ch) {
 		fmt.Println(i)
 	}
-
 }
 ```
 
@@ -269,7 +262,6 @@ MOUSE
 	for i := range gloop.Collect(3, 1, 4) {
 		fmt.Println(i)
 	}
-
 }
 ```
 
@@ -301,7 +293,6 @@ Output:
 	for i, value := range gloop.Enumerate(gloop.Channel(ch)) {
 		fmt.Println(i, value)
 	}
-
 }
 ```
 
@@ -330,7 +321,6 @@ Output:
 	for i := range gloop.Filter(gloop.Slice(values), isOdd) {
 		fmt.Println(i)
 	}
-
 }
 ```
 
@@ -363,7 +353,6 @@ Output:
 	for i, j := range gloop.Filter2(gloop.Map(m), isProductPositive) {
 		fmt.Println(i, j)
 	}
-
 }
 ```
 
@@ -392,7 +381,6 @@ Output:
 	for key := range gloop.Keys(gloop.Map(m)) {
 		fmt.Println(key)
 	}
-
 }
 ```
 
@@ -431,7 +419,6 @@ MOUSE
 	for key, value := range gloop.KeyValue(gloop.Slice(pairs)) {
 		fmt.Println(key, value)
 	}
-
 }
 ```
 
@@ -461,7 +448,6 @@ MOUSE 4
 	for pair := range gloop.KeyValue2(gloop.Map(m)) {
 		fmt.Println(pair.Key, pair.Value)
 	}
-
 }
 ```
 
@@ -490,7 +476,6 @@ MOUSE 4
 	for elem := range gloop.List(l) {
 		fmt.Println(elem.Value)
 	}
-
 }
 ```
 
@@ -520,7 +505,6 @@ Output:
 	for key, value := range gloop.Map(m) {
 		fmt.Println(key, value)
 	}
-
 }
 ```
 
@@ -545,7 +529,6 @@ MOUSE 4
 	for i := range gloop.Reverse(gloop.Slice(values)) {
 		fmt.Println(i)
 	}
-
 }
 ```
 
@@ -570,7 +553,6 @@ Output:
 	for i, value := range gloop.Reverse2(gloop.Enumerate(gloop.Slice(values))) {
 		fmt.Println(i, value)
 	}
-
 }
 ```
 
@@ -595,7 +577,6 @@ Output:
 	for i := range gloop.Slice(values) {
 		fmt.Println(i)
 	}
-
 }
 ```
 
@@ -620,7 +601,6 @@ Output:
 	for i := range gloop.Sort(gloop.Slice(values), true) {
 		fmt.Println(i)
 	}
-
 }
 ```
 
@@ -652,7 +632,6 @@ Output:
 	for s := range gloop.SortByComparison(gloop.Slice(values), compareStringLens, true) {
 		fmt.Println(s)
 	}
-
 }
 ```
 
@@ -685,7 +664,6 @@ MOUSE
 	for key, value := range gloop.SortByComparison2(gloop.Map(values), compareKeyValueConcatLen, true) {
 		fmt.Println(key, value)
 	}
-
 }
 ```
 
@@ -714,7 +692,6 @@ MOUSE CHICKEN
 	for s := range gloop.SortByRank(gloop.Slice(values), stringLen, true) {
 		fmt.Println(s)
 	}
-
 }
 ```
 
@@ -747,7 +724,6 @@ MOUSE
 	for key, value := range gloop.SortByRank2(gloop.Map(values), stringConcatLen, true) {
 		fmt.Println(key, value)
 	}
-
 }
 ```
 
@@ -771,7 +747,6 @@ MOUSE CHICKEN
 	for r := range gloop.String("CAT") {
 		fmt.Println(string(r))
 	}
-
 }
 ```
 
@@ -796,7 +771,6 @@ T
 	for s := range gloop.Transform(gloop.Slice(values), strings.ToUpper) {
 		fmt.Println(s)
 	}
-
 }
 ```
 
@@ -828,7 +802,6 @@ DOG
 	for s := range gloop.Transform2(gloop.Map(m), concat) {
 		fmt.Println(s)
 	}
-
 }
 ```
 
@@ -857,7 +830,6 @@ MOUSECHICKEN
 	for value := range gloop.Values(gloop.Map(m)) {
 		fmt.Println(value)
 	}
-
 }
 ```
 
@@ -883,7 +855,6 @@ Output:
 	for value1, value2 := range gloop.Zip(gloop.Slice(values1), gloop.Slice(values2)) {
 		fmt.Println(value1, value2)
 	}
-
 }
 ```
 
@@ -919,7 +890,6 @@ MOUSE 4
 	for pair1, pair2 := range gloop.Zip2(seq1, seq2) {
 		fmt.Println(pair1.Key, pair1.Value, pair2.Key, pair2.Value)
 	}
-
 }
 ```
 
@@ -947,7 +917,6 @@ MOUSE 4 4 5.6
 		batch := gloop.ToSlice(seq)
 		fmt.Println(batch)
 	}
-
 }
 ```
 
@@ -973,7 +942,6 @@ Output:
 		batchKeys, batchValues := gloop.ToSlice2(seq)
 		fmt.Println(batchKeys, batchValues)
 	}
-
 }
 ```
 
@@ -998,7 +966,6 @@ Output:
 		product := gloop.ToString(seq)
 		fmt.Println(product)
 	}
-
 }
 ```
 
@@ -1033,7 +1000,6 @@ TT
 		productKeys, productValues := gloop.ToSlice2(seq)
 		fmt.Println(productKeys, productValues)
 	}
-
 }
 ```
 
@@ -1060,7 +1026,6 @@ Output:
 		comb := gloop.ToString(seq)
 		fmt.Println(comb)
 	}
-
 }
 ```
 
@@ -1090,7 +1055,6 @@ AT
 		combKeys, combValues := gloop.ToSlice2(seq)
 		fmt.Println(combKeys, combValues)
 	}
-
 }
 ```
 
@@ -1116,7 +1080,6 @@ Output:
 		perm := gloop.ToString(seq)
 		fmt.Println(perm)
 	}
-
 }
 ```
 
@@ -1149,7 +1112,6 @@ TA
 		permKeys, permValues := gloop.ToSlice2(seq)
 		fmt.Println(permKeys, permValues)
 	}
-
 }
 ```
 
@@ -1178,7 +1140,6 @@ Output:
 		window := gloop.ToSlice(seq)
 		fmt.Println(window)
 	}
-
 }
 ```
 
@@ -1205,7 +1166,6 @@ Output:
 		windowKeys, windowValues := gloop.ToSlice2(seq)
 		fmt.Println(windowKeys, windowValues)
 	}
-
 }
 ```
 
@@ -1234,7 +1194,6 @@ Output:
 	for seq := range gloop.ZipN(gloop.Collect(seq1, seq2, seq3)) {
 		fmt.Println(gloop.ToSlice(seq))
 	}
-
 }
 ```
 
@@ -1270,7 +1229,6 @@ Output:
 		keys, values := gloop.ToSlice2(seq)
 		fmt.Println(keys, values)
 	}
-
 }
 ```
 
@@ -1300,7 +1258,6 @@ Output:
 	fmt.Println(gloop.All(gloop.Slice(allTrue)))
 	fmt.Println(gloop.All(gloop.Slice(someTrue)))
 	fmt.Println(gloop.All(gloop.Slice(allFalse)))
-
 }
 ```
 
@@ -1328,7 +1285,6 @@ false
 	fmt.Println(gloop.Any(gloop.Slice(allTrue)))
 	fmt.Println(gloop.Any(gloop.Slice(someTrue)))
 	fmt.Println(gloop.Any(gloop.Slice(allFalse)))
-
 }
 ```
 
@@ -1355,7 +1311,6 @@ false
 
 	fmt.Println(gloop.Equal(gloop.Slice(values1), gloop.Slice(values2)))
 	fmt.Println(gloop.Equal(gloop.Slice(values1), gloop.Slice(values3)))
-
 }
 ```
 
@@ -1395,7 +1350,6 @@ true
 
 	fmt.Println(gloop.Equal2(seq1, seq2))
 	fmt.Println(gloop.Equal2(seq1, seq3))
-
 }
 ```
 
@@ -1421,7 +1375,6 @@ true
 
 	fmt.Println(gloop.Equivalent(gloop.Slice(values1), gloop.Slice(values2)))
 	fmt.Println(gloop.Equivalent(gloop.Slice(values1), gloop.Slice(values3)))
-
 }
 ```
 
@@ -1461,7 +1414,6 @@ true
 
 	fmt.Println(gloop.Equivalent2(seq1, seq2))
 	fmt.Println(gloop.Equivalent2(seq1, seq3))
-
 }
 ```
 
@@ -1488,7 +1440,6 @@ true
 	values := []int{3, 1, 4}
 	sum := gloop.Fold(gloop.Slice(values), add)
 	fmt.Println(sum)
-
 }
 ```
 
@@ -1519,7 +1470,6 @@ Output:
 
 	sumOfProducts := gloop.Fold2(gloop.Map(m), addKeyValueProduct)
 	fmt.Println(sumOfProducts)
-
 }
 ```
 
@@ -1541,7 +1491,6 @@ Output:
 	values := []int{3, 1, 4, 2}
 	maxValue := gloop.Max(gloop.Slice(values))
 	fmt.Println(maxValue)
-
 }
 ```
 
@@ -1567,7 +1516,6 @@ Output:
 	values := []string{"CAT", "MOUSE", "CHICKEN"}
 	maxValue := gloop.MaxByComparison(gloop.Slice(values), compareStringLens)
 	fmt.Println(maxValue)
-
 }
 ```
 
@@ -1600,7 +1548,6 @@ CHICKEN
 	fmt.Println(maxKey, maxValue)
 	// Output:
 	// 4 9
-
 }
 ```
 
@@ -1622,7 +1569,6 @@ Output:
 	values := []int{3, 1, 4, 2}
 	mean := gloop.Mean(gloop.Slice(values))
 	fmt.Println(mean)
-
 }
 ```
 
@@ -1644,7 +1590,6 @@ Output:
 	values := []int{3, 1, 4, 2}
 	minValue := gloop.Min(gloop.Slice(values))
 	fmt.Println(minValue)
-
 }
 ```
 
@@ -1670,7 +1615,6 @@ Output:
 	values := []string{"CAT", "MOUSE", "CHICKEN"}
 	minValue := gloop.MinByComparison(gloop.Slice(values), compareStringLens)
 	fmt.Println(minValue)
-
 }
 ```
 
@@ -1701,7 +1645,6 @@ CAT
 
 	minKey, minValue := gloop.MinByComparison2(gloop.Map(m), compareKeyValueProducts)
 	fmt.Println(minKey, minValue)
-
 }
 ```
 
@@ -1723,7 +1666,6 @@ Output:
 	values := []int{3, 1, 4}
 	prod := gloop.Product(gloop.Slice(values))
 	fmt.Println(prod)
-
 }
 ```
 
@@ -1747,7 +1689,6 @@ Output:
 		return min(value1, value2)
 	})
 	fmt.Println(minValue)
-
 }
 ```
 
@@ -1782,7 +1723,6 @@ Output:
 
 	minValueKey, minValue := gloop.Reduce2(gloop.Map(m), minKeyValueFunc)
 	fmt.Println(minValueKey, minValue)
-
 }
 ```
 
@@ -1804,7 +1744,6 @@ Output:
 	values := []int{3, 1, 4}
 	sum := gloop.Sum(gloop.Slice(values))
 	fmt.Println(sum)
-
 }
 ```
 
@@ -1833,7 +1772,6 @@ Output:
 	fmt.Println(l.Remove(l.Front()))
 	fmt.Println(l.Remove(l.Front()))
 	fmt.Println(l.Remove(l.Front()))
-
 }
 ```
 
@@ -1868,7 +1806,6 @@ Output:
 	fmt.Println(values.Remove(values.Front()))
 	fmt.Println(values.Remove(values.Front()))
 	fmt.Println(values.Remove(values.Front()))
-
 }
 ```
 
@@ -1899,7 +1836,6 @@ MOUSE
 	}
 
 	fmt.Println(gloop.ToSlice(seq))
-
 }
 ```
 
@@ -1926,7 +1862,6 @@ Output:
 
 	keys, values := gloop.ToSlice2(seq)
 	fmt.Println(keys, values)
-
 }
 ```
 
@@ -1952,7 +1887,6 @@ Output:
 	}
 
 	fmt.Println(gloop.ToString(seq))
-
 }
 ```
 
@@ -1981,7 +1915,6 @@ CAT
 
 		fmt.Println("regular loop", i)
 	}
-
 }
 ```
 
@@ -2015,7 +1948,6 @@ defer loop 4
 
 	gloop.Parallelize(gloop.Slice(values), printlnWithDelay)
 	fmt.Println("Time Elapsed", time.Since(timeElaped))
-
 }
 ```
 
@@ -2051,7 +1983,6 @@ Time Elapsed 1.00134375s
 
 	gloop.Parallelize2(gloop.Map(m), printlnWithDelay)
 	fmt.Println("Time Elapsed", time.Since(timeElaped))
-
 }
 ```
 
