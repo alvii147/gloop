@@ -64,7 +64,7 @@ See more examples below.
 ## Generators
 
 <details>
-<summary><h3><code>Interval</code></h3></summary>
+<summary><h3>Interval</h3></summary>
 
 `Interval` allows looping over values in a given interval of a given step size. 
 
@@ -88,7 +88,7 @@ Output:
 </details>
 
 <details>
-<summary><h3><code>Linspace</code></h3></summary>
+<summary><h3>Linspace</h3></summary>
 
 `Linspace` allows looping over evenly spaced values within a given interval. n must be greater than 1. 
 
@@ -113,7 +113,7 @@ Output:
 </details>
 
 <details>
-<summary><h3><code>RandomNormal</code></h3></summary>
+<summary><h3>RandomNormal</h3></summary>
 
 `RandomNormal` allows looping over a given number of random values drawn from a Gaussian distribution. The size must not be negative and the standard deviation must be positive. 
 
@@ -139,7 +139,7 @@ Output:
 </details>
 
 <details>
-<summary><h3><code>RandomUniform</code></h3></summary>
+<summary><h3>RandomUniform</h3></summary>
 
 `RandomUniform` allows looping over a given number of random values drawn from a uniform distribution. The size must not be negative. 
 
@@ -167,7 +167,7 @@ Output:
 ## Scalar Iterators
 
 <details>
-<summary><h3><code>Chain</code></h3></summary>
+<summary><h3>Chain</h3></summary>
 
 `Chain` allows looping over multiple [iter.Seq] sequences. 
 
@@ -195,7 +195,7 @@ Output:
 </details>
 
 <details>
-<summary><h3><code>Chain2</code></h3></summary>
+<summary><h3>Chain2</h3></summary>
 
 `Chain2` allows looping over multiple [iter.Seq2] sequences. 
 
@@ -228,7 +228,7 @@ MOUSE 4
 </details>
 
 <details>
-<summary><h3><code>Channel</code></h3></summary>
+<summary><h3>Channel</h3></summary>
 
 `Channel` allows looping over values from a given channel. The values are consumed from the channel. 
 
@@ -260,7 +260,7 @@ MOUSE
 </details>
 
 <details>
-<summary><h3><code>Collect</code></h3></summary>
+<summary><h3>Collect</h3></summary>
 
 `Collect` allows looping over a given set of values. 
 
@@ -284,7 +284,7 @@ Output:
 </details>
 
 <details>
-<summary><h3><code>Enumerate</code></h3></summary>
+<summary><h3>Enumerate</h3></summary>
 
 `Enumerate` allows looping over an [iter.Seq] sequence with an index, converting it to an [iter.Seq2] sequence. 
 
@@ -316,7 +316,7 @@ Output:
 </details>
 
 <details>
-<summary><h3><code>Filter</code></h3></summary>
+<summary><h3>Filter</h3></summary>
 
 `Filter` runs a given function on each value from an [iter.Seq] sequence and allows looping over values for which the function returns true. 
 
@@ -344,7 +344,7 @@ Output:
 </details>
 
 <details>
-<summary><h3><code>Filter2</code></h3></summary>
+<summary><h3>Filter2</h3></summary>
 
 `Filter2` runs a given function on each value from an [iter.Seq2] sequence and allows looping over values for which the function returns true. 
 
@@ -377,7 +377,7 @@ Output:
 </details>
 
 <details>
-<summary><h3><code>Keys</code></h3></summary>
+<summary><h3>Keys</h3></summary>
 
 `Keys` allows looping over an [iter.Seq2], converting it to an [iter.Seq] sequence by discarding the value. 
 
@@ -407,7 +407,7 @@ MOUSE
 </details>
 
 <details>
-<summary><h3><code>KeyValue</code></h3></summary>
+<summary><h3>KeyValue</h3></summary>
 
 `KeyValue` converts an [iter.Seq] sequence of [KeyValuePair] values to an [iter.Seq2] sequence. 
 
@@ -446,7 +446,7 @@ MOUSE 4
 </details>
 
 <details>
-<summary><h3><code>KeyValue2</code></h3></summary>
+<summary><h3>KeyValue2</h3></summary>
 
 `KeyValue2` converts an [iter.Seq2] sequence to an [iter.Seq] sequence of [KeyValuePair] values. 
 
@@ -476,7 +476,7 @@ MOUSE 4
 </details>
 
 <details>
-<summary><h3><code>List</code></h3></summary>
+<summary><h3>List</h3></summary>
 
 `List` allows looping over a given [container/list.List]. 
 
@@ -505,7 +505,7 @@ Output:
 </details>
 
 <details>
-<summary><h3><code>Map</code></h3></summary>
+<summary><h3>Map</h3></summary>
 
 `Map` allows looping over keys and values in a map. 
 
@@ -535,7 +535,7 @@ MOUSE 4
 </details>
 
 <details>
-<summary><h3><code>Reverse</code></h3></summary>
+<summary><h3>Reverse</h3></summary>
 
 `Reverse` allows looping over an [iter.Seq] sequence in order of descending index. 
 
@@ -560,7 +560,7 @@ Output:
 </details>
 
 <details>
-<summary><h3><code>Reverse2</code></h3></summary>
+<summary><h3>Reverse2</h3></summary>
 
 `Reverse2` allows looping over an [iter.Seq2] sequence in order of descending index. 
 
@@ -585,7 +585,7 @@ Output:
 </details>
 
 <details>
-<summary><h3><code>Slice</code></h3></summary>
+<summary><h3>Slice</h3></summary>
 
 `Slice` allows looping over a given slice. 
 
@@ -610,7 +610,7 @@ Output:
 </details>
 
 <details>
-<summary><h3><code>Sort</code></h3></summary>
+<summary><h3>Sort</h3></summary>
 
 `Sort` allows looping over an [iter.Seq] sequence in sorted order. 
 
@@ -638,7 +638,7 @@ Output:
 </details>
 
 <details>
-<summary><h3><code>SortByComparison</code></h3></summary>
+<summary><h3>SortByComparison</h3></summary>
 
 `SortByComparison` allows looping over an [iter.Seq] sequence in sorted order using a comparison function. 
 
@@ -667,7 +667,7 @@ MOUSE
 </details>
 
 <details>
-<summary><h3><code>SortByComparison2</code></h3></summary>
+<summary><h3>SortByComparison2</h3></summary>
 
 `SortByComparison2` allows looping over an [iter.Seq2] sequence in sorted order using a comparison function. 
 
@@ -700,7 +700,7 @@ MOUSE CHICKEN
 </details>
 
 <details>
-<summary><h3><code>SortByRank</code></h3></summary>
+<summary><h3>SortByRank</h3></summary>
 
 `SortByRank` allows looping over an [iter.Seq] sequence in sorted order using a ranking function. 
 
@@ -729,7 +729,7 @@ MOUSE
 </details>
 
 <details>
-<summary><h3><code>SortByRank2</code></h3></summary>
+<summary><h3>SortByRank2</h3></summary>
 
 `SortByRank2` allows looping over an [iter.Seq2] sequence in sorted order using a ranking function. 
 
@@ -762,7 +762,7 @@ MOUSE CHICKEN
 </details>
 
 <details>
-<summary><h3><code>String</code></h3></summary>
+<summary><h3>String</h3></summary>
 
 `String` allows looping over the runes in a given string. 
 
@@ -786,7 +786,7 @@ T
 </details>
 
 <details>
-<summary><h3><code>Transform</code></h3></summary>
+<summary><h3>Transform</h3></summary>
 
 `Transform` runs a given function on each value over an [iter.Seq] sequence and allows looping over the returned values. 
 
@@ -810,7 +810,7 @@ DOG
 </details>
 
 <details>
-<summary><h3><code>Transform2</code></h3></summary>
+<summary><h3>Transform2</h3></summary>
 
 `Transform2` runs a given function on each key and value over an [iter.Seq2] sequence and allows looping over the returned values. 
 
@@ -842,7 +842,7 @@ MOUSECHICKEN
 </details>
 
 <details>
-<summary><h3><code>Values</code></h3></summary>
+<summary><h3>Values</h3></summary>
 
 `Values` allows looping over an [iter.Seq2] and converting it to an [iter.Seq] sequence by discarding the key. 
 
@@ -872,7 +872,7 @@ Output:
 </details>
 
 <details>
-<summary><h3><code>Zip</code></h3></summary>
+<summary><h3>Zip</h3></summary>
 
 `Zip` allows looping over two [iter.Seq] sequences in pairs. 
 
@@ -898,7 +898,7 @@ MOUSE 4
 </details>
 
 <details>
-<summary><h3><code>Zip2</code></h3></summary>
+<summary><h3>Zip2</h3></summary>
 
 `Zip2` allows looping over two [iter.Seq2] sequences in pairs. 
 
@@ -936,7 +936,7 @@ MOUSE 4 4 5.6
 ## Vector Iterators
 
 <details>
-<summary><h3><code>Batch</code></h3></summary>
+<summary><h3>Batch</h3></summary>
 
 `Batch` allows looping over an [iter.Seq] sequence in batches of a given size. The batch size must be positive. 
 
@@ -962,7 +962,7 @@ Output:
 </details>
 
 <details>
-<summary><h3><code>Batch2</code></h3></summary>
+<summary><h3>Batch2</h3></summary>
 
 `Batch2` allows looping over an [iter.Seq2] sequence in batches of a given size. The batch size must be positive. 
 
@@ -987,7 +987,7 @@ Output:
 </details>
 
 <details>
-<summary><h3><code>CartesianProduct</code></h3></summary>
+<summary><h3>CartesianProduct</h3></summary>
 
 `CartesianProduct` allows looping over the Cartesian product of a given size for an [iter.Seq] sequence. The size must be positive. 
 
@@ -1019,7 +1019,7 @@ TT
 </details>
 
 <details>
-<summary><h3><code>CartesianProduct2</code></h3></summary>
+<summary><h3>CartesianProduct2</h3></summary>
 
 `CartesianProduct2` allows looping over the Cartesian product of a given size for an [iter.Seq2] sequence. The size must be positive. 
 
@@ -1049,7 +1049,7 @@ Output:
 </details>
 
 <details>
-<summary><h3><code>Combinations</code></h3></summary>
+<summary><h3>Combinations</h3></summary>
 
 `Combinations` allows looping over all combinations of a given size for an [iter.Seq] sequence. The size must be positive. 
 
@@ -1075,7 +1075,7 @@ AT
 </details>
 
 <details>
-<summary><h3><code>Combinations2</code></h3></summary>
+<summary><h3>Combinations2</h3></summary>
 
 `Combinations2` allows looping over all combinations of a given size for an [iter.Seq2] sequence. The size must be positive. 
 
@@ -1105,7 +1105,7 @@ Output:
 </details>
 
 <details>
-<summary><h3><code>Permutations</code></h3></summary>
+<summary><h3>Permutations</h3></summary>
 
 `Permutations` allows looping over all permutations of a given size for an [iter.Seq] sequence. The size must be positive. 
 
@@ -1134,7 +1134,7 @@ TA
 </details>
 
 <details>
-<summary><h3><code>Permutations2</code></h3></summary>
+<summary><h3>Permutations2</h3></summary>
 
 `Permutations2` allows looping over all permutations of a given size for an [iter.Seq2] sequence. The size must be positive. 
 
@@ -1167,7 +1167,7 @@ Output:
 </details>
 
 <details>
-<summary><h3><code>Window</code></h3></summary>
+<summary><h3>Window</h3></summary>
 
 `Window` allows looping over an [iter.Seq] sequence in sliding windows of a given size. 
 
@@ -1194,7 +1194,7 @@ Output:
 </details>
 
 <details>
-<summary><h3><code>Window2</code></h3></summary>
+<summary><h3>Window2</h3></summary>
 
 `Window2` allows looping over an [iter.Seq2] sequence in sliding windows of a given size. 
 
@@ -1221,7 +1221,7 @@ Output:
 </details>
 
 <details>
-<summary><h3><code>ZipN</code></h3></summary>
+<summary><h3>ZipN</h3></summary>
 
 `ZipN` allows looping over multiple [iter.Seq] sequences simultaneously. 
 
@@ -1248,7 +1248,7 @@ Output:
 </details>
 
 <details>
-<summary><h3><code>ZipN2</code></h3></summary>
+<summary><h3>ZipN2</h3></summary>
 
 `ZipN2` allows looping over multiple [iter.Seq2] sequences simultaneously. 
 
@@ -1287,7 +1287,7 @@ Output:
 ## Aggregators
 
 <details>
-<summary><h3><code>All</code></h3></summary>
+<summary><h3>All</h3></summary>
 
 `All` computes whether or not all values in an [iter.Seq] sequence are true. 
 
@@ -1315,7 +1315,7 @@ false
 </details>
 
 <details>
-<summary><h3><code>Any</code></h3></summary>
+<summary><h3>Any</h3></summary>
 
 `Any` computes whether or not any value in an [iter.Seq] sequence is true. 
 
@@ -1343,7 +1343,7 @@ false
 </details>
 
 <details>
-<summary><h3><code>Equal</code></h3></summary>
+<summary><h3>Equal</h3></summary>
 
 `Equal` checks if two given [iter.Seq] sequences are exactly equal in contents and order. 
 
@@ -1369,7 +1369,7 @@ true
 </details>
 
 <details>
-<summary><h3><code>Equal2</code></h3></summary>
+<summary><h3>Equal2</h3></summary>
 
 `Equal2` checks if two given [iter.Seq2] sequences are exactly equal in contents and order. 
 
@@ -1409,7 +1409,7 @@ true
 </details>
 
 <details>
-<summary><h3><code>Equivalent</code></h3></summary>
+<summary><h3>Equivalent</h3></summary>
 
 `Equivalent` checks if two given [iter.Seq] sequences are equal in contents, ignoring order. 
 
@@ -1435,7 +1435,7 @@ true
 </details>
 
 <details>
-<summary><h3><code>Equivalent2</code></h3></summary>
+<summary><h3>Equivalent2</h3></summary>
 
 `Equivalent2` checks if two given [iter.Seq2] sequences are equal in contents, ignoring order. 
 
@@ -1475,7 +1475,7 @@ true
 </details>
 
 <details>
-<summary><h3><code>Fold</code></h3></summary>
+<summary><h3>Fold</h3></summary>
 
 `Fold` runs a given function on each value from an [iter.Seq] sequence and accumulates the result into a single value. 
 
@@ -1501,7 +1501,7 @@ Output:
 </details>
 
 <details>
-<summary><h3><code>Fold2</code></h3></summary>
+<summary><h3>Fold2</h3></summary>
 
 `Fold2` runs a given function on each value from an [iter.Seq2] sequence and accumulates the result into a single value. 
 
@@ -1532,7 +1532,7 @@ Output:
 </details>
 
 <details>
-<summary><h3><code>Max</code></h3></summary>
+<summary><h3>Max</h3></summary>
 
 `Max` computes the maximum value over an [iter.Seq] sequence. 
 
@@ -1554,7 +1554,7 @@ Output:
 </details>
 
 <details>
-<summary><h3><code>Mean</code></h3></summary>
+<summary><h3>Mean</h3></summary>
 
 `Mean` computes the mean value over an [iter.Seq] sequence. 
 
@@ -1576,7 +1576,7 @@ Output:
 </details>
 
 <details>
-<summary><h3><code>Min</code></h3></summary>
+<summary><h3>Min</h3></summary>
 
 `Min` computes the minimum value over an [iter.Seq] sequence. 
 
@@ -1598,7 +1598,7 @@ Output:
 </details>
 
 <details>
-<summary><h3><code>Product</code></h3></summary>
+<summary><h3>Product</h3></summary>
 
 `Product` computes the product of values over an [iter.Seq] sequence. 
 
@@ -1620,7 +1620,7 @@ Output:
 </details>
 
 <details>
-<summary><h3><code>Reduce</code></h3></summary>
+<summary><h3>Reduce</h3></summary>
 
 `Reduce` runs a given function on each adjacent pair in an [iter.Seq] sequence and accumulates the result into a single value. 
 
@@ -1644,7 +1644,7 @@ Output:
 </details>
 
 <details>
-<summary><h3><code>Reduce2</code></h3></summary>
+<summary><h3>Reduce2</h3></summary>
 
 `Reduce2` runs a given function on each adjacent pair of keys and values in an [iter.Seq2] sequence and accumulates the result into a single key and value pair. 
 
@@ -1679,7 +1679,7 @@ Output:
 </details>
 
 <details>
-<summary><h3><code>Sum</code></h3></summary>
+<summary><h3>Sum</h3></summary>
 
 `Sum` computes summation over an [iter.Seq] sequence. 
 
@@ -1701,7 +1701,7 @@ Output:
 </details>
 
 <details>
-<summary><h3><code>ToList</code></h3></summary>
+<summary><h3>ToList</h3></summary>
 
 `ToList` converts an [iter.Seq] sequence to a [container/list.List]. 
 
@@ -1732,7 +1732,7 @@ Output:
 </details>
 
 <details>
-<summary><h3><code>ToList2</code></h3></summary>
+<summary><h3>ToList2</h3></summary>
 
 `ToList2` converts an [iter.Seq2] sequence to [container/list.List] of keys and values. 
 
@@ -1770,7 +1770,7 @@ MOUSE
 </details>
 
 <details>
-<summary><h3><code>ToSlice</code></h3></summary>
+<summary><h3>ToSlice</h3></summary>
 
 `ToSlice` converts an [iter.Seq] sequence to a slice. 
 
@@ -1796,7 +1796,7 @@ Output:
 </details>
 
 <details>
-<summary><h3><code>ToSlice2</code></h3></summary>
+<summary><h3>ToSlice2</h3></summary>
 
 `ToSlice2` converts an [iter.Seq2] sequence to slices of keys and values. 
 
@@ -1823,7 +1823,7 @@ Output:
 </details>
 
 <details>
-<summary><h3><code>ToString</code></h3></summary>
+<summary><h3>ToString</h3></summary>
 
 `ToString` converts an [iter.Seq] sequence of runes to a string. 
 
@@ -1851,7 +1851,7 @@ CAT
 ### Miscellaneous
 
 <details>
-<summary><h3><code>DeferLoop</code></h3></summary>
+<summary><h3>DeferLoop</h3></summary>
 
 `DeferLoop` allows looping over an [iter.Seq] sequence, yielding a defer function that can register another function to be executed at the end of the currently running loop. If multiple functions are registered, they are executed in FIFO order. 
 
@@ -1883,7 +1883,7 @@ defer loop 4
 </details>
 
 <details>
-<summary><h3><code>Parallelize</code></h3></summary>
+<summary><h3>Parallelize</h3></summary>
 
 `Parallelize` runs a function on each value in an [iter.Seq] sequence on separate goroutines. 
 
@@ -1915,7 +1915,7 @@ Time Elapsed 1.00134375s
 </details>
 
 <details>
-<summary><h3><code>Parallelize2</code></h3></summary>
+<summary><h3>Parallelize2</h3></summary>
 
 `Parallelize2` runs a function on each value in an [iter.Seq2] sequence on separate goroutines. 
 
