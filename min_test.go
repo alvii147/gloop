@@ -31,3 +31,33 @@ func TestMinDuration(t *testing.T) {
 	duration := gloop.Min(gloop.Slice(values))
 	require.Equal(t, time.Second, duration)
 }
+
+func TestMinByComparisonStringLen(t *testing.T) {
+	values := []string{"Fizzz", "Buzz", "Bazzzzzz"}
+	minValue := gloop.MinByComparison(gloop.Slice(values), func(s1 string, s2 string) bool {
+		return len(s1) < len(s2)
+	})
+	require.Equal(t, "Buzz", minValue)
+}
+
+func TestMinByComparison2MapProduct(t *testing.T) {
+	seq := func(yield func(int, int) bool) {
+		if !yield(1, 5) {
+			return
+		}
+
+		if !yield(4, 9) {
+			return
+		}
+
+		if !yield(3, 1) {
+			return
+		}
+	}
+
+	minKey, minValue := gloop.MinByComparison2(seq, func(k1, v1, k2, v2 int) bool {
+		return k1*v1 < k2*v2
+	})
+	require.Equal(t, 3, minKey)
+	require.Equal(t, 1, minValue)
+}

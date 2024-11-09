@@ -1554,6 +1554,65 @@ Output:
 </details>
 
 <details>
+<summary><h3>MaxByComparison</h3></summary>
+
+`MaxByComparison` computes the maximum value over an [iter.Seq] sequence using a comparison function.
+
+```go
+{
+	compareStringLens := func(s1, s2 string) bool {
+		return len(s1) < len(s2)
+	}
+
+	values := []string{"CAT", "MOUSE", "CHICKEN"}
+	maxValue := gloop.MaxByComparison(gloop.Slice(values), compareStringLens)
+	fmt.Println(maxValue)
+
+}
+```
+
+Output:
+
+```
+CHICKEN
+```
+
+</details>
+
+<details>
+<summary><h3>MaxByComparison2</h3></summary>
+
+`MaxByComparison2` computes the maximum key and value over an [iter.Seq2] sequence using a comparison function.
+
+```go
+{
+	compareKeyValueProducts := func(k1, v1, k2, v2 int) bool {
+		return k1*v1 < k2*v2
+	}
+
+	m := map[int]int{
+		3: 1,
+		1: 5,
+		4: 9,
+	}
+
+	maxKey, maxValue := gloop.MaxByComparison2(gloop.Map(m), compareKeyValueProducts)
+	fmt.Println(maxKey, maxValue)
+	// Output:
+	// 4 9
+
+}
+```
+
+Output:
+
+```
+4 9
+```
+
+</details>
+
+<details>
 <summary><h3>Mean</h3></summary>
 
 `Mean` computes the mean value over an [iter.Seq] sequence. 
@@ -1593,6 +1652,63 @@ Output:
 
 ```
 1
+```
+
+</details>
+
+<details>
+<summary><h3>MinByComparison</h3></summary>
+
+`MinByComparison` computes the minimum value over an [iter.Seq] sequence using a comparison function.
+
+```go
+{
+	compareStringLens := func(s1, s2 string) bool {
+		return len(s1) < len(s2)
+	}
+
+	values := []string{"CAT", "MOUSE", "CHICKEN"}
+	minValue := gloop.MinByComparison(gloop.Slice(values), compareStringLens)
+	fmt.Println(minValue)
+
+}
+```
+
+Output:
+
+```
+CAT
+```
+
+</details>
+
+<details>
+<summary><h3>MinByComparison2</h3></summary>
+
+`MinByComparison2` computes the minimum key and value over an [iter.Seq2] sequence using a comparison function.
+
+```go
+{
+	compareKeyValueProducts := func(k1, v1, k2, v2 int) bool {
+		return k1*v1 < k2*v2
+	}
+
+	m := map[int]int{
+		3: 1,
+		1: 5,
+		4: 9,
+	}
+
+	minKey, minValue := gloop.MinByComparison2(gloop.Map(m), compareKeyValueProducts)
+	fmt.Println(minKey, minValue)
+
+}
+```
+
+Output:
+
+```
+3 1
 ```
 
 </details>

@@ -1122,6 +1122,35 @@ func ExampleMax() {
 	// 4
 }
 
+func ExampleMaxByComparison() {
+	compareStringLens := func(s1, s2 string) bool {
+		return len(s1) < len(s2)
+	}
+
+	values := []string{"CAT", "MOUSE", "CHICKEN"}
+	maxValue := gloop.MaxByComparison(gloop.Slice(values), compareStringLens)
+	fmt.Println(maxValue)
+	// Output:
+	// CHICKEN
+}
+
+func ExampleMaxByComparison2() {
+	compareKeyValueProducts := func(k1, v1, k2, v2 int) bool {
+		return k1*v1 < k2*v2
+	}
+
+	m := map[int]int{
+		3: 1,
+		1: 5,
+		4: 9,
+	}
+
+	maxKey, maxValue := gloop.MaxByComparison2(gloop.Map(m), compareKeyValueProducts)
+	fmt.Println(maxKey, maxValue)
+	// Output:
+	// 4 9
+}
+
 func ExampleMean() {
 	values := []int{3, 1, 4, 2}
 	mean := gloop.Mean(gloop.Slice(values))
@@ -1136,6 +1165,35 @@ func ExampleMin() {
 	fmt.Println(minValue)
 	// Output:
 	// 1
+}
+
+func ExampleMinByComparison() {
+	compareStringLens := func(s1, s2 string) bool {
+		return len(s1) < len(s2)
+	}
+
+	values := []string{"CAT", "MOUSE", "CHICKEN"}
+	minValue := gloop.MinByComparison(gloop.Slice(values), compareStringLens)
+	fmt.Println(minValue)
+	// Output:
+	// CAT
+}
+
+func ExampleMinByComparison2() {
+	compareKeyValueProducts := func(k1, v1, k2, v2 int) bool {
+		return k1*v1 < k2*v2
+	}
+
+	m := map[int]int{
+		3: 1,
+		1: 5,
+		4: 9,
+	}
+
+	minKey, minValue := gloop.MinByComparison2(gloop.Map(m), compareKeyValueProducts)
+	fmt.Println(minKey, minValue)
+	// Output:
+	// 3 1
 }
 
 func ExampleProduct() {

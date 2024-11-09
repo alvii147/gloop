@@ -30,3 +30,33 @@ func TestMaxDuration(t *testing.T) {
 	duration := gloop.Max(gloop.Slice(values))
 	require.Equal(t, time.Hour, duration)
 }
+
+func TestMaxByComparisonStringLen(t *testing.T) {
+	values := []string{"Fizzz", "Buzz", "Bazzzzzz"}
+	maxValue := gloop.MaxByComparison(gloop.Slice(values), func(s1 string, s2 string) bool {
+		return len(s1) < len(s2)
+	})
+	require.Equal(t, "Bazzzzzz", maxValue)
+}
+
+func TestMaxByComparison2MapProduct(t *testing.T) {
+	seq := func(yield func(int, int) bool) {
+		if !yield(1, 5) {
+			return
+		}
+
+		if !yield(3, 1) {
+			return
+		}
+
+		if !yield(4, 9) {
+			return
+		}
+	}
+
+	maxKey, maxValue := gloop.MaxByComparison2(seq, func(k1, v1, k2, v2 int) bool {
+		return k1*v1 < k2*v2
+	})
+	require.Equal(t, 4, maxKey)
+	require.Equal(t, 9, maxValue)
+}
