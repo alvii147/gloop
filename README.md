@@ -1973,8 +1973,77 @@ func main() {
 
 	maxKey, maxValue := gloop.MaxByComparison2(gloop.Map(m), compareKeyValueProducts)
 	fmt.Println(maxKey, maxValue)
-	// Output:
-	// 4 9
+}
+```
+
+Output:
+
+```
+4 9
+```
+
+</details>
+
+<details>
+<summary><h3>MaxByRank</h3></summary>
+
+`MaxByRank` computes the maximum value over an [iter.Seq] sequence using a ranking function.
+
+```go
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
+	getStringLen := func(s string) int {
+		return len(s)
+	}
+
+	values := []string{"CAT", "MOUSE", "CHICKEN"}
+	maxValue := gloop.MaxByRank(gloop.Slice(values), getStringLen)
+	fmt.Println(maxValue)
+}
+```
+
+Output:
+
+```
+CHICKEN
+```
+
+</details>
+
+<details>
+<summary><h3>MaxByRank2</h3></summary>
+
+`MaxByRank2` computes the maximum value over an [iter.Seq2] sequence using a ranking function.
+
+```go
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
+	getKeyValueProduct := func(k, v int) int {
+		return k * v
+	}
+
+	m := map[int]int{
+		3: 1,
+		1: 5,
+		4: 9,
+	}
+
+	maxKey, maxValue := gloop.MaxByRank2(gloop.Map(m), getKeyValueProduct)
+	fmt.Println(maxKey, maxValue)
 }
 ```
 
@@ -2103,6 +2172,77 @@ func main() {
 	}
 
 	minKey, minValue := gloop.MinByComparison2(gloop.Map(m), compareKeyValueProducts)
+	fmt.Println(minKey, minValue)
+}
+```
+
+Output:
+
+```
+3 1
+```
+
+</details>
+
+<details>
+<summary><h3>MinByRank</h3></summary>
+
+`MinByRank` computes the minimum value over an [iter.Seq] sequence using a ranking function.
+
+```go
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
+	getStringLen := func(s string) int {
+		return len(s)
+	}
+
+	values := []string{"CAT", "MOUSE", "CHICKEN"}
+	minValue := gloop.MinByRank(gloop.Slice(values), getStringLen)
+	fmt.Println(minValue)
+}
+```
+
+Output:
+
+```
+CAT
+```
+
+</details>
+
+<details>
+<summary><h3>MinByRank2</h3></summary>
+
+`MinByRank2` computes the minimum value over an [iter.Seq2] sequence using a ranking function.
+
+```go
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
+	getKeyValueProduct := func(k, v int) int {
+		return k * v
+	}
+
+	m := map[int]int{
+		3: 1,
+		1: 5,
+		4: 9,
+	}
+
+	minKey, minValue := gloop.MinByRank2(gloop.Map(m), getKeyValueProduct)
 	fmt.Println(minKey, minValue)
 }
 ```

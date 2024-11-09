@@ -49,3 +49,33 @@ func MaxByComparison2[K, V any](
 		return accKey, accValue
 	})
 }
+
+// MaxByRankFunc is the function signature of the ranking function used
+// in [MaxByRank].
+type MaxByRankFunc[V any, R cmp.Ordered] func(V) R
+
+// MaxByRank computes the maximum value over an [iter.Seq] sequence
+// using a ranking function.
+func MaxByRank[V any, R cmp.Ordered](
+	seq iter.Seq[V],
+	rank MinByRankFunc[V, R],
+) V {
+	return MaxByComparison(seq, func(acc V, value V) bool {
+		return rank(acc) < rank(value)
+	})
+}
+
+// MaxByRank2Func is the function signature of the ranking function
+// used in [MaxByRank2].
+type MaxByRank2Func[K, V any, R cmp.Ordered] func(K, V) R
+
+// MaxByRank2 computes the maximum value over an [iter.Seq2] sequence
+// using a ranking function.
+func MaxByRank2[K, V any, R cmp.Ordered](
+	seq iter.Seq2[K, V],
+	rank MinByRank2Func[K, V, R],
+) (K, V) {
+	return MaxByComparison2(seq, func(accKey K, accValue V, key K, value V) bool {
+		return rank(accKey, accValue) < rank(key, value)
+	})
+}

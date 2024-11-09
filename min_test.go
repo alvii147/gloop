@@ -40,7 +40,7 @@ func TestMinByComparisonStringLen(t *testing.T) {
 	require.Equal(t, "Buzz", minValue)
 }
 
-func TestMinByComparison2MapProduct(t *testing.T) {
+func TestMinByComparison2KeyValueProduct(t *testing.T) {
 	seq := func(yield func(int, int) bool) {
 		if !yield(1, 5) {
 			return
@@ -57,6 +57,36 @@ func TestMinByComparison2MapProduct(t *testing.T) {
 
 	minKey, minValue := gloop.MinByComparison2(seq, func(k1, v1, k2, v2 int) bool {
 		return k1*v1 < k2*v2
+	})
+	require.Equal(t, 3, minKey)
+	require.Equal(t, 1, minValue)
+}
+
+func TestMinByRankStringLen(t *testing.T) {
+	values := []string{"Fizzz", "Buzz", "Bazzzzzz"}
+	minValue := gloop.MinByRank(gloop.Slice(values), func(s string) int {
+		return len(s)
+	})
+	require.Equal(t, "Buzz", minValue)
+}
+
+func TestMinByRank2KeyValueProduct(t *testing.T) {
+	seq := func(yield func(int, int) bool) {
+		if !yield(1, 5) {
+			return
+		}
+
+		if !yield(4, 9) {
+			return
+		}
+
+		if !yield(3, 1) {
+			return
+		}
+	}
+
+	minKey, minValue := gloop.MinByRank2(seq, func(k, v int) int {
+		return k * v
 	})
 	require.Equal(t, 3, minKey)
 	require.Equal(t, 1, minValue)

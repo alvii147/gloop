@@ -1151,6 +1151,35 @@ func ExampleMaxByComparison2() {
 	// 4 9
 }
 
+func ExampleMaxByRank() {
+	getStringLen := func(s string) int {
+		return len(s)
+	}
+
+	values := []string{"CAT", "MOUSE", "CHICKEN"}
+	maxValue := gloop.MaxByRank(gloop.Slice(values), getStringLen)
+	fmt.Println(maxValue)
+	// Output:
+	// CHICKEN
+}
+
+func ExampleMaxByRank2() {
+	getKeyValueProduct := func(k, v int) int {
+		return k * v
+	}
+
+	m := map[int]int{
+		3: 1,
+		1: 5,
+		4: 9,
+	}
+
+	maxKey, maxValue := gloop.MaxByRank2(gloop.Map(m), getKeyValueProduct)
+	fmt.Println(maxKey, maxValue)
+	// Output:
+	// 4 9
+}
+
 func ExampleMean() {
 	values := []int{3, 1, 4, 2}
 	mean := gloop.Mean(gloop.Slice(values))
@@ -1191,6 +1220,35 @@ func ExampleMinByComparison2() {
 	}
 
 	minKey, minValue := gloop.MinByComparison2(gloop.Map(m), compareKeyValueProducts)
+	fmt.Println(minKey, minValue)
+	// Output:
+	// 3 1
+}
+
+func ExampleMinByRank() {
+	getStringLen := func(s string) int {
+		return len(s)
+	}
+
+	values := []string{"CAT", "MOUSE", "CHICKEN"}
+	minValue := gloop.MinByRank(gloop.Slice(values), getStringLen)
+	fmt.Println(minValue)
+	// Output:
+	// CAT
+}
+
+func ExampleMinByRank2() {
+	getKeyValueProduct := func(k, v int) int {
+		return k * v
+	}
+
+	m := map[int]int{
+		3: 1,
+		1: 5,
+		4: 9,
+	}
+
+	minKey, minValue := gloop.MinByRank2(gloop.Map(m), getKeyValueProduct)
 	fmt.Println(minKey, minValue)
 	// Output:
 	// 3 1

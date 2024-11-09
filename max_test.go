@@ -39,7 +39,7 @@ func TestMaxByComparisonStringLen(t *testing.T) {
 	require.Equal(t, "Bazzzzzz", maxValue)
 }
 
-func TestMaxByComparison2MapProduct(t *testing.T) {
+func TestMaxByComparison2KeyValueProduct(t *testing.T) {
 	seq := func(yield func(int, int) bool) {
 		if !yield(1, 5) {
 			return
@@ -56,6 +56,36 @@ func TestMaxByComparison2MapProduct(t *testing.T) {
 
 	maxKey, maxValue := gloop.MaxByComparison2(seq, func(k1, v1, k2, v2 int) bool {
 		return k1*v1 < k2*v2
+	})
+	require.Equal(t, 4, maxKey)
+	require.Equal(t, 9, maxValue)
+}
+
+func TestMaxByRankStringLen(t *testing.T) {
+	values := []string{"Fizzz", "Buzz", "Bazzzzzz"}
+	maxValue := gloop.MaxByRank(gloop.Slice(values), func(s string) int {
+		return len(s)
+	})
+	require.Equal(t, "Bazzzzzz", maxValue)
+}
+
+func TestMaxByRank2KeyValueProduct(t *testing.T) {
+	seq := func(yield func(int, int) bool) {
+		if !yield(1, 5) {
+			return
+		}
+
+		if !yield(3, 1) {
+			return
+		}
+
+		if !yield(4, 9) {
+			return
+		}
+	}
+
+	maxKey, maxValue := gloop.MaxByRank2(seq, func(k, v int) int {
+		return k * v
 	})
 	require.Equal(t, 4, maxKey)
 	require.Equal(t, 9, maxValue)

@@ -49,3 +49,33 @@ func MinByComparison2[K, V any](
 		return key, value
 	})
 }
+
+// MinByRankFunc is the function signature of the ranking function used
+// in [MinByRank].
+type MinByRankFunc[V any, R cmp.Ordered] func(V) R
+
+// MinByRank computes the minimum value over an [iter.Seq] sequence
+// using a ranking function.
+func MinByRank[V any, R cmp.Ordered](
+	seq iter.Seq[V],
+	rank MinByRankFunc[V, R],
+) V {
+	return MinByComparison(seq, func(acc V, value V) bool {
+		return rank(acc) < rank(value)
+	})
+}
+
+// MinByRank2Func is the function signature of the ranking function
+// used in [MinByRank2].
+type MinByRank2Func[K, V any, R cmp.Ordered] func(K, V) R
+
+// MinByRank2 computes the minimum value over an [iter.Seq2] sequence
+// using a ranking function.
+func MinByRank2[K, V any, R cmp.Ordered](
+	seq iter.Seq2[K, V],
+	rank MinByRank2Func[K, V, R],
+) (K, V) {
+	return MinByComparison2(seq, func(accKey K, accValue V, key K, value V) bool {
+		return rank(accKey, accValue) < rank(key, value)
+	})
+}
