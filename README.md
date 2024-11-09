@@ -69,7 +69,15 @@ See more examples below.
 `Interval` allows looping over values in a given interval of a given step size. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	for i := range gloop.Interval(3, 9, 2) {
 		fmt.Println(i)
 	}
@@ -92,7 +100,15 @@ Output:
 `Linspace` allows looping over evenly spaced values within a given interval. n must be greater than 1. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	for i := range gloop.Linspace(2, 3, 5) {
 		fmt.Println(i)
 	}
@@ -116,7 +132,15 @@ Output:
 `RandomNormal` allows looping over a given number of random values drawn from a Gaussian distribution. The size must not be negative and the standard deviation must be positive. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	for i := range gloop.RandomNormal(2, 2, 5) {
 		fmt.Println(i)
 	}
@@ -141,7 +165,15 @@ Output:
 `RandomUniform` allows looping over a given number of random values drawn from a uniform distribution. The size must not be negative. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	for i := range gloop.RandomUniform(0, 2, 5) {
 		fmt.Println(i)
 	}
@@ -168,7 +200,15 @@ Output:
 `Chain` allows looping over multiple [iter.Seq] sequences. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	values1 := []int{3, 1, 4}
 	values2 := []int{1, 6}
 	for i := range gloop.Chain(gloop.Slice(values1), gloop.Slice(values2)) {
@@ -195,7 +235,15 @@ Output:
 `Chain2` allows looping over multiple [iter.Seq2] sequences. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	m1 := map[string]int{
 		"CAT":	3,
 		"DOG":	1,
@@ -227,7 +275,15 @@ MOUSE 4
 `Channel` allows looping over values from a given channel. The values are consumed from the channel. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	ch := make(chan string)
 	go func() {
 		ch <- "CAT"
@@ -258,7 +314,15 @@ MOUSE
 `Collect` allows looping over a given set of values. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	for i := range gloop.Collect(3, 1, 4) {
 		fmt.Println(i)
 	}
@@ -281,7 +345,15 @@ Output:
 `Enumerate` allows looping over an [iter.Seq] sequence with an index, converting it to an [iter.Seq2] sequence. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	ch := make(chan int)
 	go func() {
 		ch <- 3
@@ -312,7 +384,15 @@ Output:
 `Filter` runs a given function on each value from an [iter.Seq] sequence and allows looping over values for which the function returns true. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	isOdd := func(i int) bool {
 		return i%2 == 1
 	}
@@ -339,7 +419,15 @@ Output:
 `Filter2` runs a given function on each value from an [iter.Seq2] sequence and allows looping over values for which the function returns true. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	isProductPositive := func(i, j int) bool {
 		return i*j >= 0
 	}
@@ -371,7 +459,15 @@ Output:
 `Keys` allows looping over an [iter.Seq2], converting it to an [iter.Seq] sequence by discarding the value. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	m := map[string]int{
 		"CAT":		3,
 		"DOG":		1,
@@ -400,7 +496,15 @@ MOUSE
 `KeyValue` converts an [iter.Seq] sequence of [KeyValuePair] values to an [iter.Seq2] sequence. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	pairs := []gloop.KeyValuePair[string, int]{
 		{
 			Key:	"CAT",
@@ -438,7 +542,15 @@ MOUSE 4
 `KeyValue2` converts an [iter.Seq2] sequence to an [iter.Seq] sequence of [KeyValuePair] values. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	m := map[string]int{
 		"CAT":		3,
 		"DOG":		1,
@@ -467,7 +579,16 @@ MOUSE 4
 `List` allows looping over a given [container/list.List]. 
 
 ```go
-{
+package main
+
+import (
+	"container/list"
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	l := list.New()
 	l.PushBack(3)
 	l.PushBack(1)
@@ -495,7 +616,15 @@ Output:
 `Map` allows looping over keys and values in a map. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	m := map[string]int{
 		"CAT":		3,
 		"DOG":		1,
@@ -524,7 +653,15 @@ MOUSE 4
 `Reverse` allows looping over an [iter.Seq] sequence in order of descending index. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	values := []int{3, 1, 4}
 	for i := range gloop.Reverse(gloop.Slice(values)) {
 		fmt.Println(i)
@@ -548,7 +685,15 @@ Output:
 `Reverse2` allows looping over an [iter.Seq2] sequence in order of descending index. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	values := []int{3, 1, 4}
 	for i, value := range gloop.Reverse2(gloop.Enumerate(gloop.Slice(values))) {
 		fmt.Println(i, value)
@@ -572,7 +717,15 @@ Output:
 `Slice` allows looping over a given slice. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	values := []int{3, 1, 4}
 	for i := range gloop.Slice(values) {
 		fmt.Println(i)
@@ -596,7 +749,15 @@ Output:
 `Sort` allows looping over an [iter.Seq] sequence in sorted order. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	values := []int{3, 1, 4, 1, 5, 9}
 	for i := range gloop.Sort(gloop.Slice(values), true) {
 		fmt.Println(i)
@@ -623,7 +784,15 @@ Output:
 `SortByComparison` allows looping over an [iter.Seq] sequence in sorted order using a comparison function. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	compareStringLens := func(s1, s2 string) bool {
 		return len(s1) < len(s2)
 	}
@@ -651,7 +820,15 @@ MOUSE
 `SortByComparison2` allows looping over an [iter.Seq2] sequence in sorted order using a comparison function. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	compareKeyValueConcatLen := func(k1, v1, k2, v2 string) bool {
 		return len(k1+v1) < len(k2+v2)
 	}
@@ -683,7 +860,15 @@ MOUSE CHICKEN
 `SortByRank` allows looping over an [iter.Seq] sequence in sorted order using a ranking function. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	stringLen := func(s string) int {
 		return len(s)
 	}
@@ -711,7 +896,15 @@ MOUSE
 `SortByRank2` allows looping over an [iter.Seq2] sequence in sorted order using a ranking function. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	stringConcatLen := func(k1, v1 string) int {
 		return len(k1 + v1)
 	}
@@ -743,7 +936,15 @@ MOUSE CHICKEN
 `String` allows looping over the runes in a given string. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	for r := range gloop.String("CAT") {
 		fmt.Println(string(r))
 	}
@@ -766,7 +967,16 @@ T
 `Transform` runs a given function on each value over an [iter.Seq] sequence and allows looping over the returned values. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+	"strings"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	values := []string{"CaT", "dOg"}
 	for s := range gloop.Transform(gloop.Slice(values), strings.ToUpper) {
 		fmt.Println(s)
@@ -789,7 +999,15 @@ DOG
 `Transform2` runs a given function on each key and value over an [iter.Seq2] sequence and allows looping over the returned values. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	concat := func(s1, s2 string) string {
 		return s1 + s2
 	}
@@ -820,7 +1038,15 @@ MOUSECHICKEN
 `Values` allows looping over an [iter.Seq2] and converting it to an [iter.Seq] sequence by discarding the key. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	m := map[string]int{
 		"CAT":		3,
 		"DOG":		1,
@@ -849,7 +1075,15 @@ Output:
 `Zip` allows looping over two [iter.Seq] sequences in pairs. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	values1 := []string{"CAT", "DOG", "MOUSE"}
 	values2 := []int{3, 1, 4}
 	for value1, value2 := range gloop.Zip(gloop.Slice(values1), gloop.Slice(values2)) {
@@ -874,7 +1108,15 @@ MOUSE 4
 `Zip2` allows looping over two [iter.Seq2] sequences in pairs. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	seq1 := func(yield func(string, int) bool) {
 		yield("CAT", 3)
 		yield("DOG", 1)
@@ -911,7 +1153,15 @@ MOUSE 4 4 5.6
 `Batch` allows looping over an [iter.Seq] sequence in batches of a given size. The batch size must be positive. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	values := []int{3, 1, 4, 1, 5, 9, 2, 6, 5}
 	for seq := range gloop.Batch(gloop.Slice(values), 3) {
 		batch := gloop.ToSlice(seq)
@@ -936,7 +1186,15 @@ Output:
 `Batch2` allows looping over an [iter.Seq2] sequence in batches of a given size. The batch size must be positive. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	values := []string{"CAT", "DOG", "MOUSE", "CHICKEN", "BUNNY", "BEAR"}
 	for seq := range gloop.Batch2(gloop.Enumerate(gloop.Slice(values)), 3) {
 		batchKeys, batchValues := gloop.ToSlice2(seq)
@@ -960,7 +1218,15 @@ Output:
 `CartesianProduct` allows looping over the Cartesian product of a given size for an [iter.Seq] sequence. The size must be positive. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	s := "CAT"
 	for seq := range gloop.CartesianProduct(gloop.String(s), 2) {
 		product := gloop.ToString(seq)
@@ -991,7 +1257,15 @@ TT
 `CartesianProduct2` allows looping over the Cartesian product of a given size for an [iter.Seq2] sequence. The size must be positive. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	m := map[string]int{
 		"CAT":	3,
 		"DOG":	1,
@@ -1020,7 +1294,15 @@ Output:
 `Combinations` allows looping over all combinations of a given size for an [iter.Seq] sequence. The size must be positive. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	s := "CAT"
 	for seq := range gloop.Combinations(gloop.String(s), 2) {
 		comb := gloop.ToString(seq)
@@ -1045,7 +1327,15 @@ AT
 `Combinations2` allows looping over all combinations of a given size for an [iter.Seq2] sequence. The size must be positive. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	m := map[string]int{
 		"CAT":		3,
 		"DOG":		1,
@@ -1074,7 +1364,15 @@ Output:
 `Permutations` allows looping over all permutations of a given size for an [iter.Seq] sequence. The size must be positive. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	s := "CAT"
 	for seq := range gloop.Permutations(gloop.String(s), 2) {
 		perm := gloop.ToString(seq)
@@ -1102,7 +1400,15 @@ TA
 `Permutations2` allows looping over all permutations of a given size for an [iter.Seq2] sequence. The size must be positive. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	m := map[string]int{
 		"CAT":		3,
 		"DOG":		1,
@@ -1134,7 +1440,15 @@ Output:
 `Window` allows looping over an [iter.Seq] sequence in sliding windows of a given size. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	values := []int{3, 1, 4, 1, 5, 9}
 	for seq := range gloop.Window(gloop.Slice(values), 3) {
 		window := gloop.ToSlice(seq)
@@ -1160,7 +1474,15 @@ Output:
 `Window2` allows looping over an [iter.Seq2] sequence in sliding windows of a given size. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	values := []string{"CAT", "DOG", "MOUSE", "CHICKEN", "BUNNY", "BEAR"}
 	for seq := range gloop.Window2(gloop.Enumerate(gloop.Slice(values)), 3) {
 		windowKeys, windowValues := gloop.ToSlice2(seq)
@@ -1186,7 +1508,15 @@ Output:
 `ZipN` allows looping over multiple [iter.Seq] sequences simultaneously. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	seq1 := gloop.Slice([]string{"CAT", "DOG"})
 	seq2 := gloop.Slice([]string{"MOUSE", "CHICKEN"})
 	seq3 := gloop.Slice([]string{"BUNNY", "BEAR"})
@@ -1212,7 +1542,16 @@ Output:
 `ZipN2` allows looping over multiple [iter.Seq2] sequences simultaneously. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+	"iter"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	var seq1 iter.Seq2[string, int] = func(yield func(string, int) bool) {
 		yield("CAT", 3)
 		yield("DOG", 1)
@@ -1250,7 +1589,15 @@ Output:
 `All` computes whether or not all values in an [iter.Seq] sequence are true. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	allTrue := []bool{true, true, true}
 	someTrue := []bool{true, false, true}
 	allFalse := []bool{false, false, false}
@@ -1277,7 +1624,15 @@ false
 `Any` computes whether or not any value in an [iter.Seq] sequence is true. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	allTrue := []bool{true, true, true}
 	someTrue := []bool{true, false, true}
 	allFalse := []bool{false, false, false}
@@ -1304,7 +1659,15 @@ false
 `Equal` checks if two given [iter.Seq] sequences are exactly equal in contents and order. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	values1 := []int{3, 1, 4}
 	values2 := []int{3, 1, -4}
 	values3 := []int{3, 1, 4}
@@ -1329,7 +1692,15 @@ true
 `Equal2` checks if two given [iter.Seq2] sequences are exactly equal in contents and order. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	seq1 := func(yield func(string, int) bool) {
 		yield("CAT", 3)
 		yield("DOG", 1)
@@ -1368,7 +1739,15 @@ true
 `Equivalent` checks if two given [iter.Seq] sequences are equal in contents, ignoring order. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	values1 := []int{3, 1, 4}
 	values2 := []int{3, 1, -4}
 	values3 := []int{3, 4, 1}
@@ -1393,7 +1772,15 @@ true
 `Equivalent2` checks if two given [iter.Seq2] sequences are equal in contents, ignoring order. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	seq1 := func(yield func(string, int) bool) {
 		yield("CAT", 3)
 		yield("DOG", 1)
@@ -1432,7 +1819,15 @@ true
 `Fold` runs a given function on each value from an [iter.Seq] sequence and accumulates the result into a single value. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	add := func(a, b int) int {
 		return a + b
 	}
@@ -1457,7 +1852,15 @@ Output:
 `Fold2` runs a given function on each value from an [iter.Seq2] sequence and accumulates the result into a single value. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	addKeyValueProduct := func(acc, key, value int) int {
 		return acc + (key * value)
 	}
@@ -1487,7 +1890,15 @@ Output:
 `Max` computes the maximum value over an [iter.Seq] sequence. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	values := []int{3, 1, 4, 2}
 	maxValue := gloop.Max(gloop.Slice(values))
 	fmt.Println(maxValue)
@@ -1508,7 +1919,15 @@ Output:
 `MaxByComparison` computes the maximum value over an [iter.Seq] sequence using a comparison function.
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	compareStringLens := func(s1, s2 string) bool {
 		return len(s1) < len(s2)
 	}
@@ -1533,7 +1952,15 @@ CHICKEN
 `MaxByComparison2` computes the maximum key and value over an [iter.Seq2] sequence using a comparison function.
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	compareKeyValueProducts := func(k1, v1, k2, v2 int) bool {
 		return k1*v1 < k2*v2
 	}
@@ -1565,7 +1992,15 @@ Output:
 `Mean` computes the mean value over an [iter.Seq] sequence. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	values := []int{3, 1, 4, 2}
 	mean := gloop.Mean(gloop.Slice(values))
 	fmt.Println(mean)
@@ -1586,7 +2021,15 @@ Output:
 `Min` computes the minimum value over an [iter.Seq] sequence. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	values := []int{3, 1, 4, 2}
 	minValue := gloop.Min(gloop.Slice(values))
 	fmt.Println(minValue)
@@ -1607,7 +2050,15 @@ Output:
 `MinByComparison` computes the minimum value over an [iter.Seq] sequence using a comparison function.
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	compareStringLens := func(s1, s2 string) bool {
 		return len(s1) < len(s2)
 	}
@@ -1632,7 +2083,15 @@ CAT
 `MinByComparison2` computes the minimum key and value over an [iter.Seq2] sequence using a comparison function.
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	compareKeyValueProducts := func(k1, v1, k2, v2 int) bool {
 		return k1*v1 < k2*v2
 	}
@@ -1662,7 +2121,15 @@ Output:
 `Product` computes the product of values over an [iter.Seq] sequence. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	values := []int{3, 1, 4}
 	prod := gloop.Product(gloop.Slice(values))
 	fmt.Println(prod)
@@ -1683,7 +2150,15 @@ Output:
 `Reduce` runs a given function on each adjacent pair in an [iter.Seq] sequence and accumulates the result into a single value. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	values := []int{3, 1, 4}
 	minValue := gloop.Reduce(gloop.Slice(values), func(value1 int, value2 int) int {
 		return min(value1, value2)
@@ -1706,7 +2181,15 @@ Output:
 `Reduce2` runs a given function on each adjacent pair of keys and values in an [iter.Seq2] sequence and accumulates the result into a single key and value pair. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	minKeyValueFunc := func(k1 int, v1 int, k2 int, v2 int) (int, int) {
 		if v1 < v2 {
 			return k1, v1
@@ -1740,7 +2223,15 @@ Output:
 `Sum` computes summation over an [iter.Seq] sequence. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	values := []int{3, 1, 4}
 	sum := gloop.Sum(gloop.Slice(values))
 	fmt.Println(sum)
@@ -1761,7 +2252,15 @@ Output:
 `ToList` converts an [iter.Seq] sequence to a [container/list.List]. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	seq := func(yield func(int) bool) {
 		yield(3)
 		yield(1)
@@ -1791,7 +2290,15 @@ Output:
 `ToList2` converts an [iter.Seq2] sequence to [container/list.List] of keys and values. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	seq := func(yield func(string, int) bool) {
 		yield("CAT", 3)
 		yield("DOG", 1)
@@ -1828,7 +2335,15 @@ MOUSE
 `ToSlice` converts an [iter.Seq] sequence to a slice. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	seq := func(yield func(int) bool) {
 		yield(3)
 		yield(1)
@@ -1853,7 +2368,15 @@ Output:
 `ToSlice2` converts an [iter.Seq2] sequence to slices of keys and values. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	seq := func(yield func(string, int) bool) {
 		yield("CAT", 3)
 		yield("DOG", 1)
@@ -1879,7 +2402,15 @@ Output:
 `ToString` converts an [iter.Seq] sequence of runes to a string. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	seq := func(yield func(rune) bool) {
 		yield('C')
 		yield('A')
@@ -1906,7 +2437,15 @@ CAT
 `DeferLoop` allows looping over an [iter.Seq] sequence, yielding a defer function that can register another function to be executed at the end of the currently running loop. If multiple functions are registered, they are executed in FIFO order. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	values := []int{3, 1, 4}
 	for i, deferLoop := range gloop.DeferLoop(gloop.Slice(values)) {
 		deferLoop(func() {
@@ -1937,7 +2476,16 @@ defer loop 4
 `Parallelize` runs a function on each value in an [iter.Seq] sequence on separate goroutines. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+	"time"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	printlnWithDelay := func(s string) {
 		time.Sleep(time.Second)
 		fmt.Println(s)
@@ -1968,7 +2516,16 @@ Time Elapsed 1.00134375s
 `Parallelize2` runs a function on each value in an [iter.Seq2] sequence on separate goroutines. 
 
 ```go
-{
+package main
+
+import (
+	"fmt"
+	"time"
+
+	"github.com/alvii147/gloop"
+)
+
+func main() {
 	printlnWithDelay := func(k string, v int) {
 		time.Sleep(time.Second)
 		fmt.Println(k, v)
