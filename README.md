@@ -152,3 +152,7 @@ See more specific documentation and examples in the [features section](#features
 [iter.Seq]: https://pkg.go.dev/iter#Seq
 [iter.Seq2]: https://pkg.go.dev/iter#Seq2
 [container/list.List]: https://pkg.go.dev/container/list#List
+
+# Contributing
+
+All contributions are welcome! Please see [CONTRIBUTING.md](.github/CONTRIBUTING.md) for contribution guidelines.
