@@ -7,9 +7,7 @@ ifdef TESTCASE
 	TEST_OPTS=-run $(TESTCASE)
 endif
 
-ifeq ($(VERBOSE), 1)
-	TEST_OPTS:=$(TEST_OPTS) -v
-endif
+TEST_OPTS:=$(TEST_OPTS) -v
 
 .PHONY: test
 test:
