@@ -48,7 +48,7 @@ Once you've cloned it locally, make your desired changes.
 
 ## Update Documentation
 
-If your changes include addition/updates to code, remember to:
+If your changes include additions/updates to code, remember to:
 
 * Add/update an example of usage in `example_test.go`
 * Add/update the [features section](https://github.com/alvii147/gloop?#features) in `README.md`
