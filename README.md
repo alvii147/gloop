@@ -143,7 +143,7 @@ See more specific documentation and examples in the [features section](#features
 * [`ToSlice2`](https://pkg.go.dev/github.com/alvii147/gloop#ToSlice2) converts an [iter.Seq2] sequence to slices of keys and values.
 * [`ToString`](https://pkg.go.dev/github.com/alvii147/gloop#ToString) converts an [iter.Seq] sequence of runes to a string.
 
-### Miscellaneous
+## Miscellaneous
 
 * [`DeferLoop`](https://pkg.go.dev/github.com/alvii147/gloop#DeferLoop) allows looping over an [iter.Seq] sequence, yielding a defer function that can register another function to be executed at the end of the currently running loop. If multiple functions are registered, they are executed in FIFO order.
 * [`Parallelize`](https://pkg.go.dev/github.com/alvii147/gloop#Parallelize) runs a function on each value in an [iter.Seq] sequence on separate goroutines.
