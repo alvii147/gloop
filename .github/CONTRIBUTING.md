@@ -32,6 +32,14 @@ Install [GNU Make](https://www.gnu.org/software/make/) if you haven't already. Y
 make --version
 ```
 
+## Install golangci-lint
+
+Install [golangci-lint](https://golangci-lint.run/) if you haven't already. You can check if you already have golangci-lint install by running:
+
+```bash
+golangci-lint version
+```
+
 ### Fork this Repository
 
 Create a [fork](https://github.com/alvii147/gloop/fork) of this repository on your own GitHub account.
@@ -57,7 +65,7 @@ If your changes include additions/updates to code, remember to:
 
 To run all tests with coverage, run:
 
-```
+```bash
 make test
 ```
 
@@ -67,6 +75,14 @@ To run a specific test, set the `TESTCASE` variable:
 
 ```
 make test TESTCASE=TestName
+```
+
+## Running Linter
+
+To run the linter, run:
+
+```bash
+make lint
 ```
 
 ## Open Pull Request
