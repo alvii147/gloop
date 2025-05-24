@@ -95,6 +95,7 @@ func ExampleRandomUniform() {
 func ExampleChain() {
 	values1 := []int{3, 1, 4}
 	values2 := []int{1, 6}
+
 	for i := range gloop.Chain(gloop.Slice(values1), gloop.Slice(values2)) {
 		fmt.Println(i)
 	}
@@ -420,6 +421,7 @@ func ExampleString() {
 func ExampleZip() {
 	values1 := []string{"CAT", "DOG", "MOUSE"}
 	values2 := []int{3, 1, 4}
+
 	for value1, value2 := range gloop.Zip(gloop.Slice(values1), gloop.Slice(values2)) {
 		fmt.Println(value1, value2)
 	}
@@ -432,6 +434,7 @@ func ExampleZip() {
 func ExampleWithZipPadded() {
 	values1 := []string{"CAT", "DOG", "MOUSE", "CHICKEN"}
 	values2 := []int{3, 1, 4}
+
 	for value1, value2 := range gloop.Zip(
 		gloop.Slice(values1),
 		gloop.Slice(values2),
@@ -449,6 +452,7 @@ func ExampleWithZipPadded() {
 func ExampleWithZipPadValue1() {
 	values1 := []string{"CAT", "DOG", "MOUSE"}
 	values2 := []int{3, 1, 4, 1, 5, 9}
+
 	for value1, value2 := range gloop.Zip(
 		gloop.Slice(values1),
 		gloop.Slice(values2),
@@ -469,6 +473,7 @@ func ExampleWithZipPadValue1() {
 func ExampleWithZipPadValue2() {
 	values1 := []string{"CAT", "DOG", "MOUSE", "CHICKEN", "BUNNY", "BEAR"}
 	values2 := []int{3, 1, 4}
+
 	for value1, value2 := range gloop.Zip(
 		gloop.Slice(values1),
 		gloop.Slice(values2),

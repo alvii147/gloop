@@ -18,9 +18,11 @@ func TestWithRandomGenerator(t *testing.T) {
 
 func TestRandomUniform(t *testing.T) {
 	i := 0
+
 	for value := range gloop.RandomUniform(-2, 3, 10) {
 		require.GreaterOrEqual(t, value, -2.0)
 		require.Less(t, value, 3.0)
+
 		i++
 	}
 
@@ -30,9 +32,11 @@ func TestRandomUniform(t *testing.T) {
 func TestRandomUniformWithRandomGenerator(t *testing.T) {
 	i := 0
 	generator := rand.New(rand.NewSource(314))
+
 	for value := range gloop.RandomUniform(-2, 3, 10, gloop.WithRandomGenerator(generator)) {
 		require.GreaterOrEqual(t, value, -2.0)
 		require.Less(t, value, 3.0)
+
 		i++
 	}
 
@@ -48,6 +52,7 @@ func TestRandomUniformBreak(t *testing.T) {
 
 		require.GreaterOrEqual(t, value, -2.0)
 		require.Less(t, value, 3.0)
+
 		i++
 	}
 
@@ -71,6 +76,7 @@ func TestRandomUniformNegativeSizePanics(t *testing.T) {
 func TestRandomNormalWithRandomGenerator(t *testing.T) {
 	i := 0
 	generator := rand.New(rand.NewSource(314))
+
 	for value := range gloop.RandomNormal(5, 2, 10, gloop.WithRandomGenerator(generator)) {
 		_ = value
 		i++
@@ -81,6 +87,7 @@ func TestRandomNormalWithRandomGenerator(t *testing.T) {
 
 func TestRandomNormal(t *testing.T) {
 	i := 0
+
 	for value := range gloop.RandomNormal(5, 2, 10) {
 		_ = value
 		i++
@@ -91,8 +98,10 @@ func TestRandomNormal(t *testing.T) {
 
 func TestRandomNormalBreak(t *testing.T) {
 	i := 0
+
 	for value := range gloop.RandomNormal(5, 2, 10) {
 		_ = value
+
 		if i == 2 {
 			break
 		}

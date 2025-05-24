@@ -75,7 +75,9 @@ func Zip[V1, V2 any](
 
 		for {
 			var value1 V1
+
 			nextValue1, ok1 := next1()
+
 			if ok1 {
 				value1 = nextValue1
 			} else if options.PadValue1 != nil {
@@ -83,7 +85,9 @@ func Zip[V1, V2 any](
 			}
 
 			var value2 V2
+
 			nextValue2, ok2 := next2()
+
 			if ok2 {
 				value2 = nextValue2
 			} else if options.PadValue2 != nil {
@@ -270,6 +274,7 @@ func ZipN[V any](
 
 	return func(yield func(iter.Seq[V]) bool) {
 		nexts := list.New()
+
 		for seq := range seqs {
 			next, stop := iter.Pull(seq)
 			defer stop()
@@ -281,10 +286,15 @@ func ZipN[V any](
 			i := 0
 			exhaused := true
 			values := make([]V, nexts.Len())
+
 			for elem := range List(nexts) {
 				next := elem.Value.(func() (V, bool))
-				var ok bool
-				var value V
+
+				var (
+					ok    bool
+					value V
+				)
+
 				value, ok = next()
 				if ok {
 					exhaused = false
@@ -386,14 +396,10 @@ func ZipN2[K, V any](
 
 	return Transform(
 		ZipN(
-			Transform(seqs, func(seq iter.Seq2[K, V]) iter.Seq[KeyValuePair[K, V]] {
-				return KeyValue2(seq)
-			}),
+			Transform(seqs, KeyValue2),
 			WithZipNPadded[KeyValuePair[K, V]](options.Padded),
 			WithZipNPadValue(padPair),
 		),
-		func(seq iter.Seq[KeyValuePair[K, V]]) iter.Seq2[K, V] {
-			return KeyValue(seq)
-		},
+		KeyValue,
 	)
 }

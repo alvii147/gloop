@@ -30,6 +30,7 @@ func permutations[V any](
 		}
 
 		visited.PushBack(elem.Value)
+
 		visitedIdx[i] = true
 
 		if !permutations(size, yield, l, visited, visitedIdx) {
@@ -37,6 +38,7 @@ func permutations[V any](
 		}
 
 		visited.Remove(visited.Back())
+
 		visitedIdx[i] = false
 	}
 
@@ -72,6 +74,7 @@ func permutations2[K, V any](
 			for keyElem, valueElem := range Zip(List(visitedKeys), List(visitedValues)) {
 				key := keyElem.Value.(K)
 				value := valueElem.Value.(V)
+
 				if !yield(key, value) {
 					return
 				}
@@ -82,11 +85,13 @@ func permutations2[K, V any](
 	i := 0
 	keyElem := listKeys.Front()
 	valueElem := listValues.Front()
+
 	for keyElem != nil && valueElem != nil {
 		if visitedIdx[i] {
 			i++
 			keyElem = keyElem.Next()
 			valueElem = valueElem.Next()
+
 			continue
 		}
 
@@ -120,6 +125,7 @@ func Permutations2[K, V any](seq iter.Seq2[K, V], size int) iter.Seq[iter.Seq2[K
 	}
 
 	listKeys, listValues := ToList2(seq)
+
 	return func(yield func(iter.Seq2[K, V]) bool) {
 		permutations2(size, yield, listKeys, listValues, list.New(), list.New(), make([]bool, listKeys.Len()))
 	}

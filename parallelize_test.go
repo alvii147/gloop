@@ -51,6 +51,7 @@ func TestParallelizeSlice(t *testing.T) {
 
 	done := make(chan struct{}, 1)
 	channelOverflow := false
+
 	go func() {
 		gloop.Parallelize(gloop.Slice(values), func(v string) {
 			select {
@@ -71,7 +72,9 @@ func TestParallelizeSlice(t *testing.T) {
 	require.False(t, channelOverflow)
 
 	close(valuesCh)
+
 	gotValues := make([]string, 0)
+
 	for v := range valuesCh {
 		gotValues = append(gotValues, v)
 	}
@@ -85,6 +88,7 @@ func TestParallelizeString(t *testing.T) {
 
 	done := make(chan struct{}, 1)
 	channelOverflow := false
+
 	go func() {
 		gloop.Parallelize(gloop.String(s), func(r rune) {
 			select {
@@ -105,7 +109,9 @@ func TestParallelizeString(t *testing.T) {
 	require.False(t, channelOverflow)
 
 	close(rCh)
+
 	gotRunes := make([]rune, 0)
+
 	for r := range rCh {
 		gotRunes = append(gotRunes, r)
 	}
@@ -124,6 +130,7 @@ func TestParallelize2(t *testing.T) {
 
 	done := make(chan struct{}, 1)
 	channelOverflow := false
+
 	go func() {
 		gloop.Parallelize2(gloop.Map(m), func(k string, v int) {
 			select {
@@ -176,6 +183,7 @@ func TestParallelizeCancelContext(t *testing.T) {
 
 	done := make(chan struct{}, 1)
 	functionCalled := false
+
 	go func() {
 		gloop.Parallelize(gloop.Slice(values), func(v string) {
 			functionCalled = true
@@ -200,6 +208,7 @@ func TestParallelize2CancelContext(t *testing.T) {
 
 	done := make(chan struct{}, 1)
 	functionCalled := false
+
 	go func() {
 		gloop.Parallelize2(gloop.Enumerate(gloop.Slice(values)), func(_ int, _ string) {
 			functionCalled = true
@@ -218,7 +227,11 @@ func TestParallelize2CancelContext(t *testing.T) {
 
 func TestParallelizeSingleThreaded(t *testing.T) {
 	values := []string{"a", "b", "c"}
-	var concurrentCallers atomic.Int64
+
+	var (
+		concurrentCallers    atomic.Int64
+		maxConcurrentCallers atomic.Int64
+	)
 
 	done := make(chan struct{}, 1)
 	go func() {
@@ -226,7 +239,7 @@ func TestParallelizeSingleThreaded(t *testing.T) {
 			concurrentCallers.Add(1)
 			defer concurrentCallers.Add(-1)
 
-			require.EqualValues(t, concurrentCallers.Load(), 1)
+			maxConcurrentCallers.Store(max(maxConcurrentCallers.Load(), concurrentCallers.Load()))
 		}, gloop.WithParallelizeMaxThreads(1))
 		done <- struct{}{}
 	}()
@@ -236,11 +249,17 @@ func TestParallelizeSingleThreaded(t *testing.T) {
 	case <-time.After(time.Second * 10):
 		t.Fatal("done signal took too long")
 	}
+
+	require.EqualValues(t, 1, maxConcurrentCallers.Load())
 }
 
 func TestParallelize2SingleThreaded(t *testing.T) {
 	values := []string{"a", "b", "c"}
-	var concurrentCallers atomic.Int64
+
+	var (
+		concurrentCallers    atomic.Int64
+		maxConcurrentCallers atomic.Int64
+	)
 
 	done := make(chan struct{}, 1)
 	go func() {
@@ -248,7 +267,7 @@ func TestParallelize2SingleThreaded(t *testing.T) {
 			concurrentCallers.Add(1)
 			defer concurrentCallers.Add(-1)
 
-			require.EqualValues(t, concurrentCallers.Load(), 1)
+			maxConcurrentCallers.Store(max(maxConcurrentCallers.Load(), concurrentCallers.Load()))
 		}, gloop.WithParallelizeMaxThreads(1))
 		done <- struct{}{}
 	}()
@@ -258,4 +277,6 @@ func TestParallelize2SingleThreaded(t *testing.T) {
 	case <-time.After(time.Second * 10):
 		t.Fatal("done signal took too long")
 	}
+
+	require.EqualValues(t, 1, maxConcurrentCallers.Load())
 }

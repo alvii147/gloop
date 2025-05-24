@@ -13,6 +13,7 @@ func TestIntervalInt(t *testing.T) {
 
 	for value := range gloop.Interval(3, 7, 2) {
 		require.Equal(t, wantValues[i], value)
+
 		i++
 	}
 
@@ -24,7 +25,8 @@ func TestIntervalFloat(t *testing.T) {
 	i := 0
 
 	for value := range gloop.Interval(2, 5, 0.5) {
-		require.Equal(t, wantValues[i], value)
+		require.InDelta(t, wantValues[i], value, 0.01)
+
 		i++
 	}
 
@@ -37,6 +39,7 @@ func TestIntervalNegativeStep(t *testing.T) {
 
 	for value := range gloop.Interval(10, 3, -3) {
 		require.Equal(t, wantValues[i], value)
+
 		i++
 	}
 
@@ -67,6 +70,7 @@ func TestIntervalClosed(t *testing.T) {
 
 	for value := range gloop.Interval(3, 7, 2, gloop.WithIntervalClosed(true)) {
 		require.Equal(t, wantValues[i], value)
+
 		i++
 	}
 
@@ -79,6 +83,7 @@ func TestIntervalClosedNegativeStep(t *testing.T) {
 
 	for value := range gloop.Interval(10, 1, -3, gloop.WithIntervalClosed(true)) {
 		require.Equal(t, wantValues[i], value)
+
 		i++
 	}
 
@@ -95,6 +100,7 @@ func TestIntervalBreak(t *testing.T) {
 		}
 
 		require.Equal(t, wantValues[i], value)
+
 		i++
 	}
 

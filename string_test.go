@@ -13,6 +13,7 @@ func TestString(t *testing.T) {
 
 	for r := range gloop.String("Fizz") {
 		require.Equal(t, wantRunes[i], r)
+
 		i++
 	}
 
@@ -29,6 +30,7 @@ func TestStringBreak(t *testing.T) {
 		}
 
 		require.Equal(t, wantRunes[i], r)
+
 		i++
 	}
 

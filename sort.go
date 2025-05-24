@@ -27,6 +27,7 @@ func SortByComparison[V any](
 	values := ToSlice(seq)
 	sort.Slice(values, func(i int, j int) bool {
 		isLess := less(values[i], values[j])
+
 		return (ascending && isLess) || (!ascending && !isLess)
 	})
 

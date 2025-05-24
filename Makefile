@@ -7,12 +7,16 @@ ifdef TESTCASE
 	TEST_OPTS=-run $(TESTCASE)
 endif
 
-TEST_OPTS:=$(TEST_OPTS) -v
+TEST_OPTS:=$(TEST_OPTS) -v -count=1
 
 .PHONY: test
 test:
 	$(GO) test $(TEST_OPTS) $(PKG)
-	@if [ -z "$(TESTCASE)" ]; then\
-		$(GO) tool cover -func $(COV);\
-	fi
-	@rm -f $(COV)
+
+.PHONY: race
+race:
+	$(GO) test -race $(TEST_OPTS) $(PKG)
+
+.PHONY: cover
+cover:
+	$(GO) tool cover -func $(COV);

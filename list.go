@@ -34,6 +34,7 @@ func ToList[V any](seq iter.Seq[V]) *list.List {
 func ToList2[K, V any](seq iter.Seq2[K, V]) (*list.List, *list.List) {
 	listKeys := list.New()
 	listValues := list.New()
+
 	for key, value := range seq {
 		listKeys.PushBack(key)
 		listValues.PushBack(value)

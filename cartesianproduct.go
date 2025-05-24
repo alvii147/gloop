@@ -25,6 +25,7 @@ func cartesianProduct[V any](
 
 	for value := range seq {
 		visited.PushBack(value)
+
 		if !cartesianProduct(seq, size, yield, visited) {
 			return false
 		}
@@ -61,6 +62,7 @@ func cartesianProduct2[K, V any](
 			for keyElem, valueElem := range Zip(List(visitedKeys), List(visitedValues)) {
 				key := keyElem.Value.(K)
 				value := valueElem.Value.(V)
+
 				if !yield(key, value) {
 					return
 				}
@@ -71,6 +73,7 @@ func cartesianProduct2[K, V any](
 	for key, value := range seq {
 		visitedKeys.PushBack(key)
 		visitedValues.PushBack(value)
+
 		if !cartesianProduct2(seq, size, yield, visitedKeys, visitedValues) {
 			return false
 		}

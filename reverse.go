@@ -8,6 +8,7 @@ import (
 // descending index.
 func Reverse[V any](seq iter.Seq[V]) iter.Seq[V] {
 	l := ToList(seq)
+
 	return func(yield func(V) bool) {
 		for l.Len() > 0 {
 			value := l.Remove(l.Back()).(V)
@@ -22,10 +23,12 @@ func Reverse[V any](seq iter.Seq[V]) iter.Seq[V] {
 // descending index.
 func Reverse2[K, V any](seq iter.Seq2[K, V]) iter.Seq2[K, V] {
 	listKeys, listValues := ToList2(seq)
+
 	return func(yield func(K, V) bool) {
 		for listKeys.Len() > 0 && listValues.Len() > 0 {
 			key := listKeys.Remove(listKeys.Back()).(K)
 			value := listValues.Remove(listValues.Back()).(V)
+
 			if !yield(key, value) {
 				return
 			}

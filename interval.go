@@ -50,6 +50,7 @@ func Interval[N Number](
 	}
 
 	var loopCond func(i N, stop N) bool
+
 	switch {
 	case step > 0 && options.Closed:
 		loopCond = func(i N, stop N) bool {

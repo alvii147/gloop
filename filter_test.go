@@ -17,6 +17,7 @@ func TestFilterSliceOdd(t *testing.T) {
 		return value%2 == 1
 	}) {
 		require.Equal(t, wantValues[i], value)
+
 		i++
 	}
 
@@ -32,6 +33,7 @@ func TestFilterSliceLen(t *testing.T) {
 		return len(value) == 4
 	}) {
 		require.Equal(t, wantValues[i], value)
+
 		i++
 	}
 
@@ -45,6 +47,7 @@ func TestFilterStringLower(t *testing.T) {
 
 	for r := range gloop.Filter(gloop.String(s), unicode.IsLower) {
 		require.Equal(t, wantRunes[i], r)
+
 		i++
 	}
 
@@ -64,6 +67,7 @@ func TestFilterBreak(t *testing.T) {
 		}
 
 		require.Equal(t, wantValues[i], value)
+
 		i++
 	}
 
@@ -83,6 +87,7 @@ func TestFilter2MapPositiveProduct(t *testing.T) {
 	}) {
 		require.Equal(t, -1, key)
 		require.Equal(t, -2, value)
+
 		i++
 	}
 
@@ -102,6 +107,7 @@ func TestFilter2MapCorrectLen(t *testing.T) {
 	}) {
 		require.Equal(t, "Buzz", key)
 		require.Equal(t, 4, value)
+
 		i++
 	}
 
@@ -122,6 +128,7 @@ func TestFilter2Break(t *testing.T) {
 
 		require.Equal(t, i, idx)
 		require.Equal(t, wantValues[i], value)
+
 		i++
 	}
 

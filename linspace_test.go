@@ -12,7 +12,8 @@ func TestLinspace(t *testing.T) {
 	i := 0
 
 	for value := range gloop.Linspace(2, 3, 5) {
-		require.Equal(t, wantValues[i], value)
+		require.InDelta(t, wantValues[i], value, 0.01)
+
 		i++
 	}
 
@@ -24,7 +25,8 @@ func TestLinspaceClosed(t *testing.T) {
 	i := 0
 
 	for value := range gloop.Linspace(2, 3, 5, gloop.WithLinspaceClosed(true)) {
-		require.Equal(t, wantValues[i], value)
+		require.InDelta(t, wantValues[i], value, 0.01)
+
 		i++
 	}
 
@@ -36,7 +38,8 @@ func TestLinspaceBackwards(t *testing.T) {
 	i := 0
 
 	for value := range gloop.Linspace(10, 4, 5) {
-		require.Equal(t, wantValues[i], value)
+		require.InDelta(t, wantValues[i], value, 0.01)
+
 		i++
 	}
 
@@ -48,7 +51,8 @@ func TestLinspaceBackwardsClosed(t *testing.T) {
 	i := 0
 
 	for value := range gloop.Linspace(10, 4, 5, gloop.WithLinspaceClosed(true)) {
-		require.Equal(t, wantValues[i], value)
+		require.InDelta(t, wantValues[i], value, 0.01)
+
 		i++
 	}
 
@@ -64,7 +68,8 @@ func TestLinspaceBreak(t *testing.T) {
 			break
 		}
 
-		require.Equal(t, wantValues[i], value)
+		require.InDelta(t, wantValues[i], value, 0.001)
+
 		i++
 	}
 

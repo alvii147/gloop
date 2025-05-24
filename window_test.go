@@ -23,6 +23,7 @@ func TestWindowSlice(t *testing.T) {
 	for seq := range gloop.Window(gloop.Slice(values), 3) {
 		window := gloop.ToSlice(seq)
 		require.Equal(t, wantWindows[i], window)
+
 		i++
 	}
 
@@ -43,6 +44,7 @@ func TestWindowString(t *testing.T) {
 	for seq := range gloop.Window(gloop.String(s), 4) {
 		window := gloop.ToString(seq)
 		require.Equal(t, wantWindows[i], window)
+
 		i++
 	}
 
@@ -55,8 +57,10 @@ func TestWindowBreak(t *testing.T) {
 	for seq := range gloop.Window(gloop.Slice(values), 3) {
 		for value := range seq {
 			require.Equal(t, 3, value)
+
 			break
 		}
+
 		break
 	}
 }
@@ -103,6 +107,7 @@ func TestWindow2Slice(t *testing.T) {
 		keys, window := gloop.ToSlice2(seq)
 		require.Equal(t, wantKeys[i], keys)
 		require.Equal(t, wantWindows[i], window)
+
 		i++
 	}
 
@@ -130,8 +135,10 @@ func TestWindow2String(t *testing.T) {
 	for seq := range gloop.Window2(gloop.Enumerate(gloop.String(s)), 4) {
 		keys, windowRunes := gloop.ToSlice2(seq)
 		window := string(windowRunes)
+
 		require.Equal(t, wantKeys[i], keys)
 		require.Equal(t, wantWindows[i], window)
+
 		i++
 	}
 
@@ -150,8 +157,10 @@ func TestWindow2Break(t *testing.T) {
 		for key, value := range seq {
 			require.Equal(t, 0, key)
 			require.Equal(t, 3, value)
+
 			break
 		}
+
 		i++
 	}
 }

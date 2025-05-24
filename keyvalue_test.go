@@ -27,6 +27,7 @@ func TestKeyValue(t *testing.T) {
 	for key, value := range gloop.KeyValue(gloop.Slice(pairs)) {
 		require.Equal(t, pairs[i].Key, key)
 		require.Equal(t, pairs[i].Value, value)
+
 		i++
 	}
 
@@ -68,6 +69,7 @@ func TestKeyValueBreak(t *testing.T) {
 
 		require.Equal(t, pairs[i].Key, key)
 		require.Equal(t, pairs[i].Value, value)
+
 		i++
 	}
 
@@ -107,6 +109,7 @@ func TestKeyValue2(t *testing.T) {
 	i := 0
 	for pair := range gloop.KeyValue2(seq) {
 		require.Equal(t, wantPairs[i], pair)
+
 		i++
 	}
 

@@ -50,6 +50,7 @@ func TestZipEqualLen(t *testing.T) {
 	for value1, value2 := range gloop.Zip(gloop.Slice(values1), gloop.Slice(values2)) {
 		require.Equal(t, values1[i], value1)
 		require.Equal(t, values2[i], value2)
+
 		i++
 	}
 
@@ -64,6 +65,7 @@ func TestZipUnequalLen(t *testing.T) {
 	for value1, value2 := range gloop.Zip(gloop.Slice(values1), gloop.Slice(values2)) {
 		require.Equal(t, values1[i], value1)
 		require.Equal(t, values2[i], value2)
+
 		i++
 	}
 
@@ -84,6 +86,7 @@ func TestZipPaddedZeroString(t *testing.T) {
 	) {
 		require.Equal(t, wantValues1[i], value1)
 		require.Equal(t, wantValues2[i], value2)
+
 		i++
 	}
 
@@ -104,6 +107,7 @@ func TestZipPaddedZeroInt(t *testing.T) {
 	) {
 		require.Equal(t, wantValues1[i], value1)
 		require.Equal(t, wantValues2[i], value2)
+
 		i++
 	}
 
@@ -125,6 +129,7 @@ func TestZipPadValue1(t *testing.T) {
 	) {
 		require.Equal(t, wantValues1[i], value1)
 		require.Equal(t, wantValues2[i], value2)
+
 		i++
 	}
 
@@ -146,6 +151,7 @@ func TestZipPadValue2(t *testing.T) {
 	) {
 		require.Equal(t, wantValues1[i], value1)
 		require.Equal(t, wantValues2[i], value2)
+
 		i++
 	}
 
@@ -164,6 +170,7 @@ func TestZipBreak(t *testing.T) {
 
 		require.Equal(t, values1[i], value1)
 		require.Equal(t, values2[i], value2)
+
 		i++
 	}
 
@@ -219,7 +226,7 @@ func TestWithZip2PadValue2(t *testing.T) {
 	gloop.WithZip2PadValue2[string, int, rune](value)(&options)
 
 	require.NotNil(t, options.PadValue2)
-	require.Equal(t, value, *options.PadValue2)
+	require.InDelta(t, value, *options.PadValue2, 0.001)
 }
 
 func TestZip2EqualLen(t *testing.T) {
@@ -285,6 +292,7 @@ func TestZip2EqualLen(t *testing.T) {
 	for pair1, pair2 := range gloop.Zip2(seq1, seq2) {
 		require.Equal(t, wantPairs1[i], pair1)
 		require.Equal(t, wantPairs2[i], pair2)
+
 		i++
 	}
 
@@ -358,6 +366,7 @@ func TestZip2UnequalLen(t *testing.T) {
 	for pair1, pair2 := range gloop.Zip2(seq1, seq2) {
 		require.Equal(t, wantPairs1[i], pair1)
 		require.Equal(t, wantPairs2[i], pair2)
+
 		i++
 	}
 
@@ -411,6 +420,7 @@ func TestZip2PaddedZeroKeyValue1(t *testing.T) {
 	) {
 		require.Equal(t, wantPairs1[i], pair1)
 		require.Equal(t, wantPairs2[i], pair2)
+
 		i++
 	}
 
@@ -464,6 +474,7 @@ func TestZip2PaddedZeroKeyValue2(t *testing.T) {
 	) {
 		require.Equal(t, wantPairs1[i], pair1)
 		require.Equal(t, wantPairs2[i], pair2)
+
 		i++
 	}
 
@@ -518,6 +529,7 @@ func TestZip2PadKey1(t *testing.T) {
 	) {
 		require.Equal(t, wantPairs1[i], pair1)
 		require.Equal(t, wantPairs2[i], pair2)
+
 		i++
 	}
 
@@ -572,6 +584,7 @@ func TestZip2PadValue1(t *testing.T) {
 	) {
 		require.Equal(t, wantPairs1[i], pair1)
 		require.Equal(t, wantPairs2[i], pair2)
+
 		i++
 	}
 
@@ -626,6 +639,7 @@ func TestZip2PadKey2(t *testing.T) {
 	) {
 		require.Equal(t, wantPairs1[i], pair1)
 		require.Equal(t, wantPairs2[i], pair2)
+
 		i++
 	}
 
@@ -680,6 +694,7 @@ func TestZip2PadValue2(t *testing.T) {
 	) {
 		require.Equal(t, wantPairs1[i], pair1)
 		require.Equal(t, wantPairs2[i], pair2)
+
 		i++
 	}
 
@@ -758,6 +773,7 @@ func TestZipNEqualLen(t *testing.T) {
 	i := 0
 	for seq := range gloop.ZipN(gloop.Collect(seq1, seq2, seq3)) {
 		require.Equal(t, wantValues[i], gloop.ToSlice(seq))
+
 		i++
 	}
 
@@ -776,6 +792,7 @@ func TestZipNUnequalLen(t *testing.T) {
 	i := 0
 	for seq := range gloop.ZipN(gloop.Collect(seq1, seq2, seq3)) {
 		require.Equal(t, wantValues[i], gloop.ToSlice(seq))
+
 		i++
 	}
 
@@ -798,6 +815,7 @@ func TestZipNPaddedZeroValue(t *testing.T) {
 		gloop.WithZipNPadded[int](true),
 	) {
 		require.Equal(t, wantValues[i], gloop.ToSlice(seq))
+
 		i++
 	}
 
@@ -821,6 +839,7 @@ func TestZipNPadValue(t *testing.T) {
 		gloop.WithZipNPadValue(-1),
 	) {
 		require.Equal(t, wantValues[i], gloop.ToSlice(seq))
+
 		i++
 	}
 
@@ -843,6 +862,7 @@ func TestZipNBreak(t *testing.T) {
 		}
 
 		require.Equal(t, wantValues[i], gloop.ToSlice(seq))
+
 		i++
 	}
 
@@ -904,10 +924,12 @@ func TestZipN2EqualLen(t *testing.T) {
 	}
 
 	i := 0
+
 	for seq := range gloop.ZipN2(gloop.Collect(seq1, seq2, seq3)) {
 		keys, values := gloop.ToSlice2(seq)
 		require.Equal(t, wantKeys[i], keys)
 		require.Equal(t, wantValues[i], values)
+
 		i++
 	}
 
@@ -963,10 +985,12 @@ func TestZipN2UnequalLen(t *testing.T) {
 	}
 
 	i := 0
+
 	for seq := range gloop.ZipN2(gloop.Collect(seq1, seq2, seq3)) {
 		keys, values := gloop.ToSlice2(seq)
 		require.Equal(t, wantKeys[i], keys)
 		require.Equal(t, wantValues[i], values)
+
 		i++
 	}
 
@@ -1024,6 +1048,7 @@ func TestZipN2Padded(t *testing.T) {
 	}
 
 	i := 0
+
 	for seq := range gloop.ZipN2(
 		gloop.Collect(seq1, seq2, seq3),
 		gloop.WithZipN2Padded[string, int](true),
@@ -1031,6 +1056,7 @@ func TestZipN2Padded(t *testing.T) {
 		keys, values := gloop.ToSlice2(seq)
 		require.Equal(t, wantKeys[i], keys)
 		require.Equal(t, wantValues[i], values)
+
 		i++
 	}
 
@@ -1088,6 +1114,7 @@ func TestZipN2PadKey(t *testing.T) {
 	}
 
 	i := 0
+
 	for seq := range gloop.ZipN2(
 		gloop.Collect(seq1, seq2, seq3),
 		gloop.WithZipN2Padded[string, int](true),
@@ -1096,6 +1123,7 @@ func TestZipN2PadKey(t *testing.T) {
 		keys, values := gloop.ToSlice2(seq)
 		require.Equal(t, wantKeys[i], keys)
 		require.Equal(t, wantValues[i], values)
+
 		i++
 	}
 
@@ -1153,6 +1181,7 @@ func TestZipN2PadValue(t *testing.T) {
 	}
 
 	i := 0
+
 	for seq := range gloop.ZipN2(
 		gloop.Collect(seq1, seq2, seq3),
 		gloop.WithZipN2Padded[string, int](true),
@@ -1161,6 +1190,7 @@ func TestZipN2PadValue(t *testing.T) {
 		keys, values := gloop.ToSlice2(seq)
 		require.Equal(t, wantKeys[i], keys)
 		require.Equal(t, wantValues[i], values)
+
 		i++
 	}
 
@@ -1218,6 +1248,7 @@ func TestZipN2PadKeyPadValue(t *testing.T) {
 	}
 
 	i := 0
+
 	for seq := range gloop.ZipN2(
 		gloop.Collect(seq1, seq2, seq3),
 		gloop.WithZipN2Padded[string, int](true),
@@ -1227,6 +1258,7 @@ func TestZipN2PadKeyPadValue(t *testing.T) {
 		keys, values := gloop.ToSlice2(seq)
 		require.Equal(t, wantKeys[i], keys)
 		require.Equal(t, wantValues[i], values)
+
 		i++
 	}
 

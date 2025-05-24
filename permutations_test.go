@@ -40,6 +40,7 @@ func TestPermutationsSlice(t *testing.T) {
 	for seq := range gloop.Permutations(gloop.Slice(values), 3) {
 		perm := gloop.ToSlice(seq)
 		require.Equal(t, wantPerms[i], perm)
+
 		i++
 	}
 
@@ -61,6 +62,7 @@ func TestPermutationsSliceFullLength(t *testing.T) {
 	for seq := range gloop.Permutations(gloop.Slice(values), 3) {
 		perm := gloop.ToSlice(seq)
 		require.Equal(t, wantPerms[i], perm)
+
 		i++
 	}
 
@@ -75,6 +77,7 @@ func TestPermutationsString(t *testing.T) {
 	for seq := range gloop.Permutations(gloop.String(s), 2) {
 		perm := gloop.ToString(seq)
 		require.Equal(t, wantPerms[i], perm)
+
 		i++
 	}
 
@@ -89,6 +92,7 @@ func TestPermutationsStringFullLength(t *testing.T) {
 	for seq := range gloop.Permutations(gloop.String(s), 3) {
 		perm := gloop.ToString(seq)
 		require.Equal(t, wantPerms[i], perm)
+
 		i++
 	}
 
@@ -106,8 +110,10 @@ func TestPermutationsBreak(t *testing.T) {
 
 		for value := range seq {
 			require.Equal(t, 3, value)
+
 			break
 		}
+
 		i++
 	}
 }
@@ -188,6 +194,7 @@ func TestPermutations2Slice(t *testing.T) {
 		keys, perm := gloop.ToSlice2(seq)
 		require.Equal(t, wantKeys[i], keys)
 		require.Equal(t, wantPerms[i], perm)
+
 		i++
 	}
 
@@ -218,6 +225,7 @@ func TestPermutations2SliceFullLength(t *testing.T) {
 		keys, perm := gloop.ToSlice2(seq)
 		require.Equal(t, wantKeys[i], keys)
 		require.Equal(t, wantPerms[i], perm)
+
 		i++
 	}
 
@@ -235,8 +243,10 @@ func TestPermutations2String(t *testing.T) {
 	for seq := range gloop.Permutations2(gloop.Enumerate(gloop.String(s)), 2) {
 		keys, permRunes := gloop.ToSlice2(seq)
 		perm := string(permRunes)
+
 		require.Equal(t, wantKeys[i], keys)
 		require.Equal(t, wantPerms[i], perm)
+
 		i++
 	}
 
@@ -254,8 +264,10 @@ func TestPermutationsString2FullLength(t *testing.T) {
 	for seq := range gloop.Permutations2(gloop.Enumerate(gloop.String(s)), 3) {
 		keys, permRunes := gloop.ToSlice2(seq)
 		perm := string(permRunes)
+
 		require.Equal(t, wantKeys[i], keys)
 		require.Equal(t, wantPerms[i], perm)
+
 		i++
 	}
 
@@ -274,8 +286,10 @@ func TestPermutations2Break(t *testing.T) {
 		for key, value := range seq {
 			require.Equal(t, 0, key)
 			require.Equal(t, 3, value)
+
 			break
 		}
+
 		i++
 	}
 }

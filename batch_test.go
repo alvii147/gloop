@@ -19,6 +19,7 @@ func TestBatchSliceDivisibleLength(t *testing.T) {
 	for seq := range gloop.Batch(gloop.Slice(values), 3) {
 		batch := gloop.ToSlice(seq)
 		require.Equal(t, wantBatches[i], batch)
+
 		i++
 	}
 
@@ -37,6 +38,7 @@ func TestBatchSliceIndivisibleLength(t *testing.T) {
 	for seq := range gloop.Batch(gloop.Slice(values), 4) {
 		batch := gloop.ToSlice(seq)
 		require.Equal(t, wantBatches[i], batch)
+
 		i++
 	}
 
@@ -54,6 +56,7 @@ func TestBatchStringDivisibleLength(t *testing.T) {
 	for seq := range gloop.Batch(gloop.String(s), 4) {
 		batch := gloop.ToString(seq)
 		require.Equal(t, wantBatches[i], batch)
+
 		i++
 	}
 
@@ -72,6 +75,7 @@ func TestBatchStringIndivisibleLength(t *testing.T) {
 	for seq := range gloop.Batch(gloop.String(s), 3) {
 		batch := gloop.ToString(seq)
 		require.Equal(t, wantBatches[i], batch)
+
 		i++
 	}
 
@@ -89,8 +93,10 @@ func TestBatchBreak(t *testing.T) {
 
 		for value := range seq {
 			require.Equal(t, 3, value)
+
 			break
 		}
+
 		i++
 	}
 }
@@ -129,6 +135,7 @@ func TestBatch2DivisibleLength(t *testing.T) {
 		keys, batch := gloop.ToSlice2(seq)
 		require.Equal(t, wantKeys[i], keys)
 		require.Equal(t, wantBatches[i], batch)
+
 		i++
 	}
 
@@ -153,6 +160,7 @@ func TestBatch2IndivisibleLength(t *testing.T) {
 		keys, batch := gloop.ToSlice2(seq)
 		require.Equal(t, wantKeys[i], keys)
 		require.Equal(t, wantBatches[i], batch)
+
 		i++
 	}
 
@@ -171,8 +179,10 @@ func TestBatch2Break(t *testing.T) {
 		for key, value := range seq {
 			require.Equal(t, 0, key)
 			require.Equal(t, 3, value)
+
 			break
 		}
+
 		i++
 	}
 }

@@ -10,8 +10,10 @@ import (
 func TestSlice(t *testing.T) {
 	values := []int{3, 4, 5}
 	i := 0
+
 	for value := range gloop.Slice(values) {
 		require.Equal(t, values[i], value)
+
 		i++
 	}
 
@@ -29,6 +31,7 @@ func TestSliceBreak(t *testing.T) {
 		}
 
 		require.Equal(t, wantValues[i], value)
+
 		i++
 	}
 

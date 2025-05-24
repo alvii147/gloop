@@ -17,7 +17,7 @@ func TestMaxInt(t *testing.T) {
 func TestMaxFloat(t *testing.T) {
 	values := []float64{2.31, -0.03, 0.22}
 	minValue := gloop.Max(gloop.Slice(values))
-	require.Equal(t, 2.31, minValue)
+	require.InDelta(t, 2.31, minValue, 0.001)
 }
 
 func TestMaxString(t *testing.T) {

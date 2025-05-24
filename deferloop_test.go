@@ -13,13 +13,16 @@ func TestDeferLoop(t *testing.T) {
 	wantOperations := []string{"Fizz", "Buzz", "Fizz", "Buzz", "Fizz", "Buzz"}
 
 	i := 0
+
 	for value, deferLoop := range gloop.DeferLoop(gloop.Slice(values)) {
 		deferLoop(func() {
 			operations = append(operations, "Buzz")
 		})
 
 		operations = append(operations, "Fizz")
+
 		require.Equal(t, values[i], value)
+
 		i++
 	}
 
@@ -32,6 +35,7 @@ func TestDeferLoopMultiple(t *testing.T) {
 	wantOperations := []string{"Fizz", "Buzz", "Bazz", "Fizz", "Buzz", "Bazz", "Fizz", "Buzz", "Bazz"}
 
 	i := 0
+
 	for value, deferLoop := range gloop.DeferLoop(gloop.Slice(values)) {
 		deferLoop(func() {
 			operations = append(operations, "Bazz")
@@ -42,7 +46,9 @@ func TestDeferLoopMultiple(t *testing.T) {
 		})
 
 		operations = append(operations, "Fizz")
+
 		require.Equal(t, values[i], value)
+
 		i++
 	}
 
@@ -55,9 +61,12 @@ func TestDeferLoopNoDefer(t *testing.T) {
 	wantOperations := []string{"Fizz", "Fizz", "Fizz"}
 
 	i := 0
+
 	for value := range gloop.DeferLoop(gloop.Slice(values)) {
 		operations = append(operations, "Fizz")
+
 		require.Equal(t, values[i], value)
+
 		i++
 	}
 
@@ -78,7 +87,9 @@ func TestDeferLoopDeferOnce(t *testing.T) {
 		}
 
 		operations = append(operations, "Fizz")
+
 		require.Equal(t, values[i], value)
+
 		i++
 	}
 
@@ -96,7 +107,9 @@ func TestDeferLoopBreak(t *testing.T) {
 		})
 
 		operations = append(operations, "Fizz")
+
 		require.Equal(t, 3, value)
+
 		break
 	}
 
@@ -109,11 +122,14 @@ func TestDeferLoopNilSafety(t *testing.T) {
 	wantOperations := []string{"Fizz", "Fizz", "Fizz"}
 
 	i := 0
+
 	for value, deferLoop := range gloop.DeferLoop(gloop.Slice(values)) {
 		deferLoop(nil)
 
 		operations = append(operations, "Fizz")
+
 		require.Equal(t, values[i], value)
+
 		i++
 	}
 

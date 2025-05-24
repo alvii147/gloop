@@ -12,8 +12,10 @@ func Window[V any](seq iter.Seq[V], size int) iter.Seq[iter.Seq[V]] {
 	}
 
 	l := ToList(seq)
+
 	return func(yield func(iter.Seq[V]) bool) {
 		firstElem := l.Front()
+
 		for range l.Len() - size + 1 {
 			if !yield(func(yield func(V) bool) {
 				elem := firstElem
@@ -41,9 +43,11 @@ func Window2[K, V any](seq iter.Seq2[K, V], size int) iter.Seq[iter.Seq2[K, V]] 
 	}
 
 	listKeys, listValues := ToList2(seq)
+
 	return func(yield func(iter.Seq2[K, V]) bool) {
 		firstKeyElem := listKeys.Front()
 		firstValueElem := listValues.Front()
+
 		for range listKeys.Len() - size + 1 {
 			if !yield(func(yield func(K, V) bool) {
 				keyElem := firstKeyElem

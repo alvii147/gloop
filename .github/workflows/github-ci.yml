@@ -1,6 +1,3 @@
-# This workflow will build a golang project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
-
 name: GitHub CI
 
 on:
@@ -10,8 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-
-  static:
+  go-mod:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -21,13 +17,33 @@ jobs:
       with:
         go-version: '1.23'
 
-    - name: Run Go vet
+    - name: Check go mod is up to date
       run: |
-        go vet ./...
+        go mod tidy
+        git diff --exit-code
 
-    - name: Run Go fmt
+    - name: Check vendor packages are up to date
       run: |
-        (gofmt -l . | grep -v vendor/ && exit 1 || exit 0)
+        go mod vendor
+        git diff --exit-code
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.23'
+
+    - name: Install golangci-lint
+      run: |
+        curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/HEAD/install.sh | sh -s -- -b $(go env GOPATH)/bin
+
+    - name: Run lint check
+      run: |
+        make lint
 
   tests:
     runs-on: ubuntu-latest
@@ -42,3 +58,7 @@ jobs:
     - name: Run tests
       run: |
         make test
+
+    - name: Show coverage
+      run: |
+        make cover

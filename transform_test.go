@@ -18,6 +18,7 @@ func TestTransformSliceDoubleValue(t *testing.T) {
 		return value * 2
 	}) {
 		require.Equal(t, values[i]*2, value)
+
 		i++
 	}
 
@@ -31,6 +32,7 @@ func TestTransformSliceItoa(t *testing.T) {
 
 	for value := range gloop.Transform(gloop.Slice(values), strconv.Itoa) {
 		require.Equal(t, wantValues[i], value)
+
 		i++
 	}
 
@@ -44,6 +46,7 @@ func TestTransformSliceTrimSpace(t *testing.T) {
 
 	for value := range gloop.Transform(gloop.Slice(values), strings.TrimSpace) {
 		require.Equal(t, wantValues[i], value)
+
 		i++
 	}
 
@@ -57,6 +60,7 @@ func TestTransformStringToLower(t *testing.T) {
 
 	for r := range gloop.Transform(gloop.String(s), unicode.ToLower) {
 		require.Equal(t, wantRunes[i], r)
+
 		i++
 	}
 
@@ -76,6 +80,7 @@ func TestTransformBreak(t *testing.T) {
 		}
 
 		require.Equal(t, wantValues[i], value)
+
 		i++
 	}
 
@@ -95,6 +100,7 @@ func TestTransform2MapKeyValueSum(t *testing.T) {
 		return key + value
 	}) {
 		require.Contains(t, wantValues, value)
+
 		i++
 	}
 
@@ -114,6 +120,7 @@ func TestTransform2MapKeyValueProduct(t *testing.T) {
 		return key * value
 	}) {
 		require.Contains(t, wantValues, value)
+
 		i++
 	}
 
@@ -134,6 +141,7 @@ func TestTransform2Break(t *testing.T) {
 		}
 
 		require.Equal(t, 4, value)
+
 		i++
 	}
 

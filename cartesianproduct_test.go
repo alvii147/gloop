@@ -25,6 +25,7 @@ func TestCartesianProductSlice(t *testing.T) {
 	for seq := range gloop.CartesianProduct(gloop.Slice(values), 2) {
 		product := gloop.ToSlice(seq)
 		require.Equal(t, wantCartesianProducts[i], product)
+
 		i++
 	}
 
@@ -44,6 +45,7 @@ func TestCartesianProductString(t *testing.T) {
 	for seq := range gloop.CartesianProduct(gloop.String(s), 2) {
 		product := gloop.ToString(seq)
 		require.Equal(t, wantCartesianProducts[i], product)
+
 		i++
 	}
 
@@ -61,8 +63,10 @@ func TestCartesianProductBreak(t *testing.T) {
 
 		for value := range seq {
 			require.Equal(t, 3, value)
+
 			break
 		}
+
 		i++
 	}
 }
@@ -113,6 +117,7 @@ func TestCartesianProduct2Slice(t *testing.T) {
 		keys, product := gloop.ToSlice2(seq)
 		require.Equal(t, wantKeys[i], keys)
 		require.Equal(t, wantCartesianProducts[i], product)
+
 		i++
 	}
 
@@ -138,8 +143,10 @@ func TestCartesianProduct2String(t *testing.T) {
 	for seq := range gloop.CartesianProduct2(gloop.Enumerate(gloop.String(s)), 2) {
 		keys, productRunes := gloop.ToSlice2(seq)
 		product := string(productRunes)
+
 		require.Equal(t, wantKeys[i], keys)
 		require.Equal(t, wantCartesianProducts[i], product)
+
 		i++
 	}
 
@@ -158,8 +165,10 @@ func TestCartesianProduct2Break(t *testing.T) {
 		for key, value := range seq {
 			require.Equal(t, 0, key)
 			require.Equal(t, 3, value)
+
 			break
 		}
+
 		i++
 	}
 }

@@ -15,12 +15,14 @@ func TestChannel(t *testing.T) {
 		for _, value := range values {
 			ch <- value
 		}
+
 		close(ch)
 	}()
 
 	i := 0
 	for value := range gloop.Channel(ch) {
 		require.Equal(t, values[i], value)
+
 		i++
 	}
 
@@ -35,13 +37,17 @@ func TestChannelBreak(t *testing.T) {
 		for _, value := range values {
 			ch <- value
 		}
+
 		close(ch)
 	}()
 
 	i := 0
+
 	for value := range gloop.Channel(ch) {
 		require.Equal(t, "Fizz", value)
+
 		i++
+
 		break
 	}
 

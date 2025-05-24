@@ -14,7 +14,7 @@ func Transform[V, T any](seq iter.Seq[V], f TransformFunc[V, T]) iter.Seq[T] {
 	})
 }
 
-// TransformFunc is the function signature of the transformation
+// Transform2Func is the function signature of the transformation
 // function in [Transform2].
 type Transform2Func[K, V, T any] func(K, V) T
 

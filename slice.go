@@ -19,6 +19,7 @@ func Slice[V any](values []V) iter.Seq[V] {
 func ToSlice[V any](seq iter.Seq[V]) []V {
 	l := ToList(seq)
 	values := make([]V, l.Len())
+
 	for i := 0; i < len(values); i++ {
 		values[i] = l.Remove(l.Front()).(V)
 	}
@@ -34,7 +35,8 @@ func ToSlice2[K, V any](seq iter.Seq2[K, V]) ([]K, []V) {
 
 	keys := make([]K, n)
 	values := make([]V, n)
-	for i := 0; i < n; i++ {
+
+	for i := range n {
 		keys[i] = listKeys.Remove(listKeys.Front()).(K)
 		values[i] = listValues.Remove(listValues.Front()).(V)
 	}

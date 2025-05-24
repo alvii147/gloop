@@ -11,17 +11,17 @@ import (
 func TestMeanInt(t *testing.T) {
 	values := []int{7, -2, 4}
 	mean := gloop.Mean(gloop.Slice(values))
-	require.Equal(t, 3.0, mean)
+	require.InDelta(t, 3.0, mean, 0.001)
 }
 
 func TestMeanFloat(t *testing.T) {
 	values := []float64{0.4, 8.9, -4.8}
 	mean := gloop.Mean(gloop.Slice(values))
-	require.InDelta(t, 1.5, mean, 0.01)
+	require.InDelta(t, 1.5, mean, 0.001)
 }
 
 func TestMeanDuration(t *testing.T) {
 	values := []time.Duration{time.Hour, 2 * time.Minute}
 	mean := gloop.Mean(gloop.Slice(values))
-	require.Equal(t, float64(31*time.Minute), mean)
+	require.InDelta(t, float64(31*time.Minute), mean, 0.001)
 }

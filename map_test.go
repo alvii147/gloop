@@ -15,9 +15,11 @@ func TestMap(t *testing.T) {
 	}
 
 	i := 0
+
 	for key, value := range gloop.Map(m) {
 		require.Contains(t, m, key)
 		require.Equal(t, m[key], value)
+
 		i++
 	}
 
@@ -39,6 +41,7 @@ func TestMapBreak(t *testing.T) {
 
 		require.Contains(t, m, key)
 		require.Equal(t, m[key], value)
+
 		i++
 	}
 

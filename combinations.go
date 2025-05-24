@@ -26,11 +26,13 @@ func combinations[V any](
 	elem := unvisitedElem
 	for elem != nil {
 		visited.PushBack(elem.Value)
+
 		if !combinations(size, yield, visited, elem.Next()) {
 			return false
 		}
 
 		visited.Remove(visited.Back())
+
 		elem = elem.Next()
 	}
 
@@ -64,6 +66,7 @@ func combinations2[K, V any](
 			for keyElem, valueElem := range Zip(List(visitedKeys), List(visitedValues)) {
 				key := keyElem.Value.(K)
 				value := valueElem.Value.(V)
+
 				if !yield(key, value) {
 					return
 				}
@@ -73,6 +76,7 @@ func combinations2[K, V any](
 
 	keyElem := unvisitedKeyElem
 	valueElem := unvisitedValueElem
+
 	for keyElem != nil && valueElem != nil {
 		visitedKeys.PushBack(keyElem.Value)
 		visitedValues.PushBack(valueElem.Value)
@@ -99,6 +103,7 @@ func Combinations2[K, V any](seq iter.Seq2[K, V], size int) iter.Seq[iter.Seq2[K
 	}
 
 	listKeys, listValues := ToList2(seq)
+
 	return func(yield func(iter.Seq2[K, V]) bool) {
 		combinations2(size, yield, list.New(), list.New(), listKeys.Front(), listValues.Front())
 	}

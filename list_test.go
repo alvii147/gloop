@@ -19,6 +19,7 @@ func TestList(t *testing.T) {
 
 	for elem := range gloop.List(l) {
 		require.Equal(t, wantValues[i], elem.Value)
+
 		i++
 	}
 
@@ -40,6 +41,7 @@ func TestListBreak(t *testing.T) {
 		}
 
 		require.Equal(t, wantValues[i], elem.Value)
+
 		i++
 	}
 

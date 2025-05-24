@@ -12,8 +12,10 @@ func Batch[V any](seq iter.Seq[V], size int) iter.Seq[iter.Seq[V]] {
 	}
 
 	l := ToList(seq)
+
 	return func(yield func(iter.Seq[V]) bool) {
 		elem := l.Front()
+
 		for {
 			if elem == nil {
 				return
@@ -46,9 +48,11 @@ func Batch2[K, V any](seq iter.Seq2[K, V], size int) iter.Seq[iter.Seq2[K, V]] {
 	}
 
 	listKeys, listValues := ToList2(seq)
+
 	return func(yield func(iter.Seq2[K, V]) bool) {
 		keyElem := listKeys.Front()
 		valueElem := listValues.Front()
+
 		for {
 			if keyElem == nil || valueElem == nil {
 				return

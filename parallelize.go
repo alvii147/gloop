@@ -91,8 +91,10 @@ func Parallelize2[K, V any](
 		}
 
 		wg.Add(1)
+
 		go func(k K, v V) {
 			defer wg.Done()
+
 			if semaphore != nil {
 				defer func(s <-chan struct{}) {
 					<-s
@@ -104,6 +106,7 @@ func Parallelize2[K, V any](
 				return
 			default:
 				f(k, v)
+
 				return
 			}
 		}(key, value)

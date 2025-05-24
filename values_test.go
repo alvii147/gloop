@@ -13,6 +13,7 @@ func TestValues(t *testing.T) {
 
 	for value := range gloop.Values(gloop.Enumerate(gloop.Slice(values))) {
 		require.Equal(t, values[i], value)
+
 		i++
 	}
 
@@ -29,6 +30,7 @@ func TestValuesBreak(t *testing.T) {
 		}
 
 		require.Equal(t, values[i], value)
+
 		i++
 	}
 }

@@ -14,6 +14,7 @@ func TestSortAscendingInt(t *testing.T) {
 	i := 0
 	for value := range gloop.Sort(gloop.Slice(values), true) {
 		require.Equal(t, wantValues[i], value)
+
 		i++
 	}
 
@@ -27,6 +28,7 @@ func TestSortDescendingInt(t *testing.T) {
 	i := 0
 	for value := range gloop.Sort(gloop.Slice(values), false) {
 		require.Equal(t, wantValues[i], value)
+
 		i++
 	}
 
@@ -39,7 +41,8 @@ func TestSortAscendingFloat(t *testing.T) {
 
 	i := 0
 	for value := range gloop.Sort(gloop.Slice(values), true) {
-		require.Equal(t, wantValues[i], value)
+		require.InDelta(t, wantValues[i], value, 0.001)
+
 		i++
 	}
 
@@ -52,7 +55,8 @@ func TestSortDescendingFloat(t *testing.T) {
 
 	i := 0
 	for value := range gloop.Sort(gloop.Slice(values), false) {
-		require.Equal(t, wantValues[i], value)
+		require.InDelta(t, wantValues[i], value, 0.001)
+
 		i++
 	}
 
@@ -66,6 +70,7 @@ func TestSortAscendingString(t *testing.T) {
 	i := 0
 	for value := range gloop.Sort(gloop.Slice(values), true) {
 		require.Equal(t, wantValues[i], value)
+
 		i++
 	}
 
@@ -79,6 +84,7 @@ func TestSortDescendingString(t *testing.T) {
 	i := 0
 	for value := range gloop.Sort(gloop.Slice(values), false) {
 		require.Equal(t, wantValues[i], value)
+
 		i++
 	}
 
@@ -96,6 +102,7 @@ func TestSortBreak(t *testing.T) {
 		}
 
 		require.Equal(t, wantValues[i], value)
+
 		i++
 	}
 
@@ -115,6 +122,7 @@ func TestSortByComparisonAscending(t *testing.T) {
 		true,
 	) {
 		require.Equal(t, wantValues[i], value)
+
 		i++
 	}
 
@@ -134,6 +142,7 @@ func TestSortByComparisonDescending(t *testing.T) {
 		false,
 	) {
 		require.Equal(t, wantValues[i], value)
+
 		i++
 	}
 
@@ -157,6 +166,7 @@ func TestSortByComparisonBreak(t *testing.T) {
 		}
 
 		require.Equal(t, wantValues[i], value)
+
 		i++
 	}
 
@@ -182,6 +192,7 @@ func TestSortByComparison2Ascending(t *testing.T) {
 	) {
 		require.Equal(t, wantKeys[i], key)
 		require.Equal(t, wantValues[i], value)
+
 		i++
 	}
 
@@ -207,6 +218,7 @@ func TestSortByComparison2Descending(t *testing.T) {
 	) {
 		require.Equal(t, wantKeys[i], key)
 		require.Equal(t, wantValues[i], value)
+
 		i++
 	}
 
@@ -236,6 +248,7 @@ func TestSortByComparison2Break(t *testing.T) {
 
 		require.Equal(t, wantKeys[i], key)
 		require.Equal(t, wantValues[i], value)
+
 		i++
 	}
 
@@ -255,6 +268,7 @@ func TestSortByRankAscending(t *testing.T) {
 		true,
 	) {
 		require.Equal(t, wantValues[i], value)
+
 		i++
 	}
 
@@ -274,6 +288,7 @@ func TestSortByRankDescending(t *testing.T) {
 		false,
 	) {
 		require.Equal(t, wantValues[i], value)
+
 		i++
 	}
 
@@ -297,6 +312,7 @@ func TestSortByRankBreak(t *testing.T) {
 		}
 
 		require.Equal(t, wantValues[i], value)
+
 		i++
 	}
 
@@ -322,6 +338,7 @@ func TestSortByRank2Ascending(t *testing.T) {
 	) {
 		require.Equal(t, wantKeys[i], key)
 		require.Equal(t, wantValues[i], value)
+
 		i++
 	}
 
@@ -347,6 +364,7 @@ func TestSortByRank2Descending(t *testing.T) {
 	) {
 		require.Equal(t, wantKeys[i], key)
 		require.Equal(t, wantValues[i], value)
+
 		i++
 	}
 
@@ -373,8 +391,10 @@ func TestSortByRank2Break(t *testing.T) {
 		if i == 2 {
 			break
 		}
+
 		require.Equal(t, wantKeys[i], key)
 		require.Equal(t, wantValues[i], value)
+
 		i++
 	}
 

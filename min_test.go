@@ -17,7 +17,7 @@ func TestMinInt(t *testing.T) {
 func TestMinFloat(t *testing.T) {
 	values := []float64{2.31, -0.03, 0.22}
 	minValue := gloop.Min(gloop.Slice(values))
-	require.Equal(t, -0.03, minValue)
+	require.InDelta(t, -0.03, minValue, 0.001)
 }
 
 func TestMinString(t *testing.T) {

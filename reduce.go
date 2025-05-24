@@ -24,8 +24,11 @@ type Reduce2Func[K, V any] func(K, V, K, V) (K, V)
 // values in an [iter.Seq2] sequence and accumulates the result into a
 // single key and value pair.
 func Reduce2[K, V any](seq iter.Seq2[K, V], f Reduce2Func[K, V]) (K, V) {
-	var reducedKey K
-	var reducedValue V
+	var (
+		reducedKey   K
+		reducedValue V
+	)
+
 	first := true
 
 	for key, value := range seq {
@@ -33,6 +36,7 @@ func Reduce2[K, V any](seq iter.Seq2[K, V], f Reduce2Func[K, V]) (K, V) {
 			reducedKey = key
 			reducedValue = value
 			first = false
+
 			continue
 		}
 

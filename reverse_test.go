@@ -14,6 +14,7 @@ func TestReverseSlice(t *testing.T) {
 
 	for value := range gloop.Reverse(gloop.Slice(values)) {
 		require.Equal(t, reversedValues[i], value)
+
 		i++
 	}
 
@@ -27,6 +28,7 @@ func TestReverseString(t *testing.T) {
 
 	for r := range gloop.Reverse(gloop.String(s)) {
 		require.Equal(t, reversedRunes[i], r)
+
 		i++
 	}
 
@@ -44,6 +46,7 @@ func TestReverseBreak(t *testing.T) {
 		}
 
 		require.Equal(t, reversedValues[i], value)
+
 		i++
 	}
 
@@ -71,6 +74,7 @@ func TestReverse2(t *testing.T) {
 	for key, value := range gloop.Reverse2(seq) {
 		require.Equal(t, reversedKeys[i], key)
 		require.Equal(t, reversedValues[i], value)
+
 		i++
 	}
 
@@ -102,6 +106,7 @@ func TestReverse2Break(t *testing.T) {
 
 		require.Equal(t, reversedKeys[i], key)
 		require.Equal(t, reversedValues[i], value)
+
 		i++
 	}
 

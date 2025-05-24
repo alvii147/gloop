@@ -11,6 +11,7 @@ func Enumerate[V any](seq iter.Seq[V]) iter.Seq2[int, V] {
 			if !yield(i, value) {
 				return
 			}
+
 			i++
 		}
 	}

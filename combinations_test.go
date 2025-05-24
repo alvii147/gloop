@@ -20,6 +20,7 @@ func TestCombinationsSlice(t *testing.T) {
 	for seq := range gloop.Combinations(gloop.Slice(values), 3) {
 		comb := gloop.ToSlice(seq)
 		require.Equal(t, wantCombs[i], comb)
+
 		i++
 	}
 
@@ -34,6 +35,7 @@ func TestCombinationsString(t *testing.T) {
 	for seq := range gloop.Combinations(gloop.String(s), 2) {
 		comb := gloop.ToString(seq)
 		require.Equal(t, wantCombs[i], comb)
+
 		i++
 	}
 
@@ -51,8 +53,10 @@ func TestCombinationsBreak(t *testing.T) {
 
 		for value := range seq {
 			require.Equal(t, 3, value)
+
 			break
 		}
+
 		i++
 	}
 }
@@ -93,6 +97,7 @@ func TestCombinations2Slice(t *testing.T) {
 		keys, comb := gloop.ToSlice2(seq)
 		require.Equal(t, wantKeys[i], keys)
 		require.Equal(t, wantCombs[i], comb)
+
 		i++
 	}
 
@@ -115,8 +120,10 @@ func TestCombinations2String(t *testing.T) {
 	for seq := range gloop.Combinations2(gloop.Enumerate(gloop.String(s)), 2) {
 		keys, combRunes := gloop.ToSlice2(seq)
 		comb := string(combRunes)
+
 		require.Equal(t, wantKeys[i], keys)
 		require.Equal(t, wantCombs[i], comb)
+
 		i++
 	}
 
@@ -135,8 +142,10 @@ func TestCombinations2Break(t *testing.T) {
 		for key, value := range seq {
 			require.Equal(t, 0, key)
 			require.Equal(t, 3, value)
+
 			break
 		}
+
 		i++
 	}
 }

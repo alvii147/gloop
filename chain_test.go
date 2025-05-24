@@ -20,6 +20,7 @@ func TestChainSlices(t *testing.T) {
 		gloop.Slice(values3),
 	) {
 		require.Equal(t, chainedValues[i], value)
+
 		i++
 	}
 
@@ -34,6 +35,7 @@ func TestChainStrings(t *testing.T) {
 
 	for value := range gloop.Chain(gloop.String(s1), gloop.String(s2)) {
 		require.Equal(t, chainedRunes[i], value)
+
 		i++
 	}
 
@@ -48,6 +50,7 @@ func TestChainSliceAndString(t *testing.T) {
 
 	for value := range gloop.Chain(gloop.Slice(values), gloop.String(s)) {
 		require.Equal(t, chainedRunes[i], value)
+
 		i++
 	}
 
@@ -65,6 +68,7 @@ func TestChainBreak(t *testing.T) {
 		}
 
 		require.Equal(t, chainedValues[i], value)
+
 		i++
 	}
 }
@@ -84,6 +88,7 @@ func TestChain2Slices(t *testing.T) {
 	) {
 		require.Equal(t, chainedIdx[i], idx)
 		require.Equal(t, chainedValues[i], value)
+
 		i++
 	}
 
@@ -103,6 +108,7 @@ func TestChain2Strings(t *testing.T) {
 	) {
 		require.Equal(t, chainedIdx[i], idx)
 		require.Equal(t, chainedRunes[i], value)
+
 		i++
 	}
 
@@ -122,6 +128,7 @@ func TestChain2SliceAndString(t *testing.T) {
 	) {
 		require.Equal(t, chainedIdx[i], idx)
 		require.Equal(t, chainedRunes[i], value)
+
 		i++
 	}
 
@@ -141,6 +148,7 @@ func TestChain2Break(t *testing.T) {
 
 		require.Equal(t, chainedIdx[i], idx)
 		require.Equal(t, chainedValues[i], value)
+
 		i++
 	}
 }

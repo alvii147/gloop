@@ -13,6 +13,7 @@ func TestKeys(t *testing.T) {
 
 	for value := range gloop.Keys(gloop.Enumerate(gloop.Slice(values))) {
 		require.Equal(t, i, value)
+
 		i++
 	}
 
@@ -29,6 +30,7 @@ func TestKeysBreak(t *testing.T) {
 		}
 
 		require.Equal(t, i, value)
+
 		i++
 	}
 }
