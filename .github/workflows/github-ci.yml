@@ -22,11 +22,6 @@ jobs:
         go mod tidy
         git diff --exit-code
 
-    - name: Check vendor packages are up to date
-      run: |
-        go mod vendor
-        git diff --exit-code
-
   lint:
     runs-on: ubuntu-latest
     steps:
