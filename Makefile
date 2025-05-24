@@ -20,3 +20,7 @@ race:
 .PHONY: cover
 cover:
 	$(GO) tool cover -func $(COV);
+
+.PHONY: lint
+lint:
+	golangci-lint run
