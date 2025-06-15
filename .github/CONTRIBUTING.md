@@ -58,8 +58,9 @@ Once you've cloned it locally, make your desired changes.
 
 If your changes include additions/updates to code, remember to:
 
+* Add/update the [features section](https://github.com/alvii147/gloop#features) in `README.md`
 * Add/update an example of usage in `example_test.go`
-* Add/update the [features section](https://github.com/alvii147/gloop?#features) in `README.md`
+* Add a new entry describing the change in the [unreleased section](https://github.com/alvii147/gloop/blob/main/CHANGELOG.md#unreleased) in `CHANGELOG.md`
 
 ## Running Tests
 
