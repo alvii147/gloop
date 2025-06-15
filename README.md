@@ -19,7 +19,7 @@
 Install `gloop` using the `go get` command:
 
 ```bash
-go get github.com/alvii147/gloop
+go get -u github.com/alvii147/gloop
 ```
 
 > [!NOTE]
