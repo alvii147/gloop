@@ -8,11 +8,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
-- New `Unique` and `Unique2` scalar iterators to iterate over unique values.
-
 ### Changed
 
 ### Removed
+
+## 1.1.0 - 2025-06-15
+
+### Added
+
+- New `Unique` and `Unique2` scalar iterators to iterate over unique values.
 
 ## 1.0.0 - 2025-05-24
 
