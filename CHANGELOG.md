@@ -10,6 +10,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 - New `Unique` and `Unique2` scalar iterators to iterate over unique values.
 
+### Changed
+
+### Removed
+
 ## 1.0.0 - 2025-05-24
 
 This is the first stable release of *gloop*! :tada:
