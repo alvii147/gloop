@@ -418,6 +418,37 @@ func ExampleString() {
 	// T
 }
 
+func ExampleUnique() {
+	values := []int{3, 1, 4, 1, 5, 9, 2, 6, 5}
+
+	for value := range gloop.Unique(gloop.Slice(values)) {
+		fmt.Println(value)
+	}
+	// Output:
+	// 3
+	// 1
+	// 4
+	// 5
+	// 9
+	// 2
+	// 6
+}
+
+func ExampleUnique2() {
+	seq := func(yield func(string, int) bool) {
+		yield("CAT", 3)
+		yield("DOG", 1)
+		yield("CAT", 3)
+	}
+
+	for key, value := range gloop.Unique2(seq) {
+		fmt.Println(key, value)
+	}
+	// Output:
+	// CAT 3
+	// DOG 1
+}
+
 func ExampleZip() {
 	values1 := []string{"CAT", "DOG", "MOUSE"}
 	values2 := []int{3, 1, 4}

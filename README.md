@@ -93,6 +93,8 @@ See more specific documentation and examples in the [features section](#features
 * [`String`](https://pkg.go.dev/github.com/alvii147/gloop#String) allows looping over the runes in a given string.
 * [`Transform`](https://pkg.go.dev/github.com/alvii147/gloop#Transform) runs a given function on each value over an [iter.Seq] sequence and allows looping over the returned values.
 * [`Transform2`](https://pkg.go.dev/github.com/alvii147/gloop#Transform2) runs a given function on each key and value over an [iter.Seq2] sequence and allows looping over the returned values.
+* [`Unique`](https://pkg.go.dev/github.com/alvii147/gloop#Unique) allows looping over unique values in an [iter.Seq] sequence.
+* [`Unique2`](https://pkg.go.dev/github.com/alvii147/gloop#Unique2) allows looping over unique key value pairs in an [iter.Seq2] sequence.
 * [`Values`](https://pkg.go.dev/github.com/alvii147/gloop#Values) allows looping over an [iter.Seq2] and converting it to an [iter.Seq] sequence by discarding the key.
 * [`Zip`](https://pkg.go.dev/github.com/alvii147/gloop#Zip) allows looping over two [iter.Seq] sequences in pairs.
 * [`Zip2`](https://pkg.go.dev/github.com/alvii147/gloop#Zip2) allows looping over two [iter.Seq2] sequences in pairs.
